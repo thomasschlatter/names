@@ -1,0 +1,104 @@
+country,gram_gender,n_genders,notes
+Iceland,1.0,3,Icelandic: full 3-gender system
+Denmark,0.5,2,Danish: common/neuter — sex distinction lost
+Norway,0.5,3,Norwegian: common/neuter in Bokmål; sex partly retained
+Sweden,0.5,2,Swedish: common/neuter — sex distinction lost
+Germany,1.0,3,German: full 3-gender system
+Austria,1.0,3,German: full 3-gender system
+Switzerland,1.0,3,German dominant; also French (2g) and Italian (2g)
+Netherlands,0.5,2,Dutch: common/neuter — sex mostly lost
+Belgium,1.0,2,Dutch (common/neuter) + French (2g); French dominant for names
+Luxembourg,1.0,3,Luxembourgish: 3 genders; also German + French
+England,0.0,0,English: no grammatical gender
+Scotland,0.0,0,English: no grammatical gender
+Wales,0.0,0,English dominant for names
+Canada,0.0,0,"English dominant (French in Quebec has 2g, but overall 0)"
+USA,0.0,0,English: no grammatical gender
+Australia,0.0,0,English: no grammatical gender
+New Zealand,0.0,0,English: no grammatical gender
+South Africa,0.0,0,English/Afrikaans: Afrikaans reduced gender; coding 0
+Namibia,0.0,0,English/Afrikaans: minimal gender marking
+France,1.0,2,French: masculine/feminine
+Spain,1.0,2,Spanish: masculine/feminine
+Italy,1.0,2,Italian: masculine/feminine
+Portugal,1.0,2,Portuguese: masculine/feminine
+Brazil,1.0,2,Portuguese: masculine/feminine
+Mexico,1.0,2,Spanish: masculine/feminine
+Colombia,1.0,2,Spanish: masculine/feminine
+Chile,1.0,2,Spanish: masculine/feminine
+Peru,1.0,2,Spanish: masculine/feminine
+Argentina,1.0,2,Spanish: masculine/feminine
+Bolivia,1.0,2,Spanish: masculine/feminine
+Ecuador,1.0,2,Spanish: masculine/feminine
+Uruguay,1.0,2,Spanish: masculine/feminine
+Guatemala,1.0,2,Spanish: masculine/feminine
+Panama,1.0,2,Spanish: masculine/feminine
+El Salvador,1.0,2,Spanish: masculine/feminine
+Costa Rica,1.0,2,Spanish: masculine/feminine
+Honduras,1.0,2,Spanish: masculine/feminine
+Moldova,1.0,3,Romanian: 3 genders (m/f/neuter)
+Cameroon,1.0,2,French dominant official language: masculine/feminine
+Angola,1.0,2,Portuguese: masculine/feminine
+Burkina Faso,1.0,2,French official: masculine/feminine
+Burundi,1.0,2,"French official: masculine/feminine (Kirundi has noun classes, not sex gender)"
+Poland,1.0,3,Polish: masculine/feminine/neuter
+Czech Republic,1.0,3,Czech: masculine/feminine/neuter
+Croatia,1.0,3,Croatian: masculine/feminine/neuter
+Slovenia,1.0,3,Slovenian: masculine/feminine/neuter
+Russia,1.0,3,Russian: masculine/feminine/neuter
+Bulgaria,1.0,3,Bulgarian: masculine/feminine/neuter (reduced declension)
+Serbia,1.0,3,Serbian: masculine/feminine/neuter
+Greece,1.0,3,Greek: masculine/feminine/neuter
+Cyprus,1.0,3,Greek: masculine/feminine/neuter
+Lithuania,1.0,2,Lithuanian: masculine/feminine
+Ireland,1.0,2,Irish: masculine/feminine
+Albania,1.0,2,Albanian: masculine/feminine
+Finland,0.0,0,Finnish: no grammatical gender
+Estonia,0.0,0,Estonian: no grammatical gender
+Hungary,0.0,0,Hungarian: no grammatical gender
+Turkey,0.0,0,Turkish: no grammatical gender
+Azerbaijan,0.0,0,Azerbaijani: no grammatical gender
+Kazakhstan,0.0,0,Kazakh: no grammatical gender
+Turkmenistan,0.0,0,Turkmen: no grammatical gender
+Georgia,0.0,0,Georgian: no grammatical gender
+South Korea,0.0,0,Korean: no grammatical gender
+Japan,0.0,0,Japanese: no grammatical gender
+Egypt,1.0,2,Arabic: masculine/feminine
+Morocco,1.0,2,Arabic: masculine/feminine
+Algeria,1.0,2,Arabic: masculine/feminine
+Tunisia,1.0,2,Arabic: masculine/feminine
+Libya,1.0,2,Arabic: masculine/feminine
+Saudi Arabia,1.0,2,Arabic: masculine/feminine
+Kuwait,1.0,2,Arabic: masculine/feminine
+Iraq,1.0,2,Arabic: masculine/feminine
+Jordan,1.0,2,Arabic: masculine/feminine
+Syria,1.0,2,Arabic: masculine/feminine
+Lebanon,1.0,2,Arabic: masculine/feminine
+Sudan,1.0,2,Arabic: masculine/feminine
+Palestine,1.0,2,Arabic: masculine/feminine
+Israel,1.0,2,Hebrew: masculine/feminine
+Ethiopia,1.0,2,Amharic: masculine/feminine
+Djibouti,1.0,2,Arabic + Somali; Arabic dominant for names
+Malta,1.0,2,Maltese: masculine/feminine (Semitic base + Romance loanwords)
+UAE,1.0,2,Arabic: masculine/feminine
+Bahrain,1.0,2,Arabic: masculine/feminine
+Oman,1.0,2,Arabic: masculine/feminine
+Qatar,1.0,2,Arabic: masculine/feminine
+Yemen,1.0,2,Arabic: masculine/feminine
+India,1.0,2,Hindi dominant: masculine/feminine
+Bangladesh,0.0,0,Bengali: no grammatical gender
+Iran,0.0,0,Persian/Farsi: no grammatical gender
+Afghanistan,0.0,0,Dari (Persian): no grammatical gender; Pashto has 2g but minority
+Nigeria,0.0,0,"English official; Yoruba/Igbo/Hausa: noun classes, not sex gender"
+Ghana,0.0,0,"English official; Akan: noun classes, not sex gender"
+Botswana,0.0,0,"English/Setswana: noun classes, not sex gender"
+Philippines,0.0,0,Filipino/Tagalog: no grammatical gender
+Indonesia,0.0,0,Bahasa Indonesia: no grammatical gender
+Malaysia,0.0,0,Bahasa Malaysia: no grammatical gender
+Brunei,0.0,0,Malay: no grammatical gender
+Fiji,0.0,0,Fijian/English: no grammatical gender
+Cambodia,0.0,0,Khmer: no grammatical gender
+Jamaica,0.0,0,English: no grammatical gender
+Singapore,0.0,0,English: no grammatical gender
+Haiti,0.0,0,Haitian Creole: no grammatical gender
+Mauritius,0.0,0,Mauritian Creole: no grammatical gender
