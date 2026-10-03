@@ -12,6 +12,18 @@ Split out of the old `NAME_PHONOLOGY` folder on 2026-09-17, where it shared
 space with the lexicon paper (now `PROJECTS/NAME_PHONOLOGY_LEXICON`). The two
 share no script and no data file. Pre-split history: the lexicon repo at 4f9dace.
 
+## Git / GitHub (2026-10-04)
+**Public** repo: https://github.com/thomasschlatter/names (branch `main`; pushed
+public at the user's explicit choice, manuscript and all data included). The
+working repo is `D:\BACKUPS\NAME_PHONOLOGY_REGISTRY`, NOT H: (git on H: is
+unusable, see PROJECTS/CLAUDE.md). The `.git` still inside this H: folder is the
+OLD 3-commit `master` from 2026-09-17 with no remote: do not commit there. To
+commit later, mirror H: into the D: repo, then git there:
+`robocopy "H:\My Drive\PROJECTS\NAME_PHONOLOGY_REGISTRY" D:\BACKUPS\NAME_PHONOLOGY_REGISTRY /MIR /MT:4 /XD .git`
+Three tracked files exceed GitHub's 50 MB advisory (two ~94 MB feature tables,
+QoG 68 MB); the hard limit is 100 MB, so a larger regenerated table will be
+rejected on push.
+
 ## Status (needs attention) -- STALE, see the dated sections below (inputs now all produced in the knit)
 - `paper_registry.Rmd` untouched since **Jun 9 2026**; HTML rendered Jun 9.
 - There is **no pipeline chunk**: the Rmd only reads three CSVs, so a knit
