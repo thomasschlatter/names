@@ -1,0 +1,72 @@
+SOURCE: ONS (Office for National Statistics) — England and Wales Baby Names
+PRIMARY URL: https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/livebirths/bulletins/babynamesenglandandwales/
+BOYS DATASET: https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/livebirths/datasets/babynamesenglandandwalesbabynamesstatisticsboys
+GIRLS DATASET: https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/livebirths/datasets/babynamesenglandandwalesbabynamesstatisticsgirls
+DOWNLOAD DATE: 2026-05-01
+
+=== FILES DOWNLOADED ===
+
+--- Historical Combined (England + Wales) ---
+
+1. babynames1996to2024.xlsx (10.8 MB)
+   URL: https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/birthsdeathsandmarriages/livebirths/datasets/babynamesinenglandandwalesfrom1996/1996to2024/babynames1996to2024.xlsx
+   CONTENT: Ranks and counts of baby names for boys and girls, England and Wales combined
+   YEARS: 1996–2024 (29 years)
+   FORMAT: Excel (.xlsx)
+   NOTE: Single workbook covering all years; most convenient for long time-series work
+
+--- Annual Files with Wales-ONLY Breakdown (Table 3 in each file) ---
+Each annual file contains:
+  Table 1 — Top 100, England and Wales combined
+  Table 2 — Top 100, England only
+  Table 3 — Top 100, WALES ONLY  <-- key for Welsh name analysis
+  Table 4 — Top 10 by region
+  Table 5 — Top 10 by birth month
+  Table 6 — All names with rank
+  Table 7 — Most popular name by local area
+  Table 8 — Top 100 by mother's age
+
+BOYS — Annual files (Wales-specific Table 3 confirmed present in all):
+  ONS_boys_Wales_2024.xlsx (233 KB) — https://www.ons.gov.uk/file?uri=/.../2024/boysnames2024.xlsx
+  ONS_boys_Wales_2023.xlsx (219 KB) — https://www.ons.gov.uk/file?uri=/.../2023/boysnames2023.xlsx
+  ONS_boys_Wales_2022.xlsx (213 KB) — https://www.ons.gov.uk/file?uri=/.../2022/boysnames2022.xlsx
+  ONS_boys_Wales_2021.xlsx (264 KB) — https://www.ons.gov.uk/file?uri=/.../2021/2021boysnamesupdated1.xlsx
+  ONS_boys_Wales_2020.xlsx (234 KB) — https://www.ons.gov.uk/file?uri=/.../2020/2020boysnames.xlsx
+  ONS_boys_Wales_2019.xlsx (244 KB) — https://www.ons.gov.uk/file?uri=/.../2019/2019boysnames.xlsx
+
+GIRLS — Annual files (Wales-specific Table 3 confirmed present in all):
+  ONS_girls_Wales_2024.xlsx (253 KB) — https://www.ons.gov.uk/file?uri=/.../2024/girlsnames2024.xlsx
+  ONS_girls_Wales_2023.xlsx (239 KB) — https://www.ons.gov.uk/file?uri=/.../2023/girlsnames2023.xlsx
+  ONS_girls_Wales_2022.xlsx (234 KB) — https://www.ons.gov.uk/file?uri=/.../2022/girlsnames2022.xlsx
+  ONS_girls_Wales_2021.xlsx (293 KB) — https://www.ons.gov.uk/file?uri=/.../2021/2021girlsnames.xlsx
+  ONS_girls_Wales_2020.xlsx (255 KB) — https://www.ons.gov.uk/file?uri=/.../2020/2020girlsnames.xlsx
+  ONS_girls_Wales_2019.xlsx (268 KB) — https://www.ons.gov.uk/file?uri=/.../2019/2019girlsnames.xlsx
+
+=== COVERAGE ===
+COMBINED HISTORICAL: 1996–2024 (England + Wales, babynames1996to2024.xlsx)
+WALES-ONLY TOP 100: 2019–2024 (annual files, Table 3 in each xlsx)
+MINIMUM THRESHOLD: 3+ occurrences for full list (Table 6); top 100 for Wales-specific table
+GEOGRAPHIC SCOPE: Births registered in Wales (mother's usual residence in Wales)
+
+=== IMPORTANT LIMITATION ===
+The Wales-only data (Table 3) contains only the TOP 100 names per year, not the full name
+universe. The full name universe (Table 6) is England+Wales combined only.
+There is no publicly available full-universe Wales-only breakdown.
+For frequencies of Welsh-specific names below rank 100, use the England+Wales combined data
+(babynames1996to2024.xlsx or Table 6 in annual files) and note that Welsh names will be
+proportionally underrepresented in the aggregate.
+
+=== CELTIC/BRYTHONIC RELEVANCE ===
+Wales is the primary source of Brythonic Celtic (Welsh-language) given names.
+Welsh names appearing in Wales Top 100:
+  Girls (2021-2024): Seren, Nia, Ffion, Cadi, Elen, Alys, Lowri, Cerys, Eira, Gwenllian
+  Boys (2021-2024): Osian, Rhodri, Gethin, Tomos, Huw, Cai, Emrys, Macsen, Llŷr, Ifor
+The Wales-specific Table 3 in annual files is the key resource for identifying which
+specifically Welsh-language names are in use and at what frequency.
+
+=== ADDITIONAL SOURCES (not yet downloaded) ===
+StatsWales does not publish a separate baby names dataset. The ONS annual files are the
+only official Wales-specific naming statistics. No Welsh Government dataset was found
+that provides Welsh-origin name tagging or a Welsh-only full-universe count.
+StatsWales births pages: https://statswales.gov.wales/Catalogue/Health-and-Social-Care/Births-Deaths-and-Conceptions/Births
+Welsh Government Welsh names page: https://www.gov.wales/cymraeg-for-kids/welsh-names-for-children

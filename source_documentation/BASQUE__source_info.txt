@@ -1,0 +1,62 @@
+SOURCE: INE (Instituto Nacional de Estadística) — Spain Newborn Names
+PRIMARY PURPOSE: Best available substitute for direct Eustat/Basque data due to network block
+URL: https://www.ine.es/dyngs/INEbase/operacion.htm?c=Estadistica_C&cid=1254736177009&menu=resultados&idp=1254735572981
+DOWNLOAD DATE: 2026-05-01
+
+FILES DOWNLOADED:
+1. INE_nomnac2024_spain.xlsx (43,319 bytes — VALID)
+   - URL: https://www.ine.es/daco/daco42/nombyapel/nomnac24.xlsx
+   - Coverage: 2024 births
+   - Content: Top 100 most frequent newborn names for total Spain + top 10 per autonomous community (incl. Basque Country)
+
+2. INE_nomnac2023_spain.xlsx (44,511 bytes — VALID)
+   - URL: https://www.ine.es/daco/daco42/nombyapel/nomnac23.xlsx
+
+3. INE_nomnac2022_spain.xlsx (45,228 bytes — VALID)
+   - URL: https://www.ine.es/daco/daco42/nombyapel/nomnac22.xlsx
+
+4. INE_nomnac2021_spain.xlsx (43,672 bytes — VALID)
+   - URL: https://www.ine.es/daco/daco42/nombyapel/nomnac21.xlsx
+
+5. INE_nomnac2020_spain.xlsx (37,270 bytes — VALID)
+   - URL: https://www.ine.es/daco/daco42/nombyapel/nomnac20.xlsx
+
+6. INE_nomnac2019_spain.xlsx (38,000 bytes — VALID)
+   - URL: https://www.ine.es/daco/daco42/nombyapel/nomnac19.xlsx
+
+7. INE_nombres_mas_frecuentes_spain.xlsx (137,364 bytes — VALID)
+   - URL: https://www.ine.es/daco/daco42/nombyapel/nombres_mas_frecuentes.xlsx
+   - Coverage: Living population (all ages), top 100 nationally + top 50 per province
+   - Content: All names with frequency >= 20 persons in Spain's current population
+
+FAILED / INACCESSIBLE — PRIMARY BASQUE SOURCES:
+All Eustat and Basque Government domains returned HTTP:000 (connection refused/blocked):
+  - https://www.eustat.eus (Eustat — Basque Statistics Office)
+  - https://en.eustat.eus
+  - https://opendata.euskadi.eus
+  - https://www.euskadi.eus
+
+Known Eustat dataset (confirmed to exist via web search, not downloadable from this machine):
+  - "Recién nacidos según nombre en la CAPV" (Newborns by name in the Basque Country)
+    Catalog page: https://opendata.euskadi.eus/catalogo/-/recien-nacidos-segun-nombre-en-la-capv/
+  - Table "25 nombres más utilizados en nacimientos en Euskadi 2022-2024"
+    URL: https://en.eustat.eus/elementos/ele0021400/ti_los-25-nombres-mas-utilizados.../tbl0021479_i.html
+  - Eusat CSV export pattern (untested, may work from unrestricted network):
+    http://www.eustat.eus/elem/ele0009200/xls0009207_c.csv
+
+Known Basque names (from Eustat press releases via web search):
+  Most popular Basque Country names 2022-2024:
+    Girls: Ane, Laia, June
+    Boys: Oihan, Martin/Martín, Markel
+
+HOW TO EXTRACT BASQUE DATA FROM INE FILES:
+The INE annual nomnac files include a tab or section "Comunidades Autónomas" with top 10 names
+per autonomous community. The Basque Country (País Vasco / Euskadi) data is in these files.
+Basque-specific given names (Ane, Oihan, Iker, Amaia, Markel, Eneko, etc.) will appear there.
+
+NOTES:
+- INE data covers all of Spain; Basque Country names are a subset
+- Basque names are also visible in the "nombres_mas_frecuentes" file (living population by province)
+- The Eustat open data portal (opendata.euskadi.eus) publishes its own bilingual name dataset;
+  direct access was blocked from this machine — try from a different network
+- The "izendegia" (Basque official name dictionary) is also published at opendata.euskadi.eus

@@ -1,0 +1,93 @@
+VIETNAM — GIVEN NAME FREQUENCY DATA
+=====================================
+Last updated: 2026-05-01
+
+===========================================================
+SOURCE 1: hoten.org — SG01 Sample (Best Available Frequency Data)
+===========================================================
+URL (male):    https://hoten.org/100-ten-nam-pho-bien-vietnam/
+URL (female):  https://hoten.org/100-ten-nu-gioi-pho-bien/
+Sample:        SG01 — sourced primarily from Ho Chi Minh City and surrounding regions
+Sample sizes:  124,823 male names; 116,189 female names
+Coverage:      Top 100 given names by gender with frequency percentages
+Years:         Not specified; estimated contemporary (2010s–2020s)
+Format:        HTML tables only; no official CSV download
+
+Data extracted and saved as:
+File saved:    vietnam_popular_given_names_hoten_org.csv
+Columns:       rank, name, frequency_pct, gender (M/F)
+Rows:          200 (100 male + 100 female)
+
+Notes:
+- Top 100 male names cover 92.8% of all male names in sample
+- Top 100 female names similarly cover most female names
+- Frequencies are percentages of within-gender sample (e.g., 4.9% of males named "Huy")
+- The SG01 sample methodology is not publicly documented
+- A larger VNTH01 sample (1.6M+ names) is referenced on the site's 300-name page
+  but the full dataset is not available for download
+- Raw HTML pages downloaded (and can be deleted after CSV extraction):
+  hoten_male_raw.html, hoten_female_raw.html
+
+Raw HTML files downloaded for extraction:
+  hoten_male_raw.html   (https://hoten.org/100-ten-nam-pho-bien-vietnam/)
+  hoten_female_raw.html (https://hoten.org/100-ten-nu-gioi-pho-bien/)
+
+
+===========================================================
+SOURCE 2: GitHub — duyet/vietnamese-namedb (Name Lexicon)
+===========================================================
+URL:           https://github.com/duyet/vietnamese-namedb
+Format:        Plain text (.txt), one name per line
+License:       Open source
+Files downloaded:
+  vietnamese_namedb_boy.txt          — 1,236 male names (with diacritics)
+  vietnamese_namedb_boy_no_accents.txt — 1,236 male names (ASCII)
+  vietnamese_namedb_girl.txt         — 1,316 female names (with diacritics)
+  vietnamese_namedb_girl_no_accents.txt — 1,316 female names (ASCII)
+
+Total:         2,552 unique given names (1,236 M + 1,316 F)
+Years:         Compiled from multiple online sources; updated through 2025
+Notes:         - NO frequency data (name list only)
+               - Includes two-part given names (e.g., "An Khang", "Phương Chi")
+               - Includes variants without Vietnamese diacritics (useful for ASCII contexts)
+               - Source includes forum crawls, social networks, and cultural references
+
+Download status: SUCCESS (4 files)
+
+
+===========================================================
+SOURCE 3: General Statistics Office of Vietnam (Tong cuc Thong ke / GSO)
+===========================================================
+URL:           https://www.gso.gov.vn / https://www.nso.gov.vn
+Notes:         The GSO/NSO publishes annual Statistical Yearbooks and demographic data,
+               but does NOT publish individual name frequency datasets. Their population
+               statistics cover births, deaths, age pyramids, and regional demographics —
+               not name-level frequencies. No name dataset found in their open data catalog.
+
+Download status: NOT APPLICABLE (data not available from GSO/NSO)
+
+
+===========================================================
+SOURCE 4: Forebears.io — Vietnamese Forenames
+===========================================================
+URL:           https://forebears.io/vietnam/forenames
+Coverage:      31,538 unique Vietnamese forenames with incidence counts
+Top names:     Anh (3.4M), Linh (2.0M), Thanh (1.7M), Ha (1.7M), Tuan (1.7M)
+Years:         Not specified (census-derived, web-only)
+Notes:         No CSV export. Also has "popularity by year" from 1900–2019 at:
+               https://forebears.io/vietnam/forenames/popularity-by-year
+               (but only shows ranks without raw counts for the historical view)
+
+Download status: NO DIRECT DOWNLOAD (web scraping required for bulk access)
+
+
+===========================================================
+SOURCE 5: Kaggle — Vietnamese Person Name (61M records)
+===========================================================
+URL:           https://www.kaggle.com/datasets/minhnguynphc/vietnamese-person-name
+Notes:         A very large dataset (61 million Vietnamese full names). Requires a free
+               Kaggle account to download. Format and exact columns not confirmed.
+               Worth downloading via Kaggle CLI if large-scale name frequency analysis needed:
+               kaggle datasets download -d minhnguynphc/vietnamese-person-name
+
+Download status: NOT ATTEMPTED (requires Kaggle authentication)

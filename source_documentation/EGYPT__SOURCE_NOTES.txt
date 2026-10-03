@@ -1,0 +1,50 @@
+EGYPT — Given Names Data Sources
+==================================
+Retrieved: 2026-05-01
+
+OFFICIAL SOURCE ASSESSMENT
+---------------------------
+CAPMAS (Central Agency for Public Mobilization and Statistics / الجهاز المركزي للتعبئة العامة والإحصاء)
+  URL: https://www.capmas.gov.eg / https://censusinfo.capmas.gov.eg
+  Assessment: CAPMAS publishes annual birth/death bulletins (النشرة السنوية لإحصاءات المواليد والوفيات)
+  covering birth rates, gender, age of parents, region, birth order, etc. — but does NOT
+  publish name frequency statistics. The bulletins are demographic, not onomastic.
+
+  The 2021 bulletin PDF has been downloaded:
+    File: CAPMAS_2021_births_deaths_bulletin_ar.pdf (959 KB)
+    URL: https://censusinfo.capmas.gov.eg/Metadata-ar-v4.2/index.php/catalog/1823/download/6379
+    Content: Arabic. 5 pages. Covers live births (2.185 million in 2021, -2.3% from 2020).
+    Does NOT contain name frequency data.
+
+Egypt Ministry of Health (وزارة الصحة والسكان المصرية)
+  Occasionally publishes top newborn names alongside birth registration statistics.
+  2018 data (partial): Mohammed #1 male (198,810 births), Mariam #1 female, Malak #3 female.
+  No complete ranked list with full counts has been publicly released by MoH.
+  Source: Egyptian Streets (2019-07-10), Al-Watan (2018).
+
+No dedicated Egyptian government name frequency portal exists (unlike Iran's Sabteahval
+or Mongolia's 1212.mn). Egypt does not publish an annual official name statistics report.
+
+FILES IN THIS FOLDER
+---------------------
+CAPMAS_2021_births_deaths_bulletin_ar.pdf
+  - Official CAPMAS annual births/deaths bulletin 2021 (Arabic, PDF, 960 KB)
+  - No name data; useful for birth count context
+
+egypt_newborn_names_MoH_2018_top.csv
+  - Partial 2018 Ministry of Health newborn name data (top names only, counts incomplete)
+  - Source: Egyptian Streets / Al-Watan reporting on MoH figures
+
+egypt_given_names_forebears.csv
+  - Top 10 (of 636) Egyptian given names by population-level incidence
+  - Source: Forebears.io (https://forebears.io/egypt/forenames)
+  - Not official; compiled from genealogical records; year undated
+  - Full 636-name dataset available at source URL (not downloaded; no bulk export)
+
+RECOMMENDATION
+--------------
+For a fuller Egyptian name dataset:
+  1. Try CAPMAS directly: capmas.gov.eg — contact info team for custom name tabulations
+  2. Check Egypt's National Population Council (npc.gov.eg) — may have civil registration detail
+  3. The forebears.io data (636 names with incidence) is the most complete available dataset
+     and can be scraped from https://forebears.io/egypt/forenames if needed

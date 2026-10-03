@@ -1,0 +1,76 @@
+ICELAND — Given Names Data Source Information
+==============================================
+Last checked: 2026-05-01
+
+FILES DOWNLOADED:
+1. hagstofa_women_names_2023.csv          — Top 103 women's given names, Jan 1 2023
+2. hagstofa_men_names_2023.csv            — Top 106 men's given names, Jan 1 2023
+3. hagstofa_newborn_boys_names_2021.csv   — Single/first names of boys born in 2021
+4. hagstofa_newborn_girls_names_2021.csv  — Single/first names of girls born in 2021
+5. hagstofa_names_historical_publication.pdf — Historical names monograph (PDF)
+
+--------------------------------------------------------------------
+PRIMARY SOURCE: Hagstofa Íslands (Statistics Iceland)
+--------------------------------------------------------------------
+Publisher:    Hagstofa Íslands (Statistics Iceland)
+Portal:       https://hagstofa.is/talnaefni/ibuar/faeddir-og-danir/nofn/
+PxWeb DB:     https://px.hagstofa.is/pxis/pxweb/is/
+API v1:       https://px.hagstofa.is/pxis/api/v1/is/
+Data continuous from: 1978 (national registry); historical censuses from 1703
+
+FILES 1-4: Downloaded via PxWeb API v1 (POST with JSON query)
+
+File 1 — Women's names (MAN11111.px):
+  API: https://px.hagstofa.is/pxis/api/v1/is/Ibuar/Faeddirdanir/Nofn/Nofnkvk/MAN11111.px
+  Title: "Eiginnöfn kvenna 1. janúar 2023" (Women's given names, Jan 1, 2023)
+  Content: Top 103 women's given names with count (Fjöldi)
+  Columns: Röð (rank + name + prior rank), Fjöldi (count)
+  Note: Includes combined single names and first names of compound names
+
+File 2 — Men's names (MAN11101.px):
+  API: https://px.hagstofa.is/pxis/api/v1/is/Ibuar/Faeddirdanir/Nofn/Nofnkk/MAN11101.px
+  Title: "Eiginnöfn karla 1. janúar 2023" (Men's given names, Jan 1, 2023)
+  Content: Top 106 men's given names with count
+
+File 3 — Newborn boys 2021 (MAN11103.px):
+  API: https://px.hagstofa.is/pxis/api/v1/is/Ibuar/Faeddirdanir/Nofn/x_nofneldra/MAN11103.px
+  Title: "Einnefni og fyrsta nafn drengja fæddra 2021"
+  Content: Single names and first names of boys born in 2021, with count and frequency %
+
+File 4 — Newborn girls 2021 (MAN11113.px):
+  API: https://px.hagstofa.is/pxis/api/v1/is/Ibuar/Faeddirdanir/Nofn/x_nofneldra/MAN11113.px
+  Title: "Einnefni og fyrsta nafn stúlkna fæddra 2021"
+  Content: Single names and first names of girls born in 2021
+
+File 5 — Historical publication:
+  Source: https://hagstofan.s3.amazonaws.com/media/public/c4a9d8e5-cda8-4b84-b984-744cfd7ec82b/pub_doc_yUyruiY.pdf
+  Title: "Mannanöfn og nafngjafir á Íslandi samkvæmt þjóðskrá"
+  Content: Names and naming practices in Iceland per national registry
+
+ADDITIONAL TABLES AVAILABLE (not downloaded):
+- MAN11102.px — Men's compound names (tvínefni karla), Jan 1 2023
+- MAN11112.px — Women's compound names (tvínefni kvenna), Jan 1 2023
+- MAN11105.px — Men's names ranked by age group, Jan 1 2023
+- MAN11115.px — Women's names ranked by age group, Jan 1 2023
+- MAN11104.px — Second names of newborn boys 2021
+- MAN11114.px — Second names of newborn girls 2021
+
+To download any table as CSV:
+  POST to: https://px.hagstofa.is/pxis/api/v1/is/Ibuar/Faeddirdanir/Nofn/[folder]/[TABLE].px
+  Body: {"query":[{"code":"Eining","selection":{"filter":"item","values":["Fjoldi"]}}],"response":{"format":"csv"}}
+
+API rate limit: 30 calls/second, max 10,000 values per download
+
+--------------------------------------------------------------------
+SECONDARY SOURCE: Þjóðskrá Íslands (National Registry / Registers Iceland)
+--------------------------------------------------------------------
+Names portal:         https://www.skra.is/english/people/names/
+Naming rules:         https://www.skra.is/english/people/names/namegiving/
+Approved names search: https://island.is/en/search-in-icelandic-names
+
+NOTE ON ICELAND NAMING LAWS:
+Iceland has strict naming laws enforced by the Icelandic Naming Committee
+(Mannanafnanefnd). New names must be approved. The approved name list is
+searchable online but not available as a bulk CSV download.
+Names must be compatible with Icelandic grammar and orthography.
+Both patronymics (e.g. Jónsson, Jónsdóttir) and given names are regulated.

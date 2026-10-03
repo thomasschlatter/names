@@ -1,0 +1,58 @@
+MYANMAR / BURMESE GIVEN NAMES — SOURCE INFORMATION
+====================================================
+Language family: Sino-Tibetan, Tibeto-Burman branch
+Script: Burmese script (Myanmar script); romanised forms used in dataset
+
+NOTE ON BURMESE NAMING: Myanmar names are typically not divided into given/family
+names in the Western sense. Names consist of one or more syllable-elements that
+can stand alone or combine. The Forebears data captures individual name elements
+(components) as they appear in the full population; the GitHub data captures full
+compound names as actually used.
+
+------------------------------------------------------------
+SOURCE 1 (PRIMARY — FREQUENCY DATA)
+------------------------------------------------------------
+Name:       Forebears — Most Common Burmese/Myanmar Forenames
+URL:        https://forebears.io/myanmar/forenames
+Format:     CSV (manually extracted), see myanmar_names_forebears.csv
+Coverage:   174 ranked name elements with incidence counts
+Frequency:  YES — absolute incidence counts (population-level)
+Notes:      Forebears reports 10,577 unique forenames in Myanmar with
+            4,909 people per name on average. Data is derived from
+            genealogical and civil registration records.
+            Top name: Kyaw (3,257,307 occurrences; ~1 in 16 people)
+            Data retrieved: May 2026
+
+------------------------------------------------------------
+SOURCE 2 (SUPPLEMENTARY — NAME LIST, NO FREQUENCY)
+------------------------------------------------------------
+Name:       L16H7/Myanmar_Names — Open Source Myanmar Name List
+URL:        https://github.com/L16H7/Myanmar_Names
+Files:      sorted males.txt   (~2,874 male compound names)
+            sorted females.txt (~3,500 female compound names)
+Format:     Plain text (.txt), one name per line, alphabetically sorted
+Coverage:   ~6,374 compound full-name forms (male + female)
+Frequency:  NO — name list only, no counts
+Notes:      Names sourced from historical records (people born before 1990).
+            Compound names (e.g. "Aye Aye Aung", "Kyaw Win") rather than
+            individual syllable elements. Intended as hobbyist/NLP resource.
+            Data retrieved: May 2026
+
+------------------------------------------------------------
+RECOMMENDED FILE FOR ANALYSIS
+------------------------------------------------------------
+myanmar_names_forebears.csv — 174 name elements with frequency counts
+  Columns: rank, name, incidence, frequency_ratio
+
+------------------------------------------------------------
+ADDITIONAL CONTEXT
+------------------------------------------------------------
+- Myanmar names are unisex or gender-neutral more commonly than
+  in many other cultures; the same element (e.g. Kyaw, Aung)
+  may appear in both male and female compound names.
+- No official government statistics dataset (CSO Myanmar) with
+  downloadable name frequency data was publicly accessible at
+  time of collection (May 2026). The CSO website (csostat.gov.mm)
+  did not surface a names dataset.
+- The Forebears dataset covers the full living population
+  (not just newborns) and is the most comprehensive public source.

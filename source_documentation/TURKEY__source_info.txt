@@ -1,0 +1,40 @@
+TURKEY — Given Name Frequency Data
+====================================
+
+AGENCY / SOURCE
+  TÜİK (Türkiye İstatistik Kurumu / Turkish Statistical Institute)
+  Nüfus İstatistikleri Portalı (Population Statistics Portal)
+
+DATA PAGE URL
+  https://nip.tuik.gov.tr/?value=YeniDoganIsimleri   (newborn names)
+  https://nip.tuik.gov.tr/?value=EnCokKullanilanIsimler  (all living population names)
+
+DIRECT DOWNLOAD URLS
+  Newborn names (Excel):
+    https://nip.tuik.gov.tr/Export/ExportExcel?name=YeniDoganIsimleri&value=&value1=1
+  Newborn names (PDF):
+    https://nip.tuik.gov.tr/Export/ExportPdf?name=YeniDoganIsimleri&value=&value1=1
+  Most-used names all population (Excel):
+    https://nip.tuik.gov.tr/Export/ExportExcel?name=EnCokKullanilanIsimler&value=&value1=1
+
+YEARS COVERED
+  tuik_yeni_dogan_isimleri.xlsx  : 2018–2025 (newborns, top names per year)
+  tuik_en_cok_kullanilan_isimler.xlsx : 2018–2025 (all registered population, top names per year)
+  Data source: ADNKS (Adrese Dayalı Nüfus Kayıt Sistemi / Address-Based Population Registration System)
+
+FILE FORMAT
+  Microsoft Excel (.xlsx)
+
+LANGUAGE
+  Turkish (UTF-8); column headers: Doğum Yılı (birth year), Düzey (level = Turkey/province),
+  İsim (name), Cinsiyet (sex: Erkek=male, Kız=female), Sayı (count), Sıra (rank)
+
+FILES DOWNLOADED (2026-05-01)
+  tuik_yeni_dogan_isimleri.xlsx       — 14 KB  — top newborn names by year and sex, 2018–2025
+  tuik_en_cok_kullanilan_isimler.xlsx — 14 KB  — top names in living population by year and sex, 2018–2025
+
+NOTES
+  - Data is updated annually; currently the portal shows up to 2025 birth year
+  - The "top" list covers the 100 most common names per year/sex
+  - Province-level breakdown may be available via the portal's "Düzey" (level) filter
+  - No authentication required; files are freely downloadable

@@ -1,0 +1,39 @@
+SOURCE: Czech Republic Given Names Data
+=======================================
+
+Agency:       Český statistický úřad (ČSÚ) — Czech Statistical Office
+Data page:    https://csu.gov.cz/csu/czso/nejoblibenejsi_detska_jmena
+              (index of all annual releases)
+
+2024 release page:
+  https://csu.gov.cz/produkty/detskym-jmenum-loni-opet-kralovali-jakub-a-eliska
+
+2023 release page:
+  https://csu.gov.cz/produkty/jmena-jakub-a-eliska-byla-loni-opet-nejoblibenejsi
+
+Direct download URLs:
+  2024 national (100 names):
+    https://csu.gov.cz/docs/107508/bcfc076f-652e-ecbc-956f-3279641d2b96/100_nejcetnejsich_detskych_jmen_republika_2024.xlsx?version=1.0
+  2024 regional (20 names per kraj):
+    https://csu.gov.cz/docs/107508/582a6c57-908c-0e5a-8aa3-6faac21ff549/20_nejcetnejsich_detskych_jmen_kraje_2024.xlsx?version=1.0
+  2023 national (100 names):
+    https://csu.gov.cz/docs/107508/0908a905-def5-bfcb-7856-d8ccba50193c/100_nejcetnejsich_detskych_jmen_republika_2023.xlsx?version=1.0
+  2023 regional (20 names per kraj):
+    https://csu.gov.cz/docs/107508/6dbd71ab-9606-3817-d168-95e08fab9b4e/20_nejcetnejsich_detskych_jmen_kraje_2023.xlsx?version=1.0
+
+Files downloaded:
+  - 100_nejcetnejsich_detskych_jmen_republika_2024.xlsx  (2024 data, national, top 100 names)
+  - 20_nejcetnejsich_detskych_jmen_kraje_2024.xlsx       (2024 data, by region/kraj, top 20 names)
+  - 100_nejcetnejsich_detskych_jmen_republika_2023.xlsx  (2023 data, national, top 100 names)
+  - 20_nejcetnejsich_detskych_jmen_kraje_2023.xlsx       (2023 data, by region/kraj, top 20 names)
+
+Years covered:    2023-2024 (newborn first name frequency for children born that year)
+                  Historical comparisons back to 1999-2007 available as PDF via the index page.
+File format:      XLSX (Excel)
+Language:         Czech
+Data content:     Top 100 most frequent given names for boys and girls separately,
+                  with raw counts of newborns. Regional files contain top 20 per kraj.
+Notes:            ČSÚ releases this data annually, typically in May/June of the following year.
+                  The 2025 data (for children born in 2024) was released in May 2025.
+                  The 2026 data (for children born in 2025) should appear around May 2026.
+Downloaded:       2026-05-01

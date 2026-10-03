@@ -1,0 +1,56 @@
+GEORGIA — Given Names Data Sources
+====================================
+Retrieved: 2026-05-01
+
+== DOWNLOADED FILES ==
+
+1. georgian_names_withCounts.csv
+   - Source: GitHub repository: bumbeishvili/georgian-names
+   - Repository URL: https://github.com/bumbeishvili/georgian-names
+   - Direct download URL: https://raw.githubusercontent.com/bumbeishvili/georgian-names/master/withCounts/namesSorted.csv
+   - Data source per repo: Civil Registry / Population Register of Georgia (სამოქალაქო რეესტრი)
+     (data obtained from Public Service Development Agency / სახელმწიფო სერვისების განვითარების სააგენტო)
+   - Years: Undated — reflects cumulative name distribution of the entire registered population
+     (not broken down by birth cohort or year)
+   - Format: CSV
+   - Columns: index, nameEn (Latin transliteration), nameGe (Georgian script), count (frequency)
+   - Scope: ~4,490 unique given names covering entire Georgian population; both male and female combined
+   - Download succeeded: YES (1,619,353 bytes — 1.58 MB)
+   - Top names: giorgi (115,360), nino (81,036), davit (48,732), maia (44,442), tamar (43,021)
+   - Note: File includes both male and female names combined (not separated by gender).
+
+== ADDITIONAL DATA FILES IN REPO (not separately downloaded) ==
+   - https://github.com/bumbeishvili/georgian-names/tree/master/names
+     Contains 8 part-files: georgian_names_part1.csv through georgian_names_part8.csv
+     (These are the same name data, split into parts — presumably the full individual-level records
+     without aggregated counts; not downloaded as the withCounts file is sufficient)
+   - https://raw.githubusercontent.com/bumbeishvili/georgian-names/master/withCounts/lastNamesSorted.csv
+     (Surnames with counts — not downloaded for this dataset)
+
+== OFFICIAL SOURCES (no direct download available) ==
+
+2. National Statistics Office of Georgia (Geostat / საქართველოს სტატისტიკის ეროვნული სამსახური)
+   - URL: https://www.geostat.ge/en/modules/categories/319/births
+   - Note: Geostat provides birth statistics (counts, rates, fertility) but does NOT publish
+     given name frequency data. Births section contains demographic aggregates only.
+   - Contact: info@geostat.ge | Tel: (+995 32) 236 72 10
+
+3. Public Service Development Agency — Interactive Name Statistics Portal
+   - URL: https://services.sda.gov.ge/index#/nameStatistics/search
+   - Agency: სახელმწიფო სერვისების განვითარების სააგენტო (sda.gov.ge)
+   - Note: Interactive search tool for Georgian names/surnames by gender; no bulk download found.
+   - Contact: online@sda.gov.ge
+
+4. FOI Request for aggregated name statistics (unresolved as of 2026-05):
+   - URL: https://askgov.ge/ka/request/saxelebisa_da_gvarebis_statistik
+   - Status: "Very overdue" — submitted Dec 9, 2025 by a researcher; no response yet.
+   - Note: This request asked for exactly the kind of data needed (name frequencies >=10 citizens).
+
+== NOTES ON DATA ==
+- Language family: Kartvelian (South Caucasian) — completely unrelated to Indo-European
+- Script: Georgian (Mkhedruli script: გიორგი, ნინო, დავით...)
+- The GitHub dataset includes Georgian script + Latin transliteration — useful for NLP
+- Most common names reflect strong Georgian cultural naming tradition:
+  Male: გიორგი (Giorgi), დავით (Davit), ლევან (Levan), ირაკლი (Irakli)
+  Female: ნინო (Nino), მაია (Maia), თამარ (Tamar), ნანა (Nana)
+- No birth-year breakdown available in this dataset; it is a population-level snapshot

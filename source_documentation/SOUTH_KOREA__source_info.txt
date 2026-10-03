@@ -1,0 +1,68 @@
+SOUTH KOREA BABY NAMES — DATA SOURCES
+======================================
+
+FILES DOWNLOADED
+----------------
+
+1. korea_names_female_2008-2019.csv  (329 KB, ~27,293 rows)
+2. korea_names_male_2008-2019.csv    (428 KB, ~37,111 rows)
+
+   Source: GitHub repository randkid/name
+   URL: https://github.com/randkid/name
+   Direct downloads:
+     Female: https://raw.githubusercontent.com/randkid/name/master/f.csv
+     Male:   https://raw.githubusercontent.com/randkid/name/master/m.csv
+   Underlying source: 대법원 전자가족관계등록시스템 통계 서비스
+                      (Supreme Court Electronic Family Relations Registration System)
+   Years: 2008-2019 (aggregated totals across the period)
+   Format: CSV, two columns: name (Korean), weight (total birth count)
+   Note: These are aggregated totals for the period 2008-2019, not
+         year-by-year breakdowns. The repo removed percentage columns
+         and summed figures across years.
+
+OFFICIAL PRIMARY SOURCE (no bulk download available)
+----------------------------------------------------
+Name: 대법원 전자가족관계등록시스템 — 통계 서비스
+      (Supreme Court Electronic Family Relations Registration System — Statistics)
+URL: https://stfamily.scourt.go.kr/st/StFrrStatcsView.do?pgmId=090000000025
+Alternate entry: https://stfamily.scourt.go.kr/st/StFrrStatcsInq.do
+Coverage: 2008 to present (based on Family Registry Law enacted January 1, 2008)
+Format: Web interface only — NO bulk download, no CSV/Excel export available
+Access: Annual queries limited to 2-year window; daily queries limited to 30 days;
+        monthly queries limited to 6 months. Data must be viewed in-browser.
+
+AGGREGATOR SITES (web-only, no download)
+----------------------------------------
+- namechart.kr (https://www.namechart.kr/en) — annual rankings 2008-present,
+  by gender; data from Supreme Court system, updated daily. No export.
+- baby-name.kr (https://baby-name.kr/annalRanking/2024/) — annual rankings
+  2008-2026 with regional and gender breakdown. No export.
+- koreanname.me (https://koreanname.me/) — daily-updated name statistics.
+  No export.
+- korean-name.com (https://korean-name.com/en/annualRanking/2024/) — annual
+  rankings with gender breakdown. Blocked direct access (403).
+
+HOW TO OBTAIN YEAR-BY-YEAR DATA (2020-PRESENT)
+-----------------------------------------------
+No pre-packaged dataset covering 2020-2024 was found. Options:
+
+1. MANUAL EXPORT from stfamily.scourt.go.kr: The official portal shows
+   annual rankings in-browser but does not provide CSV/Excel export.
+   You can query by year (within 2-year windows) and manually copy results.
+
+2. WEB SCRAPING: The annual ranking pages on namechart.kr follow a predictable
+   URL pattern (https://www.namechart.kr/chart/YYYY) and display top names
+   with birth counts. These could be scraped programmatically for each year.
+
+3. PRESS RELEASES: The Supreme Court publishes annual press releases with
+   the top names. These are summarized in news outlets.
+   Example: https://scourt.go.kr/supreme/news/NewsViewAction2.work?seqnum=193&gubun=702
+
+NOTES
+-----
+- Official data covers births registered under the Family Registry Law
+  (가족관계의 등록 등에 관한 법률) from January 1, 2008 onward.
+- Statistics are based on birth registration records (신고 기준), not
+  actual birth dates.
+- The randkid/name GitHub repo provides a useful starting point but
+  covers only the aggregated 2008-2019 period without annual breakdowns.

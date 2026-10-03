@@ -1,0 +1,66 @@
+TANZANIA (Swahili) — Given Names Data Sources
+==============================================
+Retrieved: 2026-05-01
+
+SEARCH SUMMARY
+--------------
+Searched for official Tanzanian government baby names data from:
+  - Tanzania NBS (National Bureau of Statistics): https://www.nbs.go.tz
+  - Searching: "majina" (names), "Tanzania baby names statistics", academic corpora
+Result: NBS Tanzania has no publicly available baby names or birth registration name
+dataset. NBS publishes demographic/census data but not name frequency tables. No
+academic Swahili-language name corpus with frequency data was found on GitHub, Zenodo,
+CLARIN, or Mendeley. Swahili language datasets (news, NER, speech) are available but
+do not contain population-level name frequency information.
+
+NOTE: Kenya was also implicitly checked (as a Swahili-speaking country) — no equivalent
+government dataset found there either.
+
+BEST AVAILABLE SOURCE (used): Forebears.io
+-------------------------------------------
+URL: https://forebears.io/tanzania/forenames
+  - 1,000 forenames shown (ranked), drawn from 155,624 unique Tanzanian forenames total
+  - Includes: rank, incidence counts, frequency ratios, gender percentage
+  - Year: not specified (compiled from genealogical/social media records circa 2014)
+  - Total known population at data collection: ~52 million
+  - Top names: Neema (581K), Emmanuel (405K), Elizabeth (390K), Joseph (376K),
+    Rehema (360K), Juma (357K), Amina (349K) ...
+  - 1,000 names is good coverage
+
+SWAHILI NAME COMPOSITION NOTE
+------------------------------
+Tanzanian names show three distinct strata:
+  1. Indigenous Swahili names: Neema, Rehema, Juma, Baraka, Pendo, Mwajuma,
+     Ramadhani, Hamisi, Bahati, Tatu, Mariamu, Asha ...
+  2. Arabic-Islamic names (Arabized via Swahili): Amina, Mariam, Fatuma, Hadija,
+     Ally, Mohamed, Said, Zainabu, Halima, Mussa ...
+  3. Christian/Western names (post-colonial): Emmanuel, Elizabeth, Joseph, John,
+     Mary, Grace, Frank, Christina, Martha, Peter, James, Daniel, Agnes ...
+
+For Swahili-specific names, categories 1 and 2 are most relevant.
+
+CENSUS.NAME ALTERNATIVE (not downloaded — costs €55):
+  census.name Tanzanian database
+  URL: https://census.name/tanzanian-name-database/
+  - 4,872 first names (3,071 male / 1,801 female / 716 unisex) with frequency data
+  - Based on 17,800 validated Tanzanian social media profiles (small sample)
+  - CSV, SQL, JSON formats available on purchase
+  - Note: 17,800 profiles is a relatively small sample
+
+FILES IN THIS FOLDER
+---------------------
+tanzania_given_names_forebears.csv
+  - Top 50 names from Forebears.io with incidence, frequency, gender%
+  - Notes column identifies Swahili names vs. Arabic-Swahili vs. Western names
+  - 1,000 names in the full Forebears dataset; only top 50 captured here
+
+DATA QUALITY NOTES
+------------------
+- Tanzania/Forebears data quality is good relative to other African countries:
+    1,000 names available (vs. 219 for Saudi Arabia)
+    Gender data available for most names
+    Large incidence counts (top names 140K-581K) suggest broad coverage
+- Data is population-level cumulative (not annual birth registrations)
+- No disaggregation by religion, region, or ethnicity available
+- Kenya may be a complementary source for Swahili names — check
+  https://forebears.io/kenya/forenames as an additional dataset

@@ -1,0 +1,94 @@
+MONGOLIA — Given Names Data Sources
+=====================================
+Retrieved: 2026-05-01 (updated with new dataset 2026-05-01)
+
+OFFICIAL SOURCES
+----------------
+National Statistical Office of Mongolia (NSO / Үндэсний Статистикийн Хороо)
+  Main portal: https://www.1212.mn / https://en.nso.mn
+  Data portal: https://data.1212.mn / https://opendata.1212.mn
+
+  The NSO operates a "fun statistics" page specifically for given names:
+    URL: https://www.1212.mn/en/statistic/fun-statistic/given-name
+    Status: SSL certificate error — inaccessible from outside Mongolia
+
+  The live name lookup tool (Mongolian):
+    URL: https://www2.1212.mn/sonirkholtoi/GivenName_new/
+    Status: HTTP 500 error at time of retrieval
+
+  NSO published official name frequency data in 2017 via MONTSAME News Agency:
+    Top 5: Bat-Erdene (15,079), Khulan (12,033), Otgonbayar (11,521),
+            Temuulen (11,484), Bilguun (11,165)
+    Source: https://www.montsame.mn/en/read/131066 (Aug 9 2017)
+    NOTE: These are population-level cumulative counts, not annual birth registrations.
+
+NSO API / Open Data:
+  API endpoint: https://opendata.1212.mn/en/doc
+  The opendata.1212.mn API (POST api/Data, GET api/Itms, etc.) covers 34 statistical
+  sectors. Name frequency data may be accessible via the API but was not retrieved
+  (API requires knowledge of sector/table IDs; no name-specific table ID found).
+  The R package NSO1212 (CRAN) provides a wrapper for this API.
+
+SEMI-OFFICIAL SOURCE — NEW (best available)
+--------------------------------------------
+General Authority for State Registration (Burtgel / Бүртгэл) Open Data
+  Portal: https://opendata.burtgel.gov.mn  (launched May 22, 2020; World Bank-funded)
+  Portal alias: https://burtgel.opengov.mn  (certificate error from outside Mongolia)
+  Source mirror: tugstugi/mongolian-nlp GitHub repository (mirrors the data)
+
+  Dataset: mongolian_personal_names.csv.gz
+  GitHub URL: https://github.com/tugstugi/mongolian-nlp/blob/master/datasets/mongolian_personal_names.csv.gz
+  Raw download: https://raw.githubusercontent.com/tugstugi/mongolian-nlp/master/datasets/mongolian_personal_names.csv.gz
+  File size: 3.16 MB compressed
+  Records: 223,271 unique personal name entries (one name per row)
+  Columns: 3 — (1) Cyrillic form, (2) Traditional Mongolian script, (3) Latin transliteration
+  No frequency counts; this is a name LIST not a frequency table
+  Year: not specified; likely reflects civil registration records up to ~2020
+  Language: Mongolian (Cyrillic, Traditional script, Latin)
+
+  NOTE: This dataset gives breadth (223K unique name forms) but NO frequency/count data.
+  It is useful for verifying name orthography and script forms, and for checking whether
+  a name exists in the Mongolian naming system, but cannot be used to estimate popularity.
+
+NON-OFFICIAL SOURCE
+-------------------
+Forebears.io (https://forebears.io/mongolia/forenames)
+  Genealogical database with 40,765 unique Mongolian forenames.
+  Ranked list of 176 names with population-level incidence counts.
+  Year: not specified (compiled from genealogical records).
+  Top 5: Temüülen (12,451), Khulan (11,838), Altantsetseg (11,819),
+          Tögöldör (11,715), Bilgüün (11,550)
+
+tugstugi/mongolian-nlp GitHub (https://github.com/tugstugi/mongolian-nlp)
+  Also lists: 90K Mongolian clan/family names, 192K company names — separate files.
+  The personal names file is the most relevant for given names research.
+
+FILES IN THIS FOLDER
+---------------------
+mongolia_given_names_NSO_2017_top5.csv
+  - Official NSO data (top 5 names) from 2017 MONTSAME press release
+  - 5 names with exact counts; cumulative population-level
+
+mongolia_given_names_forebears.csv
+  - All 176 names from Forebears.io with incidence counts and frequency ratios
+  - Best available frequency-ranked dataset
+  - Not official; year undated
+
+mongolia_personal_names_burtgel_223k.csv.gz  [NEW — added 2026-05-01]
+  - 223,271 unique Mongolian personal names from Burtgel (civil registration authority)
+  - Three columns: Cyrillic, Traditional Mongolian script, Latin transliteration
+  - NO frequency counts — name inventory only
+  - Source: opendata.burtgel.gov.mn via tugstugi/mongolian-nlp mirror
+  - Useful for: orthography checking, script normalization, name existence verification
+
+NOTES
+-----
+Mongolia's NSO 1212.mn portal is the right place for official frequency data but was
+inaccessible from outside Mongolia. The NSO1212 R package (cran.r-project.org/web/packages/NSO1212/)
+could be used to query the API programmatically. The live name-count tool at
+https://www2.1212.mn/sonirkholtoi/GivenName/ allows searching individual names but
+does not offer bulk download.
+
+The Burtgel 223K dataset is a major improvement for name breadth/verification but does
+not solve the frequency problem. For frequency rankings, Forebears.io (176 names with
+counts) remains the best freely available resource.

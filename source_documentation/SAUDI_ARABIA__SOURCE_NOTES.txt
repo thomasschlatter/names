@@ -1,0 +1,55 @@
+SAUDI ARABIA (Arabic) — Given Names Data Sources
+==================================================
+Retrieved: 2026-05-01
+
+SEARCH SUMMARY
+--------------
+Searched for official Saudi government baby names data from:
+  - GASTAT (General Authority for Statistics): https://www.stats.gov.sa
+  - Saudi Open Data Portal: https://open.data.gov.sa
+  - stats.gov.sa statistics categories
+Result: No dedicated baby names or birth registration name dataset is publicly available
+from any official Saudi government source. GASTAT publishes population estimates and
+census data (2022 Saudi Census) but does not expose name frequency data for download.
+The open data portal returned connection errors during access attempts.
+
+BEST AVAILABLE SOURCE (used): Forebears.io
+-------------------------------------------
+URL: https://forebears.io/saudi-arabia/forenames
+  - 219 forenames shown (ranked), drawn from 77,115 unique Saudi Arabian forenames total
+  - Includes incidence counts and frequency ratios (population-level cumulative)
+  - No gender breakdown shown on ranked page
+  - Year: not specified (compiled from genealogical/social media records circa 2014)
+  - Data likely reflects expatriate-heavy population bias (Saudi Arabia is ~38% foreign-born)
+  - Top names: Hany, Eng [likely title artifact], Maha, Eman, Sameh ...
+  - NOTE: "Eng" at rank 2 (227,884 incidence) is almost certainly a title artifact
+    ("Engineer" used as a honorific prefix in Arabic-speaking countries) not a given name
+
+COMMERCIAL ALTERNATIVE (not downloaded — costs €55):
+  census.name Saudi Arabian database
+  URL: https://census.name/saudi-arabian-name-database/
+  - 8,615 first names (5,158 male / 3,457 female / 1,255 unisex) with frequency data
+  - Based on 57,057 validated Saudi social media profiles
+  - CSV, SQL, JSON formats available on purchase
+
+FILES IN THIS FOLDER
+---------------------
+saudi_arabia_given_names_forebears.csv
+  - Top 50 names from Forebears.io with incidence counts and frequency ratios
+  - Best freely available dataset; population-level, year undated
+  - Flag: rank 2 ("Eng") is a title artifact, not a genuine given name
+
+DATA QUALITY NOTES
+------------------
+- Saudi Arabia data is weak: Forebears only returns 219 names, no gender column, year unknown
+- The population is ~38% expatriate, so names reflect a mix of nationalities (Egyptian,
+  Pakistani, Indian, Yemeni, etc.) not just Saudi nationals
+- GASTAT (stats.gov.sa) is the right official source but has no public name dataset
+- Morocco was evaluated as an alternative Arabic source — see MOROCCO/ folder
+
+ALTERNATIVE: MOROCCO
+--------------------
+Morocco has a larger freely available name list (502 names on Forebears, with gender data)
+and a more ethnically homogeneous Arabic-speaking population. Recommend using Morocco
+as primary Arabic source if Saudi data quality is insufficient.
+See: H:/My Drive/PROJECTS/GIVEN_NAMES/MOROCCO/

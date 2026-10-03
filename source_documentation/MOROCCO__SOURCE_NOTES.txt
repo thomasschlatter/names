@@ -1,0 +1,61 @@
+MOROCCO (Arabic/Amazigh) — Given Names Data Sources
+====================================================
+Retrieved: 2026-05-01
+
+SEARCH SUMMARY
+--------------
+Searched for official Moroccan government baby names data from:
+  - HCP (Haut-Commissariat au Plan): https://www.hcp.ma
+  - HCP Open Data / Micro-données: https://www.hcp.ma/Micro-donnees-Open-data_r632.html
+  - Morocco Open Data Portal: https://data.gov.ma
+Result: No dedicated baby names or birth registration name dataset is publicly available.
+HCP offers 4 downloadable micro datasets (RGPH 2014 census, two household surveys, a
+time-use survey) but none specifically track given name frequencies. Morocco's open data
+initiative is nascent; the country lacks the same open-data infrastructure as European
+or East Asian countries.
+
+BEST AVAILABLE SOURCE (used): Forebears.io
+-------------------------------------------
+URL: https://forebears.io/morocco/forenames
+  - 502 forenames shown (ranked), drawn from 59,435 unique Moroccan forenames total
+  - Includes: rank, incidence counts, frequency ratios, gender percentage
+  - Year: not specified (compiled from genealogical/social media records circa 2014)
+  - Total known population: ~34.4 million
+  - Top names: Mohamed (1.73M), Mohammed (879K), Fatima (866K), Ahmed (689K), Khadija (522K)
+  - Gender data available per name (most top names are strongly gendered)
+  - 502 names is substantially better coverage than Saudi Arabia (219 names)
+
+COMMERCIAL ALTERNATIVE (not downloaded — costs €55):
+  census.name Moroccan database
+  URL: https://census.name/moroccan-name-database/
+  - 5,924 first names (3,550 male / 2,374 female / 900 unisex) with frequency data
+  - Based on 33,528 validated Moroccan social media profiles
+  - CSV, SQL, JSON formats available on purchase
+
+FILES IN THIS FOLDER
+---------------------
+morocco_given_names_forebears.csv
+  - Top 50 names from Forebears.io with incidence counts, frequency ratios, gender %
+  - Best freely available dataset; population-level, year undated
+  - Includes gender_pct_female column (100 = female, 0 = male, intermediate = unisex)
+
+DATA QUALITY NOTES
+------------------
+- Morocco data is better than Saudi Arabia for Arabic given names:
+    502 names vs. 219 for Saudi Arabia
+    Gender data available
+    More ethnically homogeneous Arabic-speaking population
+- Forebears data is population-level cumulative (living+deceased), not annual birth counts
+- Year of data not specified; estimated from genealogical records compiled ~2014
+- Morocco is a strong Arabic-language given names source; naming patterns differ somewhat
+  from Gulf Arabic (more Amazigh/Berber influence, French colonial naming overlap)
+- HCP RGPH 2014 census micro-data may contain name data if accessed and analysed;
+  contact HCP at: bds.hcp.ma or https://www.hcp.ma/Micro-donnees-Open-data_r632.html
+
+RECOMMENDATION
+--------------
+Morocco is the better Arabic-language source compared to Saudi Arabia due to:
+  1. More names available (502 vs. 219)
+  2. Gender breakdown available
+  3. Less expatriate population contamination
+  4. Cleaner name list (fewer title artifacts)

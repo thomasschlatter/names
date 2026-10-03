@@ -1,0 +1,45 @@
+SOURCE: Hungary Given Names Data
+=================================
+
+Agency:       Belügyminisztérium Nyilvántartások Vezetéséért Felelős Helyettes Államtitkárság
+              (Ministry of Interior — Records Management Department)
+              Also referenced as: Nyilvántartó Hivatal (NyTK)
+Data page:    https://nyilvantarto.hu/hu/statisztikak?stat=kozerdeku
+              (official statistics downloads portal)
+
+KSH interactive (top 25 names, no download):
+  https://www.ksh.hu/interaktiv/nevek/index.html
+
+Direct download URLs — population-wide (all registered persons, top 100 names):
+  2020: https://www.nyilvantarto.hu/letoltes/statisztikak/kozerdeku_utonevek_2020.xlsx
+  2021: https://www.nyilvantarto.hu/letoltes/statisztikak/kozerdeku_utonevek_2021.xlsx
+  2022: https://www.nyilvantarto.hu/letoltes/statisztikak/kozerdeku_utonevek_2022.xlsx
+  2023: https://www.nyilvantarto.hu/letoltes/statisztikak/kozerdeku_utonevek_2023.xlsx
+  2024: https://www.nyilvantarto.hu/letoltes/statisztikak/kozerdeku_utonevek_2024.xlsx
+
+Direct download URLs — newborns only (ujszulott = newborn, top 100 names for babies born that year):
+  2020: https://www.nyilvantarto.hu/letoltes/statisztikak/kozerdeku_ujszulottutonev_2020.xlsx
+  2021: https://www.nyilvantarto.hu/letoltes/statisztikak/kozerdeku_ujszulottutonev_2021.xlsx
+  2022: https://www.nyilvantarto.hu/letoltes/statisztikak/kozerdeku_ujszulottutonev_2022.xlsx
+  2023: https://www.nyilvantarto.hu/letoltes/statisztikak/kozerdeku_ujszulottutonev_2023.xlsx
+  2024: https://www.nyilvantarto.hu/letoltes/statisztikak/kozerdeku_ujszulottutonev_2024.xlsx
+
+Files downloaded:
+  Population-wide (all ages):
+  - kozerdeku_utonevek_2020.xlsx through kozerdeku_utonevek_2024.xlsx
+
+  Newborns only:
+  - kozerdeku_ujszulottutonev_2020.xlsx through kozerdeku_ujszulottutonev_2024.xlsx
+
+Years covered:    2020-2024
+File format:      XLSX (Excel)
+Language:         Hungarian
+Data content:     Top 100 given names (utónevek) for males and females separately.
+                  "utonevek" files = entire registered population (all living persons).
+                  "ujszulottutonev" files = only babies born in that specific year.
+                  Data sourced from the personal ID and address registration database
+                  (személyiadat- és lakcímnyilvántartás).
+URL pattern:      https://www.nyilvantarto.hu/letoltes/statisztikak/kozerdeku_utonevek_YYYY.xlsx
+                  https://www.nyilvantarto.hu/letoltes/statisztikak/kozerdeku_ujszulottutonev_YYYY.xlsx
+                  (2025 files likely available; test with year=2025 in URL)
+Downloaded:       2026-05-01

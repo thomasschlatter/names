@@ -1,0 +1,45 @@
+SOURCE: NRS — National Records of Scotland — Babies' First Names
+PRIMARY URL: https://www.nrscotland.gov.uk/statistics-and-data/names/
+PUBLICATION PAGE (2024): https://www.nrscotland.gov.uk/publications/babies-first-names-2024/
+DOWNLOAD DATE: 2026-05-01
+
+=== FILES DOWNLOADED ===
+
+1. NRS_Scotland_babies_first_names_2024_full_list.xlsx (173 KB)
+   URL: https://www.nrscotland.gov.uk/media/q1epi2ni/full-list-2024.xlsx
+   CONTENT: Full list of all first names given to babies registered in Scotland in 2024
+   SHEETS: Cover, Contents, Notes, Boys, Girls, Council Boys, Council Girls
+   NOTE: Covers all names with 3+ occurrences; includes council-area breakdown
+
+2. NRS_Scotland_babies_first_names_1974_2024.zip (372 KB, unzips to ~1.7 MB)
+   URL: https://www.nrscotland.gov.uk/media/hlmdqoat/full-list-1974-2024.zip
+   CONTENT: Historical CSV of all first names with counts and ranks, 1974–2024
+   ZIP CONTENTS:
+     - full-list-1974-2024.csv (columns: Year, Sex, Name, Number, Rank)
+     - metadata.csv
+   FORMAT: CSV (inside zip)
+   YEARS: 1974–2024 (51 years)
+   NOTE: Both boys and girls in single CSV; Sex column = "Boy" or "Girl"
+
+3. NRS_Scotland_babies_first_names_2024_summary_tables.xlsx (222 KB)
+   URL: https://www.nrscotland.gov.uk/media/as3palkx/summary-tables-excel.xlsx
+   CONTENT: Summary tables — top 100 names, trends, council area breakdowns, 2024
+   NOTE: Includes historical top 100 back to 1974
+
+=== COVERAGE ===
+YEARS: 1974–2024 (51 years) in historical CSV; 2024 only in summary xlsx
+MINIMUM THRESHOLD: 3+ occurrences per name per year
+GEOGRAPHIC SCOPE: Scotland (registered births only; does not include rUK)
+COUNCIL AREAS: Council-level breakdown available for 2024
+
+=== CELTIC/GAELIC RELEVANCE ===
+Scotland is a major source of Scottish Gaelic (Gàidhlig) given names.
+IMPORTANT CAVEAT: The NRS data does NOT separately flag Gaelic-origin names.
+Scottish Gaelic names that appear in Scotland's top rankings include:
+  Girls: Eilidh, Isla, Catriona, Morag, Mhairi/Mairi, Fiona, Seonaid
+  Boys: Alasdair/Alastair, Fergus, Hamish, Calum, Ruaraidh, Iain, Euan, Cailean
+The historical CSV (1974–2024) is the key file: it contains the full name universe
+for all 51 years in a clean, ready-to-analyse format.
+
+Interactive Shiny tool: https://scotland.shinyapps.io/nrs-baby-names/
+Data.gov.uk entry: https://www.data.gov.uk/dataset/7e0165da-a44d-49cc-a52a-dc736457ff45/babies_first_names_scotland

@@ -1,0 +1,29 @@
+SOURCE: ISTAT — Istituto Nazionale di Statistica (Italy)
+URL: https://www.istat.it/comunicato-stampa/natalita-e-fecondita-della-popolazione-residente-anno-2023/
+Survey: "Natalità e fecondità della popolazione residente" (annual natality and fertility report)
+Downloaded: 2026-05-01
+
+FILES (annual data tables, XLSX format):
+- tavole-natalita-2019_ISTAT.xlsx    — data year 2019 (published Dec 2020)
+- tavole-natalita-2020_ISTAT.xlsx    — data year 2020 (published Dec 2021)
+- tavole-natalita-2021_ISTAT.xlsx    — data year 2021 (published Dec 2022)
+- tavole-natalita-2022_ISTAT.xlsx    — data year 2022 (published Oct 2023)
+- tavole-natalita-2023_ISTAT.xlsx    — data year 2023 (published Oct 2024)
+- tavole-natalita-2024_ISTAT.xlsx    — data year 2024 (published Oct 2025)
+
+- Natalita-in-Italia-Anno-2023_ISTAT.pdf   — full report + methodology for 2023
+
+CONTENT OF EXCEL FILES:
+Each XLSX contains ~16 sheets covering: total births, births by citizenship, fertility
+rates, and — crucially — sheets with the most frequent given names for newborns by
+sex (typically "Nomi maschili" and "Nomi femminili" sheets), with frequency counts
+by region. Data source: "Iscritti in anagrafe per nascita" (Registry Office births).
+
+YEARS COVERED: 2019–2024 (annual cohorts of newborns)
+Earlier years (2010-2018) available via ISTAT press releases archive:
+  https://www.istat.it/it/archivio/nascite
+
+INTERACTIVE TOOL (1999–2023, name-by-name lookup only):
+  https://www.istat.it/dati/calcolatori/contanomi/
+
+LICENSE: Creative Commons Attribution 3.0 Italy (CC BY 3.0 IT)

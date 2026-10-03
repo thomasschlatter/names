@@ -1,0 +1,64 @@
+MALAYSIA (Malay) — Given Names Data Sources
+============================================
+Retrieved: 2026-05-01
+
+SEARCH SUMMARY
+--------------
+Searched for official Malaysian government baby names data from:
+  - data.gov.my (Malaysia's open data portal): https://data.gov.my
+  - OpenDOSM (Department of Statistics Malaysia): https://open.dosm.gov.my
+  - data.gov.my Baby Name Popularity dashboard: https://data.gov.my/dashboard/name-popularity
+Result: The data.gov.my Baby Name Popularity dashboard was announced but was still marked
+"Coming Soon — will go live no later than 30 Nov 2023" as of the access date. It has not
+launched as of May 2026 per the page content. The dashboard would use "aggregated data
+from Malaysia's gold-standard IC database" (national identity card registry). OpenDOSM's
+data catalogue has birth counts (daily by state) but no name-level data. No free
+downloadable name frequency dataset exists from official Malaysian government sources.
+
+BEST AVAILABLE SOURCE (used): Forebears.io
+-------------------------------------------
+URL: https://forebears.io/malaysia/forenames
+  - 1,000 forenames shown (ranked), drawn from 1,115,332 unique Malaysian forenames total
+  - Includes: rank, incidence counts, frequency ratios, gender percentage
+  - Year: not specified (compiled from genealogical/social media records circa 2014)
+  - Total population: ~30 million at time of data collection
+  - Top names by incidence: Mohamed (1.80M), Muhammad (944K), Siti (813K), Nur (780K)
+  - 1,000 names is good coverage; 1,115,332 total unique names reflects Malaysia's
+    multi-ethnic diversity (Malay/Chinese/Indian/Bumiputera/Other)
+
+DATA QUALITY CAUTION — TITLE ARTIFACTS
+---------------------------------------
+Several high-ranking "names" are honorific prefixes/titles that crept into the data:
+  Rank 6:  Encik (554K) — Malay honorific for Mr.
+  Rank 11: Cik (303K)   — Malay honorific for Miss/Ms.
+  Rank 16: Puan (195K)  — Malay honorific for Mrs./Madam
+These should be excluded from any frequency analysis. They are flagged in the CSV.
+
+MULTI-ETHNIC COMPOSITION NOTE
+------------------------------
+Malaysia's top names reflect all three main ethnic groups:
+  Malay-Muslim: Mohamed, Muhammad, Siti, Nur, Mohamad, Nor, Nurul, Ahmad, Noor ...
+  Chinese-Malaysian: Siew, Chee, Kim, Kok, Lee, Chin, Boon, Yoke, Wai, Swee ...
+  (Indian-Malaysian names appear further down the ranked list)
+The dataset is not disaggregated by ethnicity. If Malay-only names are needed, filter
+on distinctly Malay-Islamic names (Mohamed-variants, Siti, Nur, Nurul, Ahmad, Fatimah etc.)
+
+COMMERCIAL ALTERNATIVE (not downloaded — costs €55):
+  census.name Malaysian database
+  URL: https://census.name/malaysian-name-database/
+  - 13,136 first names (6,807 male / 6,329 female / 2,092 unisex) with frequency data
+  - Based on 56,109 validated Malaysian social media profiles
+  - CSV, SQL, JSON formats available on purchase
+
+FILES IN THIS FOLDER
+---------------------
+malaysia_given_names_forebears.csv
+  - Top 50 names from Forebears.io with incidence, frequency, gender%
+  - Title artifacts (Encik, Cik, Puan) flagged in notes column
+  - Ethnicity/language notes added per name where applicable
+
+PENDING
+-------
+- data.gov.my Baby Name Popularity dashboard (https://data.gov.my/dashboard/name-popularity)
+  should be rechecked — if it has launched, it would provide official frequency data
+  disaggregated by year with better provenance than Forebears.io

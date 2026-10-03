@@ -1,0 +1,28 @@
+SOURCE: INE — Instituto Nacional de Estadística (Spain)
+URL: https://www.ine.es/dyngs/INEbase/operacion.htm?c=Estadistica_C&cid=1254736177009&menu=resultados&idp=1254735572981
+Survey: "Apellidos y nombres más frecuentes" (Most frequent surnames and given names)
+Downloaded: 2026-05-01
+
+FILES:
+- nombres_mas_frecuentes.xlsx
+    Top 100 given names nationally + top 50 per province.
+    Data: current resident population. Years: cumulative (no single year; reflects
+    the Padrón Municipal snapshot, last update typically the prior January 1).
+
+- nombres_por_fecha.xlsx
+    Top 50 given names by decade of birth (national) + top 20 per province by decade.
+    Useful for diachronic analysis of naming trends across birth cohorts.
+
+- nombres_por_nacionalidades.xlsx
+    Top 10 given names for the most-represented nationalities in Spain (national level).
+
+- nombres_por_edad_media.xlsx
+    ALL given names with frequency >= 20, with mean age by name.
+    This is the most comprehensive file: full list, not just top-N.
+
+- nomnac24.xlsx
+    Top 100 names for newborns in 2024 (most recent annual cohort data).
+    Prior years available at: https://www.ine.es/daco/daco42/nombyapel/nomnacXX.xlsx
+    (replace XX with 02..24 for 2002–2024).
+
+LICENSE: Open data, INE. Attribution required.

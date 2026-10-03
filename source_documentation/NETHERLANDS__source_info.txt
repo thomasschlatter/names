@@ -1,0 +1,65 @@
+NETHERLANDS — Given Names Data Source Information
+==================================================
+Last checked: 2026-05-01
+
+FILES DOWNLOADED:
+1. svb_voornamen_2000_2012.csv        — SVB baby names, 1996–2013, semicolon-delimited
+2. meertens_firstnames_by_count_2018.json — All Dutch first names with M/F counts (Jan 2018 BRP)
+
+--------------------------------------------------------------------
+SOURCE 1: SVB (Sociale Verzekeringsbank / Social Insurance Bank)
+--------------------------------------------------------------------
+Portal:   https://www.svb.nl/nl/kindernamen/
+Data:     Baby names given to children in the Netherlands, by gender, year, month,
+          and count. Privacy threshold: only names given >= 10 times are included.
+Format:   Semicolon-delimited text (CSV-like), columns: Gender;Year;Month;Name;Count
+Years:    File covers 1996–2013 (67,568 records)
+Download: https://www.hackdeoverheid.nl/wp-content/uploads/sites/10/2014/05/q05a.txt
+  (originally released by SVB for app developers via Hack de Overheid in 2014)
+
+For MORE RECENT data (2017–2024), SVB publishes yearly overviews:
+- Interactive browser: https://www.svb.nl/nl/kindernamen/namen/kindernamen-alle-jaren
+- 2024 announcement:  https://www.svb.nl/nl/pers-en-nieuws/nieuwsberichten/emma-en-noah-de-populairste-kindernamen-van-2024
+- 2025 top names:     https://www.svb.nl/nl/kindernamen/namen/jongens-populariteit
+  (Emma and Noah were most popular in 2024; Noor and Noah in 2025)
+Note:     No bulk download file found for 2014–present. Data appears to be web-only.
+          The SVB website (CC0 license) may be scraped.
+
+--------------------------------------------------------------------
+SOURCE 2: Meertens Instituut — Nederlandse Voornamenbank (NVB)
+--------------------------------------------------------------------
+Portal:     https://nvb.meertens.knaw.nl/
+Background: https://meertens.knaw.nl/en/meertens-collectie/dutch-first-name-database_eng_/
+GitHub:     https://github.com/open-nl-data/dutch-names-dataset
+
+Downloaded: meertens_firstnames_by_count_2018.json
+Format:     JSON, 657,093 entries, fields: Voornaam (name), Mannen (male count), Vrouwen (female count)
+Source date: Names registered in the Personal Records Database (BRP) as of January 1, 2018
+Note:       This is a STOCK dataset (all living persons at one point in time),
+            not a birth cohort dataset. Names going back centuries are included.
+            For 17,926 names, annual popularity data exists in NVB (web interface only).
+
+Raw JSON URL:
+  https://raw.githubusercontent.com/open-nl-data/dutch-names-dataset/main/firstnames_by_count.json
+
+Popularity lists (web, 1880–2017, by year/province/municipality):
+  https://nvb.meertens.knaw.nl/topnamen/land/Nederland
+  https://www.meertens.knaw.nl/nvb/topnamen/land/Nederland
+
+--------------------------------------------------------------------
+SOURCE 3: CBS (Centraal Bureau voor de Statistiek / Statistics Netherlands)
+--------------------------------------------------------------------
+Portal:    https://opendata.cbs.nl/statline/
+OData API: https://opendata.cbs.nl/ODataFeed/odata/[TableID]/UntypedDataSet
+Note:      CBS does NOT appear to publish a dedicated given-names frequency table
+           in StatLine. Birth statistics are available but not broken down by name.
+           For the most complete CBS data, use the OData API with R package cbsodataR
+           or Python package cbsodata.
+
+--------------------------------------------------------------------
+NOTES
+--------------------------------------------------------------------
+- The Netherlands has no strict naming laws (unlike Iceland).
+- SVB data is based on child benefit (kinderbijslag) recipients.
+- Meertens NVB popularity data covers 1880–2017 by municipality/province/nation.
+- For 2018+ annual top names: use SVB web portal or contact SVB directly.

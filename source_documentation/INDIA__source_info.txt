@@ -1,0 +1,128 @@
+INDIA — Given Names Dataset Sources
+====================================
+Downloaded/processed: 2026-05-01
+Languages targeted: Hindi (Indo-Aryan), Tamil (Dravidian)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FILE: forebears_india_forenames_top1000.csv
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Source URL:    https://forebears.io/india/forenames
+Rows:          1000 names (+ header)
+Frequency:     YES — incidence (raw count) + frequency_ratio (1:N)
+Columns:       rank, name, incidence, frequency_ratio
+Language:      Romanized; pan-India (all languages/regions combined)
+Population:    Data covers all residents of India
+Notes:         Forebears derives counts from genealogical and civil
+               records. 13,587,032 unique forenames known for India,
+               ~95 people per name on average. Top name: Ram
+               (5,648,344 occurrences). Data is not language-tagged
+               so Hindi, Tamil, Bengali, Telugu etc. all mix together.
+               No gender column included.
+Quality:       HIGH — best single frequency dataset for India
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FILE: andhra_pradesh_voter_names_top5000.csv
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Source URL:    https://archive.org/details/india-names-dataset
+               (file: ap-names.txt.gz, 48.7MB compressed)
+Rows:          5000 most frequent name tokens (+ header)
+Frequency:     YES — total_count, male_count, female_count (summed
+               across all years in the voter rolls)
+Columns:       name, total_count, male_count, female_count
+Language:      Telugu (Andhra Pradesh voter rolls, romanized)
+Region:        Andhra Pradesh state (South India, Telugu-speaking)
+               NOT Tamil Nadu. Useful as South Indian reference but
+               different language family from Tamil.
+Notes:         Source data is Andhra Pradesh voter registration rolls,
+               organized as: year TAB total TAB male TAB female TAB name.
+               2,890,619 unique name tokens in full dataset. Many tokens
+               are surnames, honorifics, or non-name terms (e.g., "elector",
+               "name", "reddy") mixed with given names because voter rolls
+               contain full names unparsed. Filter with caution.
+               Top given names include: Lakshmi (1,409,575), Kumar
+               (1,267,024), Venkata (639,258), Ramesh (363,849).
+Quality:       MEDIUM — real frequency data but includes noise (surnames,
+               titles) and is Telugu not Tamil
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FILE: balasahebgulave_indian_female_names.csv
+FILE: balasahebgulave_indian_male_names.csv
+FILE: balasahebgulave_indian_names_all.csv
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Source URL:    https://github.com/balasahebgulave/Dataset-indian-names
+Rows:          Female: 15,381 | Male: 14,844 | Combined: 6,486
+               (Combined file appears to be a smaller curated subset)
+Frequency:     NO — name list only
+Columns:       name, gender, race
+Language:      Romanized; pan-India (all regions/languages)
+Notes:         Sourced from Kaggle via preprocessing of public Indian
+               name records. Same underlying data as laxmimerit/
+               indian-names-dataset and mbejda GitHub gists — all
+               three are identical. Gender is labeled m/f. Race is
+               "indian" for all rows. No frequency counts. Useful as
+               a comprehensive Indian name lexicon for coverage.
+Quality:       MEDIUM — broad coverage, no frequency data
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FILE: behindthename_tamil_names.csv
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Source URL:    https://www.behindthename.com/names/usage/tamil
+Rows:          195 names (+ header)
+Frequency:     NO — curated list only
+Columns:       name, gender (M/F/U=unisex), source
+Language:      Tamil; Romanized
+Notes:         Behind the Name is a curated onomastics reference site.
+               Names are editorially classified as Tamil by usage/
+               origin, not derived from frequency data. Covers both
+               male and female names. No frequency or rank data
+               available for Tamil names from any freely accessible
+               source — this is the best open curated list of
+               Tamil given names found.
+               NOTE: Tamil-specific frequency data does NOT appear to
+               be publicly available. Tamil Nadu vital statistics
+               (tn.data.gov.in) and NADRA-equivalent Indian civil
+               registration do not publish name frequency CSVs. No
+               Tamil names frequency dataset was found on GitHub,
+               Kaggle, or any open data portal.
+Quality:       LOW for frequency — but best available Tamil name list
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FILE: sigpwned_india_forenames_top20.csv
+FILE: sigpwned_india_baby_names_top10.csv  (pre-existing)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Source URL:    https://github.com/sigpwned/popular-names-by-country-dataset
+Rows:          20 names (10F + 10M, BabyCenter 2021-2022)
+Frequency:     NO — rank only (Index column), no raw counts
+Columns:       Country, Country Group, Region, Population, Note, Year,
+               Romanization, Index, Name Group, Gender,
+               Localized Name, Romanized Name
+Language:      Romanized; India national (BabyCenter source)
+Notes:         Only top 10 female names (2021) and top 10 male names
+               (2022) for India. Source is BabyCenter India rankings,
+               not official census. Very limited coverage.
+Quality:       LOW for frequency — useful only as trending name signal
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SOURCES SEARCHED BUT NOT ACCESSIBLE (FREE):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+- census.name/indian-name-database/ — paid (€55), 35,503 first names
+  with frequency counts from 724,809 validated Indian social media
+  profiles. Would be best option if budget available.
+- Kaggle datasets (require authentication to download)
+- Tamil Nadu open data portal (tn.data.gov.in) — electoral/name
+  frequency data not published as open CSV
+- India Census 2011 name frequency tables — not published as open data
+- philipperemy/name-dataset — India (IN.csv) and Pakistan (PK.csv)
+  exist in full 3.3GB dataset but only available as compressed archive;
+  no individual country files accessible via raw URL. Data is raw
+  records (first_name, last_name, gender, country_code) without
+  aggregated frequency counts.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RECOMMENDED DATASET FOR HINDI/PAN-INDIA FREQUENCY WORK:
+  forebears_india_forenames_top1000.csv
+RECOMMENDED DATASET FOR TAMIL NAMES:
+  behindthename_tamil_names.csv (no frequency) +
+  forebears_india_forenames_top1000.csv (filter for Dravidian names)
+RECOMMENDED DATASET FOR SOUTH INDIAN FREQUENCY PROXY:
+  andhra_pradesh_voter_names_top5000.csv (Telugu, not Tamil)

@@ -1,0 +1,59 @@
+IRAN — Given Names Data Sources
+==================================
+Retrieved: 2026-05-01
+
+OFFICIAL SOURCE
+---------------
+Sazman-e Sabte Ahval (National Organization for Civil Registration / سازمان ثبت احوال کشور)
+  URL: https://www.sabteahval.ir
+  Status: Website connection refused at time of retrieval (likely geo-blocked or temporarily down)
+
+  Sabteahval publishes annual lists of the most frequent newborn names, typically released
+  through their spokesman and covered by Iranian news agencies. The data is released by year
+  and usually covers the top 10-20 names for each sex, often with frequency counts.
+
+  The name frequency portal tab: https://www.sabteahval.ir/default.aspx?tabid=1383
+  (فراوانی نامگذاری — Naming Frequency) — connection refused from outside Iran.
+
+  The interactive name system (سامانه تعاملی نام) at sahim.sabteahval.ir allows browsing
+  of approved names by province and month, but appears to not offer bulk download.
+
+SCI (Statistical Centre of Iran / مرکز آمار ایران / درگاه ملی آمار)
+  URL: https://amar.org.ir
+  Assessment: Publishes general demographic statistics; name frequency data is handled
+  by Sabteahval, not SCI.
+
+DATA COLLECTED
+--------------
+Year 1402 (first 4 months only, approx. April-July 2023):
+  - Source: Deputy of Identity Documents Affairs, Civil Registration Organization
+  - Reported via: baztabonline.com (https://baztabonline.com/news/...)
+  - Top 9 girls + top 10 boys with exact counts
+  - File: iran_popular_names_sabteahval_1402.csv
+  - HTML archive: sabteahval_popular_names_1402_first4months.html
+
+Year 1400 (annual rankings, approx. 2021-2022):
+  - Source: Sabteahval spokesman Seyyed-Safi Abolorabi
+  - Reported via: khabaronline.ir
+  - Top 20 girls + top 20 boys (ranks only, no counts)
+  - File: iran_popular_names_sabteahval_1400.csv
+
+Year 1398-1399 (9-month period, approx. 2019-2020):
+  - Source: Sabteahval spokesman Seifollah Aboutorabi
+  - Reported via: Tehran Times (English) and aftabnews.ir
+  - Total births: 913,345 (470,906 boys, 442,439 girls)
+  - Top 10 names each sex (ranks, some with counts)
+  - File: tehrantimes_popular_names_2019.html
+
+NOTE ON COUNTS IN 1402 DATA
+----------------------------
+The counts for 1402 (e.g., Fatemeh 6,385; Amir Ali 5,217) represent registrations in
+the FIRST FOUR MONTHS ONLY of 1402. Annual totals would be approximately 3x higher.
+These are newborn registration counts, not population totals.
+
+FILES IN THIS FOLDER
+---------------------
+iran_popular_names_sabteahval_1402.csv   — 1402 top names with counts (4-month period)
+iran_popular_names_sabteahval_1400.csv   — 1400 top 20 names with ranks (no counts)
+sabteahval_popular_names_1402_first4months.html  — archived source article (173 KB)
+tehrantimes_popular_names_2019.html      — archived English-language source (31 KB)

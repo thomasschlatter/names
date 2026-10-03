@@ -1,0 +1,117 @@
+ALBANIA — GIVEN NAME FREQUENCY DATA
+=====================================
+Last updated: 2026-05-01
+
+===========================================================
+SOURCE 1: INSTAT Albania (Institut i Statistikave) — Newborn Names 2019
+===========================================================
+Official body:  Albanian Institute of Statistics (INSTAT)
+Website:        https://www.instat.gov.al/en/
+Name tool:      https://www.instat.gov.al/en/search-the-name/
+Database:       https://databaza.instat.gov.al:8083/pxweb/en/DST/
+
+Data collected for year: 2019
+(Most recently available complete newborn names release found)
+
+Relay sources used to extract official INSTAT data:
+  https://www.nancy.cc/2022/05/27/popular-baby-names-albania-2019/
+  https://invest-in-albania.org/top-baby-names-in-albania-over-the-last-century/
+
+File saved:     albania_instat_newborn_2019.csv
+Columns:        year, gender (M/F), rank, name, count, note
+Rows:           52 (10 national top girls + 10 national top boys + 32 municipal names)
+
+Notes on content:
+  - National top 10 for each gender have counts (e.g., Amelia: 499, Noel: 402)
+  - Additional names marked "municipal #1 (no count)" were the top name in at
+    least one Albanian municipality but no national count was published
+  - INSTAT publishes births data quarterly by geography but does NOT publish
+    full name-frequency tables for download; only top-10 lists are released
+  - The INSTAT name search tool (databaza.instat.gov.al) allows individual
+    name lookups with trend graphs but has no bulk download option
+  - No 2020–2024 equivalent release was located in English-language sources;
+    INSTAT may publish Albanian-language releases on their main site
+
+Download status: SUCCESS (top-10 national data extracted from INSTAT press releases)
+
+
+===========================================================
+SOURCE 2: Forebears.io — Albanian Forenames (Cumulative Population)
+===========================================================
+URL:            https://forebears.io/albania/forenames
+Coverage:       121,969 unique forenames in Albania; 24 people per name on average
+Data type:      Cumulative population data (not birth-year specific)
+Years:          Not specified; reflects contemporary population records
+
+File saved:     albania_forebears_top100.csv
+Columns:        rank, name, incidence, frequency_ratio, gender_pct
+Rows:           100 (top 100 of 121,969 unique forenames)
+
+Notes:
+  - Incidence = estimated total number of people in Albania bearing this name
+  - Frequency ratio = approximately 1 in N people have this name
+  - gender_pct = percentage of bearers who are the dominant gender
+    (100% = exclusively one gender)
+  - Nearly all top names are 100% gender-specific; exceptions: Denis (99% M),
+    Andrea (99% M)
+  - The forebears data reflects the full living population and thus strongly
+    reflects names popular in the 1960s–1980s (communist era):
+    Lindita, Arben, Mimoza, Agim, Fatmir are characteristic of that period
+  - The 2019 INSTAT newborn data (Source 1) shows very different trends:
+    Amelia, Ajla, Noel, Mateo — reflecting post-2000 Western name influence
+  - The top forebears name Arben (13,278) was the all-time most popular name
+    (1907-2017), peaking in 1972
+  - Forebears does not offer CSV download; data extracted manually
+  - Note: the forebears file uses "Gezim" for Gëzim (diacritic stripped)
+    and "Aferdita" for Afërdita — original Albanian diacritics preserved in
+    the CSV where possible but some may be missing
+
+Download status: SUCCESS (top 100 extracted manually from forebears.io)
+
+
+===========================================================
+SOURCE 3: INSTAT Albania — Births, Deaths and Marriages Database
+===========================================================
+URL:            https://www.instat.gov.al/en/themes/demography-and-social-indicators/births-deaths-and-marriages/
+Notes:          INSTAT publishes quarterly births data by prefecture and municipality
+                (Excel format) but does NOT include name-level data in these files.
+                The downloadable Excel files cover aggregate birth counts only.
+                No full birth-by-name frequency table is publicly available.
+
+Download status: NOT APPLICABLE (no name-specific data in public downloads)
+
+
+===========================================================
+SOURCE 4: census.name — Albanian Name Database
+===========================================================
+URL:            https://census.name/albanian-name-database/
+Coverage:       4,058 first names (2,260 M + 1,798 F + 577 unisex) from 13,489
+                validated Albanian social media profiles
+Notes:          Paid dataset (EUR 55); CSV/SQL/JSON format available for purchase.
+                Sample data shows Andi as most common male name (1.1% frequency)
+                and Hoxha as most common surname (1.6%).
+                NOT downloaded (paid; and forebears provides better coverage).
+
+Download status: NOT DOWNLOADED (paid, EUR 55)
+
+
+===========================================================
+ALL-TIME NOTES (1907–2017 INSTAT data)
+===========================================================
+According to the Invest in Albania source (citing INSTAT 1907-2017 data):
+  All-time top girl names: Lindita (502), Mimoza (427), Shpresa (346)
+  All-time top boy names:  Arben (436), Gezim (334)
+  Peak years: 1970-1972 for all of the above (communist-era naming trends)
+
+
+===========================================================
+LINGUISTIC NOTES
+===========================================================
+- Albanian is the sole member of its branch of Indo-European (no close relatives)
+- Two main dialects: Gheg (northern, including Kosovo) and Tosk (southern)
+- Standard Albanian (Tosk-based) uses Latin alphabet with diacritics: ë, ç
+- Names often have distinct feminine forms (e.g., Ardian M / Ardianka F)
+- Communist era (1944-1991) produced many invented Albanian-origin names
+  (Lindita = "born of light", Mimoza = mimosa flower, Shpresa = "hope")
+- Post-1991 trend: international names (Amelia, Noel, Mateo, Joel) increasingly
+  popular for newborns

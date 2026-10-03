@@ -1,0 +1,102 @@
+CAMBODIA — GIVEN NAME FREQUENCY DATA
+======================================
+Last updated: 2026-05-01
+
+===========================================================
+SOURCE 1: Forebears.io — Cambodian Forenames (Cumulative Population)
+===========================================================
+URL:            https://forebears.io/cambodia/forenames
+Coverage:       204,935 unique forenames in Cambodia; 76 people per name on average
+Data type:      Cumulative population data (not birth-year specific)
+Years:          Not specified; reflects contemporary population records
+                (likely derived from census and civil registration data)
+
+File saved:     cambodia_forebears_top100.csv
+Columns:        rank, name, incidence, frequency_ratio, gender_pct
+Rows:           100 (top 100 of 204,935 unique forenames)
+
+Notes:
+  - Incidence = estimated total number of people in Cambodia bearing this name
+  - Frequency ratio = approximately 1 in N people have this name
+  - gender_pct = percentage of bearers who are the dominant gender
+    (100% = exclusively one gender; 50% = perfectly unisex)
+  - Sok (230,801) is the most common Cambodian name
+  - Cambodia has 204,935 unique forenames for an estimated ~16 million population,
+    indicating extreme name diversity compared to most countries
+  - Many top names are highly unisex: Sam (52% dominant gender), Rin (51%),
+    An (51%), Hyan (51%), Cheng (50%) are effectively gender-neutral
+  - Names like Mom (92% F), Kunthear (86% F), Veasna (86% F), Vuthy (90% M)
+    are strongly gendered despite not being 100%
+  - Names Srimum (100%), Sripau (100%), Srituc (100%), Srinang (100%) are
+    exclusively one gender (likely female, given the Sri- prefix pattern)
+  - Forebears does not offer CSV download; data extracted manually
+  - Full dataset extends to rank 1000+ (rank 1000 = Moh, 2,354 incidences)
+
+Download status: SUCCESS (top 100 extracted manually from forebears.io)
+
+
+===========================================================
+SOURCE 2: National Institute of Statistics Cambodia (NIS)
+===========================================================
+URL:            https://www.nis.gov.kh
+Notes:          The NIS collects population and census data for Cambodia.
+                Searched for name-frequency tables or baby names datasets.
+                No dedicated baby names or given-name frequency dataset was found
+                in the NIS public data catalog. NIS publications focus on
+                aggregate demographic indicators (birth rates, fertility, mortality)
+                and do not include name-level frequency data.
+
+Download status: NOT APPLICABLE (no name data found in NIS public catalog)
+
+
+===========================================================
+SOURCE 3: sigpwned/popular-names-by-country-dataset (GitHub)
+===========================================================
+URL:            https://github.com/sigpwned/popular-names-by-country-dataset
+Coverage:       106 countries; Cambodia (KH) is included
+Data format:    CSV with columns: Country, Country Group, Region, Population, Note,
+                Year, Romanization, Index, Name Group, Gender, Localized Name,
+                Romanized Name
+Notes:          This dataset pulls from Wikipedia's "List of most popular given names"
+                and similar Wikipedia sources. Cambodia/KH data includes a small
+                number of names (the README notes "generally at least 10 per country").
+                This dataset was NOT separately downloaded as the Forebears data
+                provides far superior coverage (100 names with incidence counts vs
+                ~10 names without counts). The sigpwned dataset does include KH.
+
+Download status: NOT DOWNLOADED (superseded by forebears.io coverage)
+
+
+===========================================================
+SOURCE 4: studentsoftheworld.info — Pen Pal Name Database
+===========================================================
+URL:            https://studentsoftheworld.info/penpals/stats.php?Pays=CBG
+Notes:          This site aggregates self-reported names from international pen pal
+                registrations. The Cambodia sample contains only ~40 profiles with
+                all names having frequency 1 (2.5%). The data is entirely unrepresentative
+                and was not used. Names like "John Henderson", "Brianna", "Alexa"
+                clearly reflect international pen pal registrants, not native naming.
+
+Download status: NOT USED (sample too small and unrepresentative)
+
+
+===========================================================
+LINGUISTIC NOTES
+===========================================================
+- Khmer (Cambodian) is the official language of Cambodia
+- It belongs to the Austroasiatic family, Mon-Khmer branch
+- Written in the Khmer script (abugida), one of the oldest scripts in Southeast Asia
+- All names in saved files are romanized transliterations
+- Khmer romanization is not standardized; the same name may appear in multiple
+  spellings (e.g., Sophal/Sopheal, Chantha/Chanthar)
+- Cambodian given names are typically selected by monks or astrologers based on
+  the day/time of birth; many are derived from Sanskrit/Pali via Hinduism/Buddhism
+- Names often reflect auspicious meanings: Sokha (good health), Sophea (wisdom),
+  Samnang (lucky), Ratana (jewel/gem), Vanna (gold)
+- Common name elements: Sok- (happiness, prosperity), -na/-nang (feminine suffix),
+  Chan- (moon), Sri-/Srey- (female honorific, beautiful)
+- Cambodia's high name diversity (204,935 unique names) partly reflects the
+  tradition of unique or semi-unique name assignment rather than names being
+  recycled across families
+- The Mon-Khmer branch is distinct from Vietnamese (also Austroasiatic but a
+  different sub-branch, Vietic) which is already in the dataset

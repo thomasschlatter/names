@@ -1,2 +1,12 @@
 __pycache__/
 *.pyc
+# scratch run logs and one-off check outputs
+_check*.txt
+_check_*.csv
+_real*.txt
+_crossed.txt
+_feats.txt
+_numtype.txt
+_rebuild.txt
+knit_log.txt
+*.knit.md

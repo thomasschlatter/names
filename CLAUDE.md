@@ -12,7 +12,7 @@ Split out of the old `NAME_PHONOLOGY` folder on 2026-09-17, where it shared
 space with the lexicon paper (now `PROJECTS/NAME_PHONOLOGY_LEXICON`). The two
 share no script and no data file. Pre-split history: the lexicon repo at 4f9dace.
 
-## Status (needs attention)
+## Status (needs attention) -- STALE, see the dated sections below (inputs now all produced in the knit)
 - `paper_registry.Rmd` untouched since **Jun 9 2026**; HTML rendered Jun 9.
 - There is **no pipeline chunk**: the Rmd only reads three CSVs, so a knit
   re-renders but regenerates nothing.
@@ -68,3 +68,209 @@ not part of any analysis.
 No em dashes. No "sexism"/"sexist" (use "evaluative asymmetry" / "evaluative
 bias"). APA 7th, effect sizes required. No "Experiment N" (use "Study N" or
 "Analysis N").
+
+---
+
+## Source provenance and quality (audited 2026-09-18)
+
+Every name list now carries a `source` column, and `audits/sources_lookup.csv`
+holds one row per source with publisher, URL, how it was attributed,
+`publisher_class`, `government`, `data_basis`, `number_type` and `quality_tier`.
+`source_documentation/` holds verbatim copies of the per-country source notes
+from `PROJECTS/GIVEN_NAMES/`, the folder this project was split out of.
+
+### Three registries contribute NOTHING and say nothing about it
+
+`official_ukraine.csv`, `official_romania.csv` and `official_belarus.csv` have
+an **empty count column**. `load_source` filters on `count > 0`, NaN fails that
+test, and all their rows are dropped. Measured in the feature table: 0 rows each.
+They look like part of the collection and contribute nothing to any result.
+
+Either re-collect them with counts, or exclude them explicitly and report the
+count, which is what the never-silently-drop policy requires.
+
+### Two more carry no frequencies
+
+`official_czech.csv` (202 names) and `official_czech_mv.csv` (7,188 names, the
+Ministry of Interior permitted-name register) have `count = 1` on every row.
+They do reach the analysis, 60 rows each in the top-30 subset, but they carry no
+frequency information, so any count-weighted statistic treats every Czech name
+as equally common. Czech nonetheless counts as two of the 78 registries in
+Analysis 1.
+
+### Quality of the 121 name lists
+
+| tier | n | meaning |
+|---|---:|---|
+| A | 28 | government body, newborn-flow counts |
+| B | 64 | government body, but stock / pooled / basis unstated |
+| C | 1 | non-government with frequencies |
+| ? | 28 | not classifiable from what is recorded |
+
+Only **28 sources are unambiguously government newborn-flow data**, which is
+what the abstract's "official government birth and population registries"
+describes. 64 are government but their basis is nowhere recorded. Caveats from
+`EAST_ASIA_SOURCE_STATUS_2026-05-04.md` are applied in the `caveat` column:
+Japan is a Meiji Yasuda insurance survey and NOT government data, Taiwan is
+resident stock rather than births, South Korea is pooled 2008-2019, China is a
+sparse extract.
+
+### Two sources too weak to support a country claim
+
+- `official_indonesia.csv` is sourced from a **news article** (news.detik.com).
+- `official_uzbekistan.csv` is sourced from **forebears.io**, a commercial
+  genealogy aggregator, not a government body.
+
+### Six have no traceable provenance
+
+`belarus`, `england`, `france`, `slovenia`, `sweden`, `ukraine`. The publisher
+for each was confirmed reachable on 2026-09-18 (ONS, INSEE, SCB, SURS,
+data.gov.ua, Belstat) and is recorded in the lookup as a landing page, but the
+file on disk cannot be traced to it. These need re-collecting, not searching.
+Note three of the six are the same files that carry no counts.
+
+### Attribution recovery, for reuse
+34 outputs were named by no source document. 28 were recovered by three routes,
+each finding what the others missed, which is worth knowing before trusting any
+single method:
+1. URLs inside the SAME function that writes the file. A file-wide search is
+   wrong: it gave Azerbaijan the Argentine RENAPER URL from a neighbouring
+   function.
+2. structured declarations in module-level lists (`stem=` / `host=` pairs in
+   `normalize_french_city_prenoms.py`), which a function-scoped search misses.
+3. the per-country notes now in `source_documentation/`.
+
+### Re-collection of the six unattributed sources (2026-09-18)
+
+All six had no traceable provenance. Four were re-collected from their
+publisher; two cannot be, for a reason worth stating in the manuscript.
+
+| source | publisher | rows before | rows after | coverage |
+|---|---|---:|---:|---|
+| france | INSEE, Fichier des prenoms | 33,733 | **679,208** | 1900-2023 |
+| england | ONS (62 workbooks) | 19,277 | **371,152** | 1996-2025 |
+| sweden | SCB table TAB5665 | 8,693 | **84,988** | 1998-2022 |
+| slovenia | SURS 05X2001S / 05X2002S | 542 | **15,380** | 1992-2025 |
+
+62,245 rows became 1,150,728. **Every file with no provenance record turned out
+to hold a small fraction of what its publisher offers** (France 5%, Slovenia
+3.5%). Missing provenance was a reliable predictor of missing data, so the six
+were worth chasing on data grounds, not only on citation grounds.
+
+Each now has a manifest with the exact file URL, licence, access date and
+counted exclusions: `france_insee_manifest.csv`, `england_ons_manifest.csv`,
+`sweden_scb_manifest.csv`, `slovenia_surs_manifest.csv`.
+
+**Ukraine and Belarus cannot be re-collected.** Both the Ukrainian Ministry of
+Justice and Belstat publish newborn-name statistics ONLY as an annual press
+announcement carrying a top-N list with no counts; there is no dataset. The
+files on disk (21 and 11 names, empty count column) match that exactly. They are
+now marked EXCLUDE in the lookup and must be reported as an explicit, counted
+exclusion rather than silently dropping out during parsing, which is what
+happens today.
+
+### Traps met while re-collecting, worth knowing before the next one
+- **ONS rate-limits**: 62 workbooks pulled at speed returns HTTP 429. Throttle
+  and back off. A partial run is dangerous here, not merely incomplete: the nine
+  workbooks lost to a transient DNS failure were ALL male 2017-2025, which would
+  have left female names for a decade with no male counterpart, in the exact
+  comparison this paper measures.
+- **ONS sheet names differ by year** ("Table 6 - Girls names - E&W", "Table_6",
+  "6"). Choose the sheet by inspection (has Name+Count, most rows) or you get
+  Table 1, which is only the top 100 rather than the full distribution.
+- **SCB's old API path is dead** (ssd/BE/BE0001/BE0001D returns 400, "Old tables
+  not updated"); use PxWeb API 2.0. It also refuses the request with "Missing
+  selection for mandantory variable" unless ContentsCode is selected, even
+  though the table has exactly one.
+- **Sweden's series ends 2022**: from 2023 newborn names are published by
+  Skatteverket, not SCB.
+- **SURS publishes Number and Rank in one table**; take Number only. Mixing them
+  is how a rank list ends up masquerading as counts.
+
+### Subset rebuilt and re-knit (2026-09-18)
+
+`official_data_top30/` is now built by `_build_top30.py` under the documented
+rule (top 30 DISTINCT names per sex) with a year rule added:
+
+> A registry that has years contributes only its MOST RECENT year. A registry
+> with no year column contributes all its rows, flagged `undated` in the
+> manifest. The full multi-year series stays in `_RESOURCES/official_data` for
+> the diachronic analysis; only this derived subset is restricted.
+
+Why: registries now span 1 to 164 years, so pooling made each country
+contribute a different era. France pooled 1900-2023 gives Marie and Jean;
+France 2015+ gives Emma and Gabriel. Result: 118 registries, 6,005 names,
+95 dated (median year used 2024, 78 at 2023 or later) and 23 undated.
+
+Prior numbers kept for comparison, as the re-run policy requires:
+
+| | committed 2026-06-09 | rebuilt 2026-09-18 |
+|---|---:|---:|
+| Rows used | 2,892 | **5,680** |
+| **Sources used** | **65** | **109** |
+| Weighted ROC AUC | 0.939879 | **0.943695** |
+| Weighted accuracy | 0.862283 | 0.866919 |
+| Weighted log loss | 0.314430 | 0.304017 |
+| Weighted n | 115,198,787 | 114,035,294 |
+
+**Sources nearly doubled.** The old subset took the top 30 ROWS, so multi-year
+registries collapsed to a handful of distinct names and fell below
+`min_source_rows=20`; 44 registries were silently dropping out of the model.
+The fit improves slightly on twice the data and 44 more jurisdictions, which is
+a robustness result rather than a cost. Weighted n is almost unchanged because a
+few large registries dominate it; the gain is breadth.
+
+Note the standalone run and the knit differ in AUC at the fifth decimal
+(0.943616 vs 0.943695): lbfgs convergence noise, not a data difference.
+
+### Diagnosed G2P repairs now in the pipeline
+- Estonian: espeak writes palatalisation as a caret after the consonant
+  (`s^`); converted to `s\u02b2`. Measured in `_TRANSCRIPTION_NOTES.md`.
+- French: epitran fra-Latn passes the ORTHOGRAPHIC accent through onto a schwa
+  (`grece` -> `\u0261\u0280\u0259\u0300s`) where the reference has `\u0261\u0281\u025bs`. Grave and circumflex
+  map to the open-mid vowel, acute to close-mid. Measured on 257 words:
+  exact match 0.0% -> 25.3%, mean edit distance 0.5155 -> 0.2069.
+- Danish: espeak emits GREEK SMALL LETTER EPSILON for the open-mid front vowel.
+
+Unparsed symbols remaining: 54 names across 18 sources, excluded and counted in
+`official_ipa_unparsed_top30.csv`. `CFG.on_unparsed` is set to "exclude" for the
+current render; set it back to "halt" once the last classes are diagnosed
+(Kyrgyz X/S/[, Icelandic #, Danish ?, Faroese digits, Maori ", French acute).
+
+### Japan restored (2026-10-03)
+
+Japan had silently dropped out of every analysis. The old
+`_RESOURCES/official_data/official_japan.csv` held kanji only; espeak reads kanji
+as the English words "Chinese letter", and the transcription loop skipped those
+names (59 of 60) with `continue` BEFORE the G2P audit, so no file counted them.
+
+- **Source now:** Ogihara's Meiji Yasuda writing+reading tables (2021 BMC Res
+  Notes, OSF 2WURJ; 2025 Data in Brief, OSF BQUJN), local copies in
+  `GIVEN_NAMES/JAPAN/`. `name` is the hiragana READING, counts are per published
+  writing-reading pair summed by reading; no reading is inferred. Built by
+  `_RESOURCES/official_data/normalize_japan_ogihara.py`; 153 writing rows with
+  reading "-" excluded and counted in `japan_ogihara_exclusions.csv`. Old kanji
+  file kept as `official_japan_kanji_legacy.csv`. Still NOT government data.
+- The 2026-09-18 alternative (`japanese/`, JMnedict + ja.wikipedia + Wikidata,
+  equal count split across readings) was never wired in and is not used.
+- 2024 subset: 13 F + 19 M readings (Ogihara lists fewer than 30 per sex).
+- **espeak ja writes /u/ as ɯᵝ**; panphon cannot parse U+1D5D, which excluded
+  every name containing /u/. Repaired to ɯ in `IPA_HOMOGLYPH_REPAIRS`.
+- Pipeline now writes two previously unrecorded exclusion paths to file:
+  `official_ipa_langswitch_excluded_top30.csv` (23 names, France 8, German and
+  Swiss cities, Austria) and `official_ipa_nofeatures_excluded_top30.csv` (0).
+- `REBUILD_PIPELINE` had been left FALSE; set back to TRUE. Use R 4.4.0
+  (`Rscript` on PATH); R 4.3.2 no longer exists.
+
+Old vs new (prior outputs in `audits/prior_20261003_pre_japan_fix/`):
+
+| | before | after |
+|---|---:|---:|
+| Analysis 1 registries | 112 (stale: built from the Sep 19 table; the Sep 20 table had 110) | 111 |
+| Analysis 2 sources / rows | 107 / 5,560 | 108 / 5,592 |
+| Analysis 2 AUC (equal weight per registry) | 0.799 | 0.797 |
+| Analysis 3 countries, gap > 0 | 47 / 53 | 48 / 54 |
+| Analysis 3 r with GGI | +.075, p = .595 | +.083, p = .552 |
+
+Coefficient changes max 0.022; pf_hi and pf_long flip sign but both are ~0
+(|coef| < 0.013). Japan sonority d = 0.36 (13 F, 19 M).

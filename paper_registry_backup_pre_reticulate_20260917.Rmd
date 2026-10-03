@@ -1,0 +1,356 @@
+---
+title: "Phonological gender marking in given names is a cross-linguistic regularity decoupled from societal gender equality"
+author: "Thomas Schlatter"
+date: "`r format(Sys.Date(), '%B %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    number_sections: false
+# Target journal (tentative): Journal of Language and Social Psychology (SSCI)
+# Companion paper (word norms x registries, EN/NL/CZ): paper_lexicon.Rmd. This
+# manuscript is self-contained and uses no word-norm data; scope is names only.
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(readr)
+library(dplyr)
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+
+# ---- Helpers ----
+fmt_p <- function(p) {
+  if (is.na(p)) return("NA")
+  if (p < .001) return("< .001")
+  sub("0\\.", ".", sprintf("%.3f", p))
+}
+fmt_r <- function(r) sub("0\\.", ".", sprintf("%+.3f", r))
+
+# ---- Analysis 1: feature-level universality across official registries ----
+uni <- read_csv("official_feature_universality.csv", show_col_types = FALSE)
+n_uni_sources <- as.integer(uni$sources_total[1])
+getu <- function(feat) uni[uni$feature == feat, ][1, ]
+u_vowel <- getu("prop_vowel")
+u_son   <- getu("pf_son")
+u_cons  <- getu("pf_cons")
+u_cont  <- getu("pf_cont")
+u_voi   <- getu("pf_voi")
+u_len   <- getu("n_phones")
+
+# ---- Analysis 2: pooled multivariate regression (top-30 names per sex per registry) ----
+reg_summary <- readLines("official_ipa_regression_summary_top30.txt")
+grab_num <- function(key, txt) {
+  line <- grep(key, txt, value = TRUE)[1]
+  as.numeric(gsub("[^0-9.]", "", sub(".*:", "", line)))
+}
+reg_auc        <- grab_num("ROC AUC", reg_summary)
+reg_n_names    <- grab_num("Rows used", reg_summary)
+reg_n_sources  <- grab_num("Sources used", reg_summary)
+reg_acc        <- grab_num("Weighted accuracy", reg_summary)
+coef <- read_csv("official_ipa_regression_coefficients_top30.csv", show_col_types = FALSE)
+coef_lab <- c(pf_back = "back vowels", pf_lo = "open (low) vowels", pf_cons = "consonantal",
+              pf_son = "sonorant", pf_long = "long", pf_strid = "strident",
+              pf_tense = "tense", pf_lat = "lateral", pf_cor = "coronal",
+              pf_lab = "labial", n_phones = "name length (phones)", n_chars = "name length (letters)",
+              pf_voi = "voiced", pf_cont = "continuant", prop_vowel = "vowel proportion",
+              pf_nas = "nasal", pf_round = "rounded", pf_delrel = "delayed release",
+              pf_syl = "syllabic", pf_distr = "distributed")
+coef$label <- ifelse(coef$term %in% names(coef_lab), coef_lab[coef$term], coef$term)
+coef$pole <- ifelse(coef$coef > 0, "male", "female")
+
+# ---- Analysis 3: cross-cultural breadth and moderation ----
+eq <- read_csv("equality_final_v4.csv", show_col_types = FALSE) %>%
+  filter(!is.na(d), !is.na(GGI))
+eq_n <- nrow(eq)
+eq_share_fgtm <- mean(eq$d > 0)
+eq_mean_d <- mean(eq$d)
+eq_families <- length(unique(eq$lang))
+ct_p  <- cor.test(eq$d, eq$GGI, method = "pearson")
+ct_s  <- cor.test(eq$d, eq$GGI, method = "spearman", exact = FALSE)
+r_pe  <- unname(ct_p$estimate); p_pe <- ct_p$p.value
+rho_s <- unname(ct_s$estimate); p_s  <- ct_s$p.value
+```
+
+# Abstract {-}
+
+Across the world's languages, female and male given names tend to differ in sound:
+female names are widely reported to be longer, to end in vowels, and to favour
+sonorous, open articulations. Whether this pattern is a genuine cross-linguistic
+regularity, and whether its magnitude reflects how gender is organised in a society,
+remain open questions. Drawing on official government birth and population registries,
+this study quantifies the phonological female-male contrast in given names at scale.
+In a feature-level analysis spanning `r n_uni_sources` registries, the direction of
+the contrast is near-invariant: female names carry a higher vowel proportion in
+`r u_vowel$sources_agreeing` of `r n_uni_sources` registries and a more sonorant
+profile in `r u_son$sources_agreeing` of `r n_uni_sources`, while male names are more
+consonantal (`r u_cons$sources_agreeing` of `r n_uni_sources`) and longer
+(`r u_len$sources_agreeing` of `r n_uni_sources`). A pooled multivariate model trained
+on the most frequent names from `r reg_n_sources` registries separates female from
+male names with a count-weighted area under the curve of `r sprintf('%.3f', reg_auc)`.
+Finally, in a broader sample of `r eq_n` countries, every national registry shows the
+female-male gap in the same direction (mean Cohen's *d* = `r sprintf('%.2f', eq_mean_d)`),
+yet the size of the gap is unrelated to a standard index of national gender parity
+(*r* = `r fmt_r(r_pe)`, *p* = `r fmt_p(p_pe)`). Phonological gender marking in names
+thus emerges as a robust linguistic regularity that is statistically decoupled from
+societal gender equality, consistent with a sound-symbolic rather than a sociopolitical
+account of its origin.
+
+# Introduction
+
+That names sound gendered is a familiar intuition, and a measurable one. English
+*Emma*, *Sophia*, and *Olivia* end in open vowels and string together sonorant
+consonants; *Brett*, *Mark*, and *Kurt* are short, closed, and obstruent-heavy.
+Early quantitative work established that such regularities are not idiosyncratic to
+English. Female names are, on average, longer, more likely to be stressed on a
+non-initial syllable, more likely to end in a vowel, and more likely to contain the
+acoustically diffuse, high-sonority segments that the broader sound-symbolism literature
+associates with smallness and softness (Cutler, McQueen, & Robinson, 1990; Slater &
+Feinman, 1985; Wright, Hay, & Bent, 2005; Pitcher, Mesoudi, & McElligott, 2013). Listeners
+exploit these cues: novel names and nonwords are reliably sex-typed from form alone, and
+the effect aligns with the same sound-meaning mappings that drive the *bouba-kiki*
+phenomenon (Sidhu & Pexman, 2018; Sidhu, Pexman, & Saint-Aubin, 2019).
+
+Two questions have proven harder to settle. The first is universality. Most evidence
+comes from a handful of well-studied European languages, and the convenience samples
+that dominate the literature (telephone directories, single-cohort birth lists, online
+name corpora) make it difficult to know whether the female-male contrast is a property
+of naming in general or an areal feature of the Indo-European naming tradition. The
+second question concerns explanation. If female names really are softer and more
+sonorous across cultures, is that contrast a reflex of how those cultures construct
+gender, sharpening where gender roles are most differentiated and flattening where they
+are most equal? Or is it a sound-symbolic regularity that operates below the level of
+deliberate social choice, and therefore largely indifferent to a society's gender
+politics? These two readings make opposite predictions about the relationship between
+the phonological gap and societal measures of gender equality.
+
+Answering either question requires moving beyond convenience samples to the populations
+that actually bear names. National civil registries, the administrative records of births
+and resident populations, provide exactly this: frequency-weighted name distributions for
+entire countries, in dozens of languages and writing systems. The present study assembles
+such registries at scale and uses grapheme-to-phoneme conversion to place every name in a
+common phonological feature space. Three analyses follow. Analysis 1 asks how consistent
+the direction of the female-male contrast is, feature by feature, across registries.
+Analysis 2 asks how strongly the contrast separates the sexes when phonological features
+are combined multivariately. Analysis 3 turns to the explanatory question, testing whether
+the size of the contrast tracks a standard index of national gender equality across a broad
+country sample.
+
+# Data and Methods
+
+## Name registries
+
+Names were drawn from official government birth and population registries (national
+statistical offices, civil registration authorities, and equivalent bodies). Each source
+provides given names with a sex label and a frequency (annual births or resident counts).
+Where a registry reported names by year, counts were summed within name and sex. Analyses
+weight by these frequencies, so that common names contribute in proportion to the people
+who carry them rather than appearing as single types.
+
+## Phonological transcription
+
+Names were converted to the International Phonetic Alphabet with a source-aware
+grapheme-to-phoneme pipeline. Most languages were transcribed with eSpeak NG using the
+language-appropriate voice; Mandarin names were routed through pinyin before conversion,
+and a small number of orthographically transparent inventories used dedicated segmental
+rules. Because grapheme-to-phoneme conversion is language-specific, each registry was
+assigned its language explicitly rather than detected automatically.
+
+One class of script was excluded by design. Hebrew and Arabic are written as abjads,
+omitting short vowels, so transcription of the unvocalised registry text returns
+consonant skeletons (for example, Hebrew *Adam* renders as a vowelless /ʔdm/) that
+would systematically deflate exactly the vowel and sonority features under study. These
+sources were removed rather than retained, because the distortion is silent and cannot be
+detected by the artifact screens used for other languages. Transcriptions flagged as
+language-switching or spelled-out artifacts (for instance, an East Asian source whose
+logographic names fall back to a literal gloss) were filtered, and any source exceeding a
+25% weighted artifact rate was dropped in full.
+
+## Phonological features and effect sizes
+
+Each transcription was mapped to articulatory features using the panphon feature system.
+For every name, feature values were averaged across its segments, yielding a name-level
+profile (the proportion of segments that are sonorant, vocalic, consonantal, and so on),
+together with name length in segments. The female-male contrast on a given feature within
+a registry is summarised as a frequency-weighted Cohen's *d* (female minus male), with
+pooled within-sex variance. A positive *d* indicates a higher value among female names.
+
+## Societal gender equality
+
+For the cross-cultural analysis, the per-country phonological gap was paired with a
+standard composite index of national gender parity (higher values denote greater equality).
+This broader country panel draws on a wider, partly non-registry name sample and is
+therefore treated as a secondary, exploratory tier; the registry-based universality results
+in Analyses 1 and 2 do not depend on it.
+
+# Analysis 1: How consistent is the female-male contrast?
+
+The first question is directional: for each phonological feature, does the female-male
+contrast point the same way across registries? Table 1 summarises the
+`r n_uni_sources`-registry tally for the features that most clearly distinguish the sexes.
+
+```{r tab-universality}
+show <- c("prop_vowel", "pf_syl", "pf_son", "pf_cont", "pf_voi", "pf_cons", "pf_round", "n_phones")
+ut <- uni[match(show, uni$feature), ] %>%
+  transmute(
+    Feature = c(prop_vowel = "Vowel proportion", pf_syl = "Syllabic", pf_son = "Sonorant",
+                pf_cont = "Continuant", pf_voi = "Voiced", pf_cons = "Consonantal",
+                pf_round = "Rounded", n_phones = "Name length")[feature],
+    `Higher in` = ifelse(direction == "F > M", "Female", "Male"),
+    `Registries agreeing` = paste0(sources_agreeing, " / ", sources_total),
+    `% agreeing` = sprintf("%.0f%%", 100 * sources_agreeing / sources_total),
+    `Mean F - M` = sprintf("%+.3f", mean_f_minus_m)
+  )
+kable(ut, align = c("l", "l", "c", "c", "c"),
+      caption = paste0("Table 1. Direction of the female-male phonological contrast across ",
+                       n_uni_sources, " official name registries.")) %>%
+  kable_styling(full_width = FALSE, bootstrap_options = c("striped", "condensed"))
+```
+
+The pattern is strikingly consistent. The single most reliable cue is vocalic openness:
+female names carry a higher proportion of vowels in `r u_vowel$sources_agreeing` of
+`r n_uni_sources` registries, a contrast that reverses in only
+`r u_vowel$sources_total - u_vowel$sources_agreeing`. Sonority behaves almost identically,
+with female names more sonorant in `r u_son$sources_agreeing` of `r n_uni_sources`
+registries. The complementary consonantal dimensions point the other way with comparable
+regularity: male names are more consonantal in `r u_cons$sources_agreeing` of
+`r n_uni_sources` registries and longer in `r u_len$sources_agreeing`. In other words, the
+female-male contrast is not a property of one or two languages that happens to recur; it is
+the default direction of phonological gender marking wherever names are recorded, holding
+across the writing systems and language families represented in the registry set.
+
+# Analysis 2: How strongly do the features combine?
+
+Directional consistency does not by itself establish that the cues are individually large;
+each per-feature gap is modest (Table 1). The relevant question for sex-typing is whether
+the cues combine into a discriminable signal. To test this, a count-weighted logistic
+regression predicted name sex from the full set of phonological features, with registry
+fixed effects to absorb between-language baseline differences, fitted to the most frequent
+names (top 30 per sex) from `r reg_n_sources` registries
+(*N* = `r format(reg_n_names, big.mark = ",")` weighted name types).
+
+```{r tab-coef}
+ct <- coef %>% arrange(desc(abs_coef)) %>% head(8) %>%
+  transmute(
+    Feature = label,
+    `Standardised coefficient` = sprintf("%+.2f", coef),
+    `Predicts` = ifelse(pole == "male", "Male", "Female")
+  )
+kable(ct, align = c("l", "c", "c"),
+      caption = "Table 2. Strongest phonological predictors of name sex in the pooled multivariate model.") %>%
+  kable_styling(full_width = FALSE, bootstrap_options = c("striped", "condensed"))
+```
+
+Combined, the features separate female from male names with a count-weighted area under the
+ROC curve of `r sprintf('%.3f', reg_auc)` and a weighted accuracy of
+`r sprintf('%.1f%%', 100 * reg_acc)`. The multivariate profile recapitulates the
+single-feature picture: openness and sonority pull strongly toward the female pole, while
+consonantality and back, rounded vowel quality pull toward the male pole. The discriminating
+signal is therefore not carried by any one cue but distributed across the same vocalic and
+sonorant dimensions that proved most consistent in Analysis 1.
+
+# Analysis 3: Does the contrast track gender equality?
+
+If the phonological female-male contrast were a reflex of socially constructed gender roles,
+its magnitude should covary with how unequally a society treats women and men: larger where
+gender is sharply differentiated, smaller where it is not. Analysis 3 tests this across a
+broader panel of `r eq_n` countries, relating each country's phonological gap (Cohen's *d*)
+to a standard national gender-equality index.
+
+```{r fig-ggi, fig.width=6.5, fig.height=4.6, fig.cap=paste0("Figure 1. National name gender gap (Cohen's d) against the gender-equality index, ", eq_n, " countries. The dashed line marks d = 0 (no gap). Every country lies above it; the slope with gender equality is flat and non-significant.")}
+ggplot(eq, aes(GGI, d)) +
+  geom_hline(yintercept = 0, linetype = "dashed", colour = "grey50") +
+  geom_point(alpha = 0.65, size = 2, colour = "#2c3e50") +
+  geom_smooth(method = "lm", se = TRUE, colour = "#c0392b", fill = "#c0392b", alpha = 0.12) +
+  labs(x = "Gender-equality index (higher = more equal)",
+       y = "Name gender gap, Cohen's d (female - male)") +
+  theme_minimal(base_size = 12)
+```
+
+Two facts stand out. First, the contrast is universal in direction at the country level as
+well as the feature level: all `r eq_n` of `r eq_n` countries show the female-male gap in the
+same direction (mean *d* = `r sprintf('%.2f', eq_mean_d)`), spanning
+`r eq_families` language families. Second, and decisively for the explanatory question, the
+size of the gap is essentially unrelated to societal gender equality. The correlation is
+small and non-significant under both Pearson (*r* = `r fmt_r(r_pe)`, *p* = `r fmt_p(p_pe)`)
+and Spearman (*r*~s~ = `r fmt_r(rho_s)`, *p* = `r fmt_p(p_s)`) estimators. Countries at the
+top of the equality scale mark gender in names just as strongly as countries near the bottom.
+
+# Discussion
+
+Three results converge. The female-male phonological contrast in given names is near-invariant
+in direction across `r n_uni_sources` registries (Analysis 1), combines into a strongly
+discriminable multivariate signal (Analysis 2), and holds in every one of `r eq_n` countries
+sampled, yet its magnitude does not move with societal gender equality (Analysis 3). Taken
+together they favour a particular reading: phonological gender marking in names is a robust
+linguistic regularity that operates largely below the level of deliberate social negotiation.
+
+The decoupling from gender equality is the most informative of the three. A socio-structural
+account, on which gendered name forms encode and reproduce a society's gender hierarchy,
+predicts that the contrast should attenuate as that hierarchy flattens. It does not. The gap
+in the most gender-equal countries is indistinguishable from the gap in the least equal. What
+this argues against is a strong attributional claim, that the sound of gendered names is a
+direct expression of unequal gender relations. What it argues for is a sound-symbolic account
+in which the contrast is anchored in stable form-meaning associations. The features that carry
+the contrast, vocalic openness and sonority on the female side and consonantal closure and
+length on the male side, are precisely those that the frequency code links to body size and
+the bouba-kiki literature links to softness versus angularity (Ohala, 1994; Sidhu & Pexman,
+2018). On this view, naming traditions recruit a pre-existing perceptual mapping, and they do
+so to a similar degree regardless of how the surrounding society organises gender.
+
+This conclusion sits comfortably alongside, and helps interpret, the broader finding that
+gendered evaluative and grammatical patterns in language are often weakly tied to measured
+gender attitudes. It also reframes the female-male name contrast as a phenomenon for the
+psychology of sound symbolism rather than primarily a marker of social inequality, a
+distinction with practical as well as theoretical consequences for how such patterns are
+described.
+
+## Limitations
+
+Three limitations bound these claims. First, transcription quality varies by language:
+eSpeak grapheme-to-phoneme conversion is reliable for the alphabetic and syllabic scripts
+that make up the registry set but cannot recover unwritten vowels, which is why abjad scripts
+were excluded; the resulting coverage is broad but not exhaustive, and under-represents the
+Semitic naming traditions in particular. Second, the registry analyses weight toward the most
+frequent names, which characterise the centre of each distribution well but say less about
+rare or newly coined names. Third, the cross-cultural panel in Analysis 3 uses a broader,
+partly non-registry name sample and a single composite equality index; the null association is
+robust to estimator choice, but a fuller test would pair frequency-weighted registry gaps with
+multiple equality measures across a still wider country set. None of these qualifications bears
+on the central, registry-based result that the contrast is consistent in direction and strong
+in combination.
+
+# Conclusion
+
+Female and male given names differ in sound in the same way almost everywhere: female names
+are more open and sonorous, male names more consonantal and longer. The contrast is consistent
+across `r n_uni_sources` official registries, discriminates the sexes with an area under the
+curve near `r sprintf('%.2f', reg_auc)`, and appears in all `r eq_n` countries examined, yet it
+does not grow or shrink with societal gender equality. Phonological gender marking in names is
+best understood not as an echo of social inequality but as a cross-linguistic sound-symbolic
+regularity that naming traditions inherit in common.
+
+# References {-}
+
+Cutler, A., McQueen, J., & Robinson, K. (1990). Elizabeth and John: Sound patterns of men's
+and women's names. *Journal of Linguistics, 26*(2), 471-482.
+
+Ohala, J. J. (1994). The frequency code underlies the sound-symbolic use of voice pitch. In
+L. Hinton, J. Nichols, & J. J. Ohala (Eds.), *Sound symbolism* (pp. 325-347). Cambridge
+University Press.
+
+Pitcher, B. J., Mesoudi, A., & McElligott, A. G. (2013). Sex-biased sound symbolism in
+English-language first names. *PLOS ONE, 8*(6), e64825.
+
+Sidhu, D. M., & Pexman, P. M. (2018). Five mechanisms of sound symbolic association.
+*Psychonomic Bulletin & Review, 25*(5), 1619-1643.
+
+Sidhu, D. M., Pexman, P. M., & Saint-Aubin, J. (2019). Is more sound symbolism better than
+less? *Cognition, 188*, 100-104.
+
+Slater, A. S., & Feinman, S. (1985). Gender and the phonology of North American first names.
+*Sex Roles, 13*(7-8), 429-440.
+
+Wright, S. K., Hay, J., & Bent, T. (2005). Ladies first? Phonology, frequency, and the naming
+conspiracy. *Linguistics, 43*(3), 531-561.

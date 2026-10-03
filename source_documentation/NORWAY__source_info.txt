@@ -1,0 +1,38 @@
+NORWAY — Given Names Data Source Information
+=============================================
+Last checked: 2026-05-01
+
+FILE DOWNLOADED: ssb_10467_names_all_1880_2025.csv
+
+--------------------------------------------------------------------
+SOURCE: SSB (Statistisk sentralbyrå / Statistics Norway)
+--------------------------------------------------------------------
+Publisher:    Statistics Norway (SSB)
+Portal:       https://www.ssb.no/en/befolkning/navn
+Table:        10467 — "Fødte, etter jentenavn og guttenavn 1880-2025"
+              (Born persons, by girls' name and boys' name 1880-2025)
+Table URL:    https://www.ssb.no/statbank/table/10467
+API URL:      https://data.ssb.no/api/pxwebapi/v2/tables/10467
+License:      Open (no registration required)
+
+DOWNLOADED FILE: ssb_10467_names_all_1880_2025.csv
+Format:         CSV (comma-separated), 1,975 rows (1 header + 1,974 names)
+Columns:        Fornavn (name code), then paired columns for each year 1880–2025:
+                - PersonerProsent YYYY (% of births with this name)
+                - Personer YYYY (absolute count)
+Names:          1,974 distinct first names (prefixed "1" = female, "2" = male)
+                Only names used by >= 200 persons in previous year are included.
+                Counts < 4 are suppressed (shown as ".")
+Years covered:  1880–2025 (146 years)
+Last updated:   2026-01-28
+
+NOTES:
+- Name codes starting with "1" are female names, "2" are male names.
+- From 2021 onward, year = year of naming; before 2021, year = year of birth.
+- Figures < 4 persons are not published (privacy protection).
+- The API returns all data in a single wide-format CSV.
+
+API download command used:
+  https://data.ssb.no/api/pxwebapi/v2/tables/10467/data?lang=en&outputFormat=csv&valueCodes[Tid]=*&valueCodes[Fornavn]=*&valueCodes[ContentsCode]=*
+
+API documentation: https://www.ssb.no/en/api/pxwebapiv2

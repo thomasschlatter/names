@@ -1,0 +1,102 @@
+PAKISTAN — Given Names Dataset Sources
+=======================================
+Downloaded/processed: 2026-05-01
+Language targeted: Urdu (Indo-Aryan, Perso-Arabic script; romanized here)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FILE: forebears_pakistan_forenames_top1000.csv
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Source URL:    https://forebears.io/pakistan/forenames
+Rows:          1000 names (+ header)
+Frequency:     YES — incidence (raw count) + frequency_ratio (1:N)
+Columns:       rank, name, incidence, frequency_ratio
+Language:      Romanized; pan-Pakistan (all regions combined)
+Script:        Romanized Latin (no Urdu/Nastaliq script provided)
+Population:    Data covers all residents of Pakistan
+Notes:         Forebears derives counts from genealogical and civil
+               records. 698,256 unique forenames known for Pakistan,
+               ~266 people per name on average. Dominant name is
+               Muhammad (20,824,913 occurrences — approximately 1 in
+               9 Pakistanis). Data is not ethnicity/language-tagged
+               so Urdu, Punjabi, Pashto, Sindhi names all mix together.
+               The Urdu/Arabic-origin Islamic naming tradition
+               dominates the top of the frequency distribution.
+               No gender column included.
+Quality:       HIGH — best single frequency dataset for Pakistan
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FILE: behindthename_pakistani_names.csv
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Source URL:    https://www.behindthename.com/names/usage/pakistani
+Rows:          ~260 names (+ header); page 1 of multi-page listing
+Frequency:     NO — curated list only
+Columns:       name, gender (M/F/U=unisex), source
+Language:      Urdu/Pakistani; Romanized
+Notes:         Behind the Name is a curated onomastics reference site.
+               Names are editorially classified as Pakistani by usage/
+               origin. Covers both male and female names. Many names
+               are Arabic/Islamic in origin (Fatima, Muhammad, Ali,
+               Abdullah, etc.) reflecting Urdu naming conventions.
+               No frequency or rank data is included.
+               The full Behind the Name list continues beyond page 1;
+               only page 1 (~252 names) was collected here.
+Quality:       MEDIUM — good coverage of common Urdu/Pakistani names,
+               no frequency data
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FILE: sigpwned_pakistan_forenames_top20.csv
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Source URL:    https://github.com/sigpwned/popular-names-by-country-dataset
+Rows:          20 names (10F + 10M; no year/source specified)
+Frequency:     NO — rank only (Index column), no raw counts
+Columns:       Country, Country Group, Region, Population, Note, Year,
+               Romanization, Index, Name Group, Gender,
+               Localized Name, Romanized Name
+Language:      Romanized
+Notes:         Very limited coverage — only top 10 female and top 10
+               male names for Pakistan. No year or source attribution
+               in the data (Year and Note fields are empty for PK).
+               Wikipedia-sourced rankings. Useful only as a basic
+               name popularity signal.
+Quality:       LOW — only 20 names, no frequency data
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SOURCES SEARCHED BUT NOT ACCESSIBLE (FREE):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+- census.name/pakistani-name-database/ — paid, 12,909 first names
+  with frequency counts from 263,011 validated Pakistani social media
+  profiles. Best option if budget available.
+- opendata.com.pk — portal returned server error (500); no usable
+  name frequency data found
+- data.gov.pk — Pakistan open data portal searched; no name
+  frequency dataset found
+- NADRA (National Database & Registration Authority) — voter rolls
+  and civil registration data not published as open CSVs
+- mirfan899/Urdu (GitHub) — NLP datasets only; no name frequency data
+- Smat26/Roman-Urdu-Dataset — Roman Urdu text corpus, not names
+- philipperemy/name-dataset — Pakistan (PK) exists in the full 3.3GB
+  archive but individual country files not accessible via raw URL;
+  data is raw records without aggregated frequency counts
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+NOTES ON URDU SCRIPT:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+No publicly available frequency dataset for Pakistan provides names
+in Urdu Nastaliq script. All free sources romanize names into Latin
+script. The Forebears dataset (698,256 unique forenames) is derived
+from civil records which would originally be in Urdu script but are
+provided in romanized form only.
+
+For Urdu-script forms of common names, the AI4Bharat/IndicNER
+repository contains Urdu NER datasets with person name (PERSON)
+tags in Urdu script, but extracting and counting unique names
+requires programmatic processing:
+  https://github.com/AI4Bharat/indicner
+  https://huggingface.co/datasets/ai4bharat/naamapadam
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RECOMMENDED DATASET FOR URDU/PAKISTAN FREQUENCY WORK:
+  forebears_pakistan_forenames_top1000.csv
+RECOMMENDED DATASET FOR BROAD NAME COVERAGE:
+  behindthename_pakistani_names.csv (no frequency) +
+  forebears_pakistan_forenames_top1000.csv

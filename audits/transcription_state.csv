@@ -1,0 +1,55 @@
+lang,method,srcs,names,ref,cov%,edit_dist,verdict
+he,espeak -v he,2,116,55,47.4,0.426,EXCLUDED (abjad)
+ar,espeak -v ar,2,34,19,55.9,0.066,EXCLUDED (abjad)
+custom-hr,custom table,1,60,29,48.3,0.3,"MANUAL - custom G2P, no tool benchmark"
+custom-poly,custom table,1,35,0,0.0,,"MANUAL - custom G2P, no tool benchmark"
+pap,espeak -v pap,1,30,0,0.0,,MANUAL - no reference at all
+sq,espeak -v sq,1,20,0,0.0,,MANUAL - no reference at all
+id,espeak -v id,1,20,0,0.0,,MANUAL - no reference at all
+ky,espeak -v ky,1,20,0,0.0,,MANUAL - no reference at all
+mk,espeak -v mk,1,20,0,0.0,,MANUAL - no reference at all
+uz,espeak -v uz,1,20,0,0.0,,MANUAL - no reference at all
+zul-Latn,epitran zul-Latn,1,16,0,0.0,,MANUAL - no reference at all
+fi,espeak -v fi,2,120,116,96.7,0.365,MANUAL - poor agreement
+tr,espeak -v tr,2,78,41,52.6,0.325,MANUAL - poor agreement
+is,espeak -v is,1,60,35,58.3,0.391,MANUAL - poor agreement
+ja,espeak -v ja,1,60,18,30.0,5.133,MANUAL - poor agreement
+lt,espeak -v lt,1,60,37,61.7,0.667,MANUAL - poor agreement
+nb,espeak -v nb,1,60,14,23.3,0.35,MANUAL - poor agreement
+ru,espeak -v ru,2,25,25,100.0,0.385,MANUAL - poor agreement
+fo,espeak -v fo,1,24,11,45.8,0.385,MANUAL - poor agreement
+hy,espeak -v hy,1,23,16,69.6,0.367,MANUAL - poor agreement
+uk,espeak -v uk,1,21,18,85.7,0.503,MANUAL - poor agreement
+et,espeak -v et,2,120,11,9.2,0.327,MANUAL - reference too thin to judge
+zh,pypinyin+dragonmapper,2,80,9,11.2,0.777,MANUAL - reference too thin to judge
+kk,espeak -v kk,2,75,6,8.0,0.383,MANUAL - reference too thin to judge
+da,espeak -v da,1,60,6,10.0,0.706,MANUAL - reference too thin to judge
+lv,espeak -v lv,1,60,3,5.0,,MANUAL - reference too thin to judge
+sv,espeak -v sv,1,60,7,11.7,0.573,MANUAL - reference too thin to judge
+ko,espeak -v ko,1,59,7,11.9,0.346,MANUAL - reference too thin to judge
+ro,espeak -v ro,1,40,7,17.5,0.145,MANUAL - reference too thin to judge
+tgl-Latn,epitran tgl-Latn,1,22,5,22.7,0.143,MANUAL - reference too thin to judge
+az,espeak -v az,1,12,5,41.7,0.167,MANUAL - reference too thin to judge
+be,espeak -v be,1,11,2,18.2,0.196,MANUAL - reference too thin to judge
+de,espeak -v de,12,287,212,73.9,0.251,probably ok - spot-check
+hr,espeak -v hr,1,60,10,16.7,0.303,probably ok - spot-check
+pt-br,espeak -v pt-br,1,60,44,73.3,0.315,probably ok - spot-check
+fr,espeak -v fr,1,60,46,76.7,0.305,probably ok - spot-check
+fa,espeak -v fa,1,60,17,28.3,0.236,probably ok - spot-check
+pt,espeak -v pt,1,16,15,93.8,0.229,probably ok - spot-check
+en,espeak -v en,19,458,447,97.6,0.197,reliable
+es,espeak -v es,10,289,173,59.9,0.053,reliable
+fra-Latn,epitran fra-Latn,10,230,205,89.1,0.186,reliable
+nl,espeak -v nl,2,120,48,40.0,0.091,reliable
+cs,espeak -v cs,2,120,48,40.0,0.212,reliable
+kl,espeak -v kl,2,62,37,59.7,0.117,reliable
+hu,espeak -v hu,1,60,39,65.0,0.185,reliable
+pl,espeak -v pl,1,60,57,95.0,0.038,reliable
+sl,espeak -v sl,1,60,15,25.0,0.037,reliable
+ka,espeak -v ka,1,40,28,70.0,0.046,reliable
+eu,espeak -v eu,1,30,10,33.3,0.11,reliable
+ca,espeak -v ca,2,28,9,32.1,0.0,reliable
+it,espeak -v it,2,25,23,92.0,0.125,reliable
+mi,espeak -v mi,1,23,8,34.8,0.149,reliable
+bg,espeak -v bg,1,20,8,40.0,0.162,reliable
+sk,espeak -v sk,1,10,10,100.0,0.083,reliable

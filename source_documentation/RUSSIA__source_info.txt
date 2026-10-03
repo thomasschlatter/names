@@ -1,0 +1,64 @@
+SOURCE: Multiple — Moscow Civil Registry + Name Census database
+DOWNLOAD DATE: 2026-05-01
+
+PRIMARY OFFICIAL SOURCE (attempted, blocked):
+  Moscow Open Data Portal — Newborn Names
+  Female: https://data.mos.ru/opendata/7704111479-svedeniya-o-naibolee-populyarnyh-jenskih-imenah-sredi-novorojdennyh
+  Male:   https://data.mos.ru/opendata/7704111479-svedeniya-o-naibolee-populyarnyh-mujskih-imenah-sredi-novorojdennyh
+  API:    https://apidata.mos.ru/v1/datasets/{dataset-id}/rows
+  Status: HTTP:000 — complete connection failure (domain blocked from this network)
+  Description: 100 most popular newborn names by month, 2015–present, from Moscow ZAGS
+
+OTHER ATTEMPTED SOURCES (also blocked):
+  - data.gov.ru (Russian Federation open data portal) — HTTP:000
+  - rosstat.gov.ru/opendata (Rosstat open data) — SSL certificate error, no names dataset found
+  - data.gov.spb.ru (St. Petersburg) — HTTP:000
+  NOTE: As of 2025, Meduza reported that Russia has been withdrawing demographic statistics
+  from public view (https://meduza.io/en/feature/2025/07/14/no-births-no-deaths-no-data)
+
+FILES DOWNLOADED:
+1. moscow_freq_first_names_2015_2020.RData (4,759 bytes — VALID gzip/R binary)
+   - Source: GitHub — dmafanasyev/rulexicon R package
+   - URL: https://raw.githubusercontent.com/dmafanasyev/rulexicon/master/data/freq_first_names.RData
+   - Original data: Moscow Civil Status Registration Office, published on data.mos.ru
+   - Coverage: January 2015 – March 2020
+   - Content: R data frame "freq_first_names" with columns: name (Cyrillic), freq (proportion
+     relative to most frequent name within sex), sex
+   - Format: R binary (.RData / gzip); load in R with: load("moscow_freq_first_names_2015_2020.RData")
+   - Package documentation: https://dmafanasyev.github.io/rulexicon/reference/freq_first_names.html
+   - NOTE: File contains Russian Cyrillic names encoded as UTF-8
+
+2. namecensus_russia_top100_firstnames.csv (10,260 bytes — VALID, Russia subset)
+   - Source: Name Census top-100 database (GitHub: Ninble/name-census-top-100)
+   - Original file: first-name-database.csv (all countries)
+   - URL: https://raw.githubusercontent.com/Ninble/name-census-top-100/main/first-name-database.csv
+   - Coverage: Cross-sectional (no year — derived from social media profiles)
+   - Content: Top 100 Russian first names by frequency; includes both male and female names
+   - Columns: Name, Name ASCII, Country code (RU), Country name (Russia), Continent,
+               Official, Gender, Unisex, Country Rank, Frequency
+   - Rows: 200 (100 male + 100 female approximately)
+   - Data basis: 689,261 Russian social media profiles (350,997 female / 51%)
+   - Note: Includes pre-reform spellings with hard sign (e.g., Александръ, Сергейъ)
+   - License: See https://github.com/Ninble/name-census-top-100
+
+3. namecensus_first_name_database_all_countries.csv (1,266,406 bytes — VALID, all countries)
+   - Same source as above; full database retained for reference
+   - Can be filtered by Country code = "RU" to reproduce russia_top100 file
+
+HOW TO ACCESS MOSCOW DATA FROM UNBLOCKED NETWORK:
+  1. Visit https://data.mos.ru/opendata/7704111479-svedeniya-o-naibolee-populyarnyh-jenskih-imenah-sredi-novorojdennyh
+  2. Or use API: https://apidata.mos.ru/v1/datasets/7704111479-svedeniya-o-naibolee-populyarnyh-jenskih-imenah-sredi-novorojdennyh/rows
+  3. Python wrapper: https://github.com/MaxOvcharov/DataMosAPI
+  Coverage: 2015–present (updated monthly); format: JSON with month-by-month name counts
+
+ALTERNATIVE (ZAGS via nalog.gov.ru):
+  https://zags.nalog.gov.ru/analytics/names — accessible (HTTP 200) but appears to be
+  an interactive web tool, not a data download endpoint; no bulk CSV export found.
+
+NOTES:
+- Russia does not publish a national-level given names frequency dataset
+- The Moscow portal (data.mos.ru) is the most authoritative open data source for Russian names
+  but requires access from a non-blocked network (try VPN or download from Russia/EU server)
+- Rosstat demographic yearbooks contain births counts but not name breakdowns
+- The rulexicon RData file is the best currently-accessible Russian newborn names data
+  (covers 2015-2020, from official Moscow ZAGS records)

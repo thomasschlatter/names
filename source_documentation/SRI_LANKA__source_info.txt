@@ -1,0 +1,109 @@
+SRI LANKA — GIVEN NAME FREQUENCY DATA
+=======================================
+Last updated: 2026-05-01
+
+===========================================================
+SOURCE 1: Forebears.io — Sri Lankan Forenames (Cumulative Population)
+===========================================================
+URL:            https://forebears.io/sri-lanka/forenames
+Coverage:       47,100 unique forenames in Sri Lanka; 441 people per name on average
+Data type:      Cumulative population data (not birth-year specific)
+Years:          Not specified; reflects contemporary population records
+
+File saved:     srilanka_forebears_top169.csv
+Columns:        rank, name, incidence, frequency_ratio
+Rows:           169 (all entries where incidence >= 21,604 extracted from page)
+
+Notes:
+  - Incidence = estimated total number of people in Sri Lanka bearing this name
+  - Frequency ratio = approximately 1 in N people have this name
+  - Gender percentages were not provided in the source for this dataset
+  - Mohamed (504,475) is by far the most common name — reflecting Sri Lanka's
+    Muslim minority (~10% of population, primarily Tamil-speaking Muslims)
+  - The name list reflects the full population and thus includes Sinhala,
+    Tamil, and Muslim (Sri Lankan Moor) names in a mixed corpus
+  - Most names in the top 200 are Sinhalese masculine names ending in -a, -da,
+    -sha (Kasun, Nuwan, Tharindu, Lahiru, etc.)
+  - Female names visible in top 169: Fathima (28, rank 28), Thilini (44),
+    Dhanushka (43/tied), Chamila (62), Anuradha (66), Dinusha (85),
+    Gayani (86), Nadeesha (90), Anusha (93), Nadeeka (117), Chathurika (115),
+    Shanika (124), Harshani (146), Nirosha (148), Gayathri (149), Iresha (137),
+    Inoka (154), Kumudu (160)
+  - Many names are gender-neutral in practice (Chaminda, Indika, Amila, etc.)
+  - Forebears does not offer CSV download; data extracted manually
+  - Full Forebears dataset extends to 47,100 names; this file covers rank 1-169
+
+Download status: SUCCESS (extracted manually from forebears.io)
+
+
+===========================================================
+SOURCE 2: Department of Census and Statistics (DCS) Sri Lanka
+===========================================================
+URL:            https://www.statistics.gov.lk/VitalStatistics/StaticalInformation
+NADA archive:   https://nada.statistics.gov.lk/index.php/catalog/
+Notes:          The DCS publishes Vital Statistics (births, deaths, marriages).
+                Microdata for birth records from 1977–2000 is available via NADA
+                portal but these datasets capture aggregate vital statistics
+                (birth counts, sex ratios, geographic distribution) and do NOT
+                include individual names or name-frequency tables.
+                No birth-by-name dataset was found in the public DCS catalog.
+
+Download status: NOT APPLICABLE (no name data in public DCS downloads)
+
+
+===========================================================
+SOURCE 3: Registrar General's Department (RGD) Sri Lanka
+===========================================================
+URL:            http://www.rgd.gov.lk
+Contact:        rgdeptvsu2011@gmail.com
+Notes:          The RGD is the primary agency for civil registration including
+                birth certificates. They collect name data at the individual level
+                but do not publish name-frequency statistics publicly. No
+                downloadable name dataset was found via their official channels.
+
+Download status: NOT APPLICABLE (no public name frequency data)
+
+
+===========================================================
+SOURCE 4: census.name — Sri Lankan Name Database (Not Downloaded)
+===========================================================
+URL:            https://census.name/sri-lankan-name-database/
+Coverage:       4,013 first names (2,344 M + 1,669 F + 568 unisex) from
+                10,665 validated Sri Lankan social media profiles
+Pricing:        EUR 55 for CSV/SQL/JSON
+Notes:          Small sample (10,665 profiles). Top names: Mohamed (4.0% M),
+                Amila (1.9% F). NOT downloaded (paid; Forebears has better coverage).
+
+Download status: NOT DOWNLOADED (paid, EUR 55)
+
+
+===========================================================
+SOURCE 5: Open Data Portal — Sri Lanka (data.gov.lk)
+===========================================================
+URL:            https://data.gov.lk
+Notes:          Searched for name or birth-related datasets; no baby names or
+                name frequency dataset found in the public catalog.
+
+Download status: NOT APPLICABLE (no relevant dataset found)
+
+
+===========================================================
+LINGUISTIC NOTES
+===========================================================
+- Sinhala (Sinhalese) is an Indo-Aryan language, part of the Indo-Iranian branch
+  of Indo-European; it descended from Sanskrit via Pali
+- Written in the Sinhala script (abugida), unique to this language
+- All names in saved files are romanized transliterations
+- Sinhala is spoken by ~70% of Sri Lanka's population (~17 million speakers)
+- Sri Lanka is officially bilingual: Sinhala and Tamil
+- Tamil names (Dravidian family) appear in Sri Lankan name data but are a
+  separate language family from Sinhala
+- Muslim Sri Lankan names (Mohamed, Fathima, Abdul) reflect Arabic/Islamic
+  naming conventions and constitute a large portion of the most common names
+- Common Sinhala name structure: compound names (given name + father's name
+  or caste/village names); given names often drawn from Sanskrit/Pali
+- Typical Sinhala male name patterns: ends in -a (Kasun, Nuwan, Tharindu);
+  feminine names often end in -i, -a, -sha (Thilini, Sanduni, Sachini)
+- The name "Fernando" (rank 33, 66,600 bearers) reflects the Portuguese
+  colonial period (16th-17th century) influence on Sinhalese surnames used
+  as given names

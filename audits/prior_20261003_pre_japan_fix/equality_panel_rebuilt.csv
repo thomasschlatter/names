@@ -1,0 +1,60 @@
+country,d_sonority,mean_F,mean_M,nF,nM,registries,registry_list,ggi_name,ggi_year,GGI,ggi_status
+Albania,0.02683322493608663,0.9390454007690032,0.9364787111622555,10,10,1,official_albania,Albania,2023.0,0.7804,matched
+Argentina,0.20896829836285855,0.7886885811547807,0.7607440612927338,60,60,2,official_argentina;official_argentina_buenos_aires,Argentina,2023.0,0.7717,matched
+Armenia,1.2716508369325294,0.8916400729427855,0.7047192407299292,10,10,1,official_armenia,Armenia,2023.0,0.7211,matched
+Australia,0.4825790309508881,0.8004861386225779,0.7126516543227536,150,150,5,official_australia;official_australia_new_south_wales;official_australia_queensland;official_australia_south_australia;official_australia_victoria,Australia,2023.0,0.7799,matched
+Austria,1.147415783351673,0.9299193862807605,0.7587211374455843,60,58,2,official_austria;official_austria_vienna,Austria,2023.0,0.7433,matched
+Azerbaijan,0.11996814504092988,0.8381916457646386,0.8171793829530843,30,30,1,official_azerbaijan,Azerbaijan,2023.0,0.6854,matched
+Belgium,0.7151561428661415,0.8816180672814651,0.7794050500564895,30,30,1,official_belgium,Belgium,2023.0,0.793,matched
+Bosnia and Herzegovina,0.7089033957419201,0.907591355963643,0.7932406478073925,30,30,1,official_bosnia_federation,Bosnia and Herzegovina,2023.0,0.7099,matched
+Brazil,1.6082788879393268,0.9043067339103462,0.6872057860233002,30,30,1,official_brazil,Brazil,2023.0,0.7157,matched
+Bulgaria,0.6441333385251657,0.8262685402029664,0.75291463731848,10,10,1,official_bulgaria,Bulgaria,2023.0,0.7234,matched
+Canada,0.3569439058959104,0.8255691492879047,0.7611386561734155,161,161,6,official_canada;official_canada_british_columbia;official_canada_new_brunswick;official_canada_nova_scotia;official_canada_ontario;official_canada_quebec,Canada,2023.0,0.7608,matched
+China,0.5816567955258051,0.6451197438039544,0.5976931949250288,10,10,1,official_china,China,2023.0,0.6835,matched
+Colombia,1.1716550198461757,0.8301009901635953,0.6961194685575809,10,10,1,official_colombia,Colombia,2023.0,0.7455,matched
+Croatia,0.5747295498070586,0.8319149802667141,0.7428785343319632,30,30,1,official_croatia,Croatia,2023.0,0.723,matched
+Curacao,0.9844671272358985,0.9079234972677596,0.7666314692044482,9,24,1,official_curacao,Curacao,,,not covered by the Global Gender Gap Index
+Denmark,0.11646611965145694,0.809993058772772,0.7889073883324257,30,30,1,official_denmark,Denmark,2023.0,0.7887,matched
+Dominican Republic,0.014508136737944722,0.7678439475276458,0.765566902330453,15,15,1,official_dominican_republic,Dominican Republic (the),2023.0,0.7065,matched
+Estonia,0.7093164611211015,0.8397698851117207,0.7454899278666008,60,60,2,official_estonia;official_estonia_population_top100,Estonia,2023.0,0.7739,matched
+Faroe Islands,0.5269980725444883,0.8739128295946478,0.7897195810142239,26,30,1,official_faroe_islands,Faroe Islands,,,not covered by the Global Gender Gap Index
+Finland,0.1813368986039573,0.8414155895548849,0.8125272051736467,60,60,2,official_finland;official_finland_finnish_children_2024,Finland,2023.0,0.875,matched
+France,-0.004772553397394012,0.7633536054981699,0.7643458071977715,205,201,7,official_france;official_france_angers;official_france_nantes;official_france_orleans;official_france_paris;official_france_saint_herblain;official_france_toulouse,France,2023.0,0.7809,matched
+French Polynesia,0.49789894392564943,0.9457597645799893,0.9028720729215779,30,30,1,official_french_polynesia_pirae_polynesian_names,French Polynesia,,,not covered by the Global Gender Gap Index
+Georgia,1.904956876946724,0.923159786978194,0.6697333407742362,20,20,1,official_georgia,Georgia,2023.0,0.7158,matched
+Germany,0.747583073582856,0.9114042178904447,0.7952886541319377,342,335,13,official_germany_aachen;official_germany_berlin;official_germany_cologne;official_germany_dortmund;official_germany_essen;official_germany_kleve;official_germany_krefeld;official_germany_leipzig;offic,Germany,2023.0,0.8097,matched
+Greenland,0.3531226624910576,0.7200918964076858,0.6790252525252526,60,60,2,official_greenland;official_greenland_greenlandic_names,Greenland,,,not covered by the Global Gender Gap Index
+Hungary,0.7689988466560352,0.8464432445716599,0.7249971463141793,30,30,1,official_hungary,Hungary,2023.0,0.6861,matched
+Iceland,0.12053738253646659,0.8024689898034268,0.7855917874396134,30,30,1,official_iceland,Iceland,2023.0,0.9351,matched
+Indonesia,-0.05554883217289144,0.7955903468178217,0.799594702489037,10,10,1,official_indonesia,Indonesia,2023.0,0.6864,matched
+Iran,-0.24216761616391125,0.8133415853015729,0.8426635141307747,30,30,1,official_iran,Iran (Islamic Republic of),2023.0,0.5787,matched
+Ireland,0.5652802445615227,0.8252329810205705,0.7158465221439022,30,30,1,official_ireland,Ireland,2023.0,0.8021,matched
+Italy,0.035839396489834516,0.7467966638232648,0.7416709420555953,30,30,1,official_italy,Italy,2023.0,0.7033,matched
+Kazakhstan,0.12834261404150116,0.8600840976707722,0.8449408976153187,60,60,2,official_kazakhstan;official_kazakhstan_kazakh,Kazakhstan,2023.0,0.7104,matched
+Kyrgyzstan,-0.5212442770403749,0.8412880690925619,0.9075157419618478,10,10,1,official_kyrgyzstan,Kyrgyzstan,2023.0,0.6997,matched
+Latvia,1.6989975153220669,0.8374596415703522,0.6139919393998252,30,30,1,official_latvia,Latvia,2023.0,0.7734,matched
+Lithuania,1.4463932485145279,0.8425098600948986,0.6328816952506653,30,30,1,official_lithuania,Lithuania,2023.0,0.7935,matched
+Mexico,0.4457117977517021,0.8217481767481766,0.7560854853958303,30,30,1,official_mexico_city,Mexico,2023.0,0.7677,matched
+Netherlands,0.3921022635916308,0.795357089423596,0.7287782099923178,30,30,1,official_netherlands,Netherlands,2023.0,0.7745,matched
+New Caledonia,0.6504528603677128,0.8114035087719298,0.6951447245564892,10,10,1,official_new_caledonia_noumea,New Caledonia,,,not covered by the Global Gender Gap Index
+New Zealand,0.6378192724790669,0.8453547218143763,0.7252898179826333,39,40,2,official_newzealand;official_newzealand_maori,New Zealand,2023.0,0.8347,matched
+North Macedonia,0.7853796676895631,0.8635297566695983,0.743811274509804,10,10,1,official_north_macedonia,North Macedonia,2023.0,0.7269,matched
+Norway,0.42986936444882556,0.8377227224375048,0.7690902484443839,30,30,1,official_norway,Norway,2023.0,0.8749,matched
+Paraguay,0.6796076639149653,0.8488026740015894,0.7302357095756361,10,10,1,official_paraguay,Paraguay,2023.0,0.7065,matched
+Philippines,-0.22489704366100954,0.7184620649337686,0.7463595571267729,10,10,1,official_philippines,Philippines (the),2023.0,0.779,matched
+Poland,0.8354893575380783,0.8442230357281896,0.7160499494599243,30,30,1,official_poland,Poland,2023.0,0.74,matched
+Portugal,1.1651994132829953,0.8518496112730807,0.6952922546047579,20,20,1,official_portugal,Portugal,2023.0,0.7873,matched
+Russia,0.5934685016481978,0.8075590878655086,0.736426569537897,34,35,2,official_russia;official_russia_moscow,Russian Federation (the),2020.0,0.7077,matched
+Slovakia,0.8934402012793818,0.8416043052837573,0.7102691505815749,30,30,1,official_slovakia,Slovakia,2023.0,0.731,matched
+Slovenia,0.6847339578017858,0.8530035279281006,0.7513310001060557,30,30,1,official_slovenia,Slovenia,2023.0,0.7656,matched
+South Africa,0.3239403831199547,0.8094038542653926,0.7789517036796018,10,10,1,official_southafrica,South Africa,2023.0,0.7854,matched
+South Korea,0.5911168696932012,0.7669153557804497,0.6871470523874129,30,30,1,official_southkorea,Korea (the Republic of),2023.0,0.6957,matched
+Spain,0.8880973956262467,0.833742181783376,0.7060768980626572,110,110,5,official_spain;official_spain_basque_country;official_spain_basque_country_top100;official_spain_catalonia;official_spain_valencian_community,Spain,2023.0,0.7975,matched
+Sweden,0.28984643472071614,0.8229433823722234,0.7780032448166438,30,30,1,official_sweden,Sweden,2023.0,0.8156,matched
+Switzerland,0.4361574079327969,0.9112519176802165,0.8457190854588464,176,175,6,official_switzerland;official_switzerland_french_region;official_switzerland_geneva;official_switzerland_italian_region;official_switzerland_zurich;official_switzerland_zurich_canton,Switzerland,2023.0,0.7849,matched
+Taiwan,0.7979942595751046,0.6569562248600878,0.5942284074355216,30,30,1,official_taiwan,Taiwan,,,not covered by the Global Gender Gap Index
+Turkey,-0.2637710061846366,0.7396730805468734,0.774555564576631,50,53,2,official_turkey;official_turkey_isimanlam_top500,Turkey,2023.0,0.6447,matched
+United Kingdom,0.28622095202199793,0.7953633321153101,0.7390060023922161,90,90,3,official_england;official_northern_ireland;official_scotland,UK,2023.0,0.7893,matched
+United States,0.44114606963259245,0.8173922831399142,0.7375143387734225,116,115,4,official_us_california;official_us_newyork_city;official_us_newyork_state;official_usa,USA,2023.0,0.7465,matched
+Uruguay,0.9796523671058761,0.8406200854310616,0.7141905775075988,50,50,2,official_uruguay;official_uruguay_montevideo,Uruguay,2023.0,0.7152,matched
+Uzbekistan,0.27200962826948116,0.8237646202810851,0.7962487814269208,10,10,1,official_uzbekistan,Uzbekistan,2023.0,0.6806,matched

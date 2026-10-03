@@ -1,0 +1,46 @@
+country,doc,n_data_files,data_files
+ALBANIA,ALBANIA__source_info.txt,2,albania_forebears_top100.csv; albania_instat_newborn_2019.csv
+ARMENIA,ARMENIA__source_info.txt,2,armenia_forebears_top100.csv; armenia_newborn_names_2020_2023.csv
+BASQUE,BASQUE__source_info.txt,0,
+CAMBODIA,CAMBODIA__source_info.txt,1,cambodia_forebears_top100.csv
+CZECH_REPUBLIC,CZECH_REPUBLIC__SOURCE.txt,0,
+EGYPT,EGYPT__SOURCE_NOTES.txt,2,egypt_given_names_forebears.csv; egypt_newborn_names_MoH_2018_top.csv
+FINLAND,FINLAND__source_info.txt,0,
+GEORGIA,GEORGIA__source_info.txt,1,georgian_names_withCounts.csv
+GERMANY,GERMANY__SOURCE.txt,0,
+GREECE,GREECE__source_info.txt,8,behindthename_greek_names.csv; elstat_popular_greek_names.csv; forebears_greece_forenames_top1000.csv; foundalis_asep2008_greek_names.csv; greeknamedays_facebook_top30.csv; palaiologos2021_twitter_greek_male_names.csv; philipperemy_facebook_greece_firstnames.csv; sigpwned_wikipedia_greece_names.csv
+HUNGARY,HUNGARY__SOURCE.txt,0,
+ICELAND,ICELAND__source_info.txt,4,hagstofa_men_names_2023.csv; hagstofa_newborn_boys_names_2021.csv; hagstofa_newborn_girls_names_2021.csv; hagstofa_women_names_2023.csv
+INDIA,INDIA__source_info.txt,8,andhra_pradesh_voter_names_top5000.csv; balasahebgulave_indian_female_names.csv; balasahebgulave_indian_male_names.csv; balasahebgulave_indian_names_all.csv; behindthename_tamil_names.csv; forebears_india_forenames_top1000.csv; sigpwned_india_baby_names_top10.csv; sigpwned_india_forenames_top20.csv
+INDONESIA,INDONESIA__source_info.txt,1,indonesia_names_kemendagri_dukcapil_2024.csv
+IRAN,IRAN__SOURCE_NOTES.txt,2,iran_popular_names_sabteahval_1400.csv; iran_popular_names_sabteahval_1402.csv
+IRELAND,IRELAND__source_info.txt,2,VSA50_boys_names_1964_2024.csv; VSA60_girls_names_1964_2024.csv
+ISRAEL,ISRAEL__source_info.txt,0,
+ITALY,ITALY__SOURCE.txt,0,
+JAPAN,JAPAN__source_info.txt,0,
+KAZAKHSTAN,KAZAKHSTAN__source_info.txt,2,kazakhstan_names_forebears.csv; kazakhstan_newborns_behindthename.csv
+LITHUANIA,LITHUANIA__source_info.txt,4,berniuku_vardai_boys_TOP20.csv; mergaiciu_vardai.csv; moteru_vardai.csv; vyru_vardai_men_TOP50.csv
+MALAYSIA,MALAYSIA__SOURCE_NOTES.txt,1,malaysia_given_names_forebears.csv
+MONGOLIA,MONGOLIA__SOURCE_NOTES.txt,2,mongolia_given_names_NSO_2017_top5.csv; mongolia_given_names_forebears.csv
+MOROCCO,MOROCCO__SOURCE_NOTES.txt,1,morocco_given_names_forebears.csv
+MYANMAR,MYANMAR__source_info.txt,1,myanmar_names_forebears.csv
+NETHERLANDS,NETHERLANDS__source_info.txt,1,svb_voornamen_2000_2012.csv
+NORWAY,NORWAY__source_info.txt,1,ssb_10467_names_all_1880_2025.csv
+PAKISTAN,PAKISTAN__source_info.txt,3,behindthename_pakistani_names.csv; forebears_pakistan_forenames_top1000.csv; sigpwned_pakistan_forenames_top20.csv
+PORTUGAL,PORTUGAL__source_info.txt,2,nomesfeminino.csv; nomesmasculino.csv
+ROMANIA,ROMANIA__source_info.txt,1,romania_iasi_2023_birth_names_top10.csv
+RUSSIA,RUSSIA__source_info.txt,2,namecensus_first_name_database_all_countries.csv; namecensus_russia_top100_firstnames.csv
+SAUDI_ARABIA,SAUDI_ARABIA__SOURCE_NOTES.txt,1,saudi_arabia_given_names_forebears.csv
+SCOTLAND,SCOTLAND__source_info.txt,0,
+SERBIA,SERBIA__source_info.txt,1,serbia_2022census_national_top_names.csv
+SOUTH_KOREA,SOUTH_KOREA__source_info.txt,2,korea_names_female_2008-2019.csv; korea_names_male_2008-2019.csv
+SPAIN,SPAIN__SOURCE.txt,0,
+SRI_LANKA,SRI_LANKA__source_info.txt,1,srilanka_forebears_top169.csv
+TAMIL,TAMIL__source_info.txt,1,behindthename_wikipedia_tamil_names.csv
+TANZANIA,TANZANIA__SOURCE_NOTES.txt,1,tanzania_given_names_forebears.csv
+TELUGU,TELUGU__source_info.txt,2,andhra_pradesh_voter_names_top5000.csv; behindthename_wikipedia_telugu_names.csv
+TIBET,TIBET__source_info.txt,1,tibetan_names.csv
+TURKEY,TURKEY__source_info.txt,0,
+UZBEKISTAN,UZBEKISTAN__source_info.txt,2,uzbekistan_names_forebears.csv; uzbekistan_newborns_2023.csv
+VIETNAM,VIETNAM__source_info.txt,5,vietnam_popular_given_names_hoten_org.csv; vietnamese_namedb_boy.txt; vietnamese_namedb_boy_no_accents.txt; vietnamese_namedb_girl.txt; vietnamese_namedb_girl_no_accents.txt
+WALES,WALES__source_info.txt,0,

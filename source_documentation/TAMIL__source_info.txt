@@ -1,0 +1,76 @@
+TAMIL — Given Names Dataset Sources
+=====================================
+Downloaded/processed: 2026-05-01
+Language: Tamil (Dravidian family; ~85M speakers, primarily Tamil Nadu, Sri Lanka)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FILE: behindthename_wikipedia_tamil_names.csv
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Rows:          689 unique names (+ header)
+Frequency:     NO — name list with gender and script only
+Columns:       name, script (native Tamil script), gender (M/F/U), frequency_count (empty), source
+Language:      Tamil; Romanized + Tamil script in 'script' column
+Quality:       MEDIUM — best available open Tamil name list; no frequency data
+
+Sources combined:
+  1. Behind the Name — curated Tamil usage names (200 names)
+     URL: https://www.behindthename.com/names/usage/tamil
+     Editorially curated; names classified as used in Tamil-speaking regions.
+     Includes Tamil script representation in 'script' column.
+
+  2. Behind the Name — user-submitted Tamil names (403 names)
+     URL: https://www.behindthename.com/submit/names/usage/tamil (pages 1-3)
+     User-contributed names tagged as Tamil usage. More expansive than
+     curated list; includes less common and modern names.
+
+  3. Wikipedia — Tamil masculine given names category (81 names not in BTN)
+     URL: https://en.wikipedia.org/wiki/Category:Tamil_masculine_given_names
+     107 total entries in category; 81 were not already in BehindTheName.
+
+  4. Wikipedia — Tamil feminine given names category (2 names not in BTN)
+     URL: https://en.wikipedia.org/wiki/Category:Tamil_feminine_given_names
+     4 total entries; 2 were new additions.
+
+  5. Wikipedia — Tamil given names (unclassified) (3 names not in BTN)
+     URL: https://en.wikipedia.org/wiki/Category:Tamil_given_names
+     5 article-level entries in parent category.
+
+Gender distribution: M=400, F=286, U=3
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SOURCES SEARCHED BUT NOT ACCESSIBLE (FREE):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+- tn.data.gov.in (Tamil Nadu Open Data) — no name frequency CSV published;
+  civil registration data not released at individual-name level
+- data.gov.in — Tamil Nadu birth registration data available (registrar counts
+  by district/year) but NOT name-frequency tables
+- OpenCity.in Tamil Nadu voter rolls — aggregate constituency-level gender
+  counts only; no individual voter name records in CSV
+- Internet Archive india-names-dataset — only has ap-names.txt.gz (Telugu/AP);
+  no Tamil Nadu equivalent file exists in the dataset
+- Figshare "Baby Names Tamil" (DOI: 10.6084/m9.figshare.24442084) — PDF format
+  (name meanings/categories), not a frequency dataset; returns 403 on API access
+- philipperemy/name-dataset — 3.3GB full archive contains IN.csv; no individual
+  country file download available; Tamil-specific extraction not feasible
+  without full download
+- aviiciii/tamil-word-frequency (Kaggle) — word frequency corpus, NOT person
+  names; data is vocabulary frequency from Tamil text, not a names dataset
+- UIDAI/Aadhaar name statistics — not published as open data; annual reports
+  contain saturation statistics only (no name frequency tables)
+- Tamil Nadu CRS (crstn.org) — individual birth record portal; no aggregate
+  name frequency export
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+NOTE ON TAMIL FREQUENCY DATA:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+No Tamil given name frequency dataset appears to be freely available as
+of May 2026. Tamil Nadu does not publish name-level civil registration
+statistics as open data. The Internet Archive india-names-dataset (which
+produced the excellent AP/Telugu voter roll data) has no Tamil Nadu
+equivalent. The 689-name list here is the most comprehensive open Tamil
+name list findable; it is suitable for coverage/lexical research but
+cannot support frequency-based analyses.
+
+Paid option if budget available:
+  census.name Tamil name database — claims frequency data from social
+  media profiles, but Tamil-specific extraction is unverified.

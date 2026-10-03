@@ -1,0 +1,20 @@
+source,name,ipa,phonemizer,leftover
+official_faroe_islands,Bjørk,bj9zɡ,fo,U+0039 '9' x1
+official_faroe_islands,Bjørt,bj9zd,fo,U+0039 '9' x1
+official_faroe_islands,Eyðvør,ɛɟːʋ2ːr,fo,"U+0032 '2' x1, U+02D0 'ː' x1"
+official_faroe_islands,Sólja,s9lja,fo,U+0039 '9' x1
+official_france_angers,Noé,nœ́,epitran:fra-Latn,U+0301 '́' x1
+official_france_nantes,Zoé,zœ́,epitran:fra-Latn,U+0301 '́' x1
+official_france_orleans,Zoé,zœ́,epitran:fra-Latn,U+0301 '́' x1
+official_france_paris,Noé,nœ́,epitran:fra-Latn,U+0301 '́' x1
+official_france_paris,Zoé,zœ́,epitran:fra-Latn,U+0301 '́' x1
+official_france_saint_herblain,Noé,nœ́,epitran:fra-Latn,U+0301 '́' x1
+official_japan,さくら,säkɯᵝɽä,ja,U+1D5D 'ᵝ' x1
+official_newzealand_maori,Tui,"tu""i",mi,"U+0022 '""' x1"
+official_russia_moscow,Дарья,dɑrɪ^jja,ru,U+02B2 'ʲ' x1
+official_switzerland_french_region,Chloé,ʃlœ́,epitran:fra-Latn,U+0301 '́' x1
+official_switzerland_french_region,Noé,nœ́,epitran:fra-Latn,U+0301 '́' x1
+official_switzerland_french_region,Zoé,zœ́,epitran:fra-Latn,U+0301 '́' x1
+official_switzerland_geneva,Chloé,ʃlœ́,epitran:fra-Latn,U+0301 '́' x1
+official_switzerland_geneva,Noé,nœ́,epitran:fra-Latn,U+0301 '́' x1
+official_switzerland_geneva,Zoé,zœ́,epitran:fra-Latn,U+0301 '́' x1

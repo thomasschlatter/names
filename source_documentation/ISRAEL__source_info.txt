@@ -1,0 +1,67 @@
+ISRAEL — Given Name Frequency Data
+====================================
+
+AGENCY / SOURCE
+  הלשכה המרכזית לסטטיסטיקה (CBS — Central Bureau of Statistics of Israel)
+  Data drawn from the Population Register
+
+DATA PAGE URL (most recent release — 2024 births, published December 2025)
+  https://www.cbs.gov.il/he/mediarelease/Pages/2025/personal-names-of-people-born-in-2024.aspx
+
+PREVIOUS RELEASE (2022 births, published November 2023)
+  https://www.cbs.gov.il/he/mediarelease/doclib/2023/426/
+
+DIRECT DOWNLOAD URLS — 2024 births release (ref: 11_25_391, published 08/12/2025)
+  Press release PDF (Hebrew):
+    https://www.cbs.gov.il/he/mediarelease/DocLib/2025/391/11_25_391b.pdf
+  t1.xlsx  — Historical: names of people born 1949–2024 by birth year, sex, population group (7.7 MB):
+    https://www.cbs.gov.il/he/mediarelease/DocLib/2025/391/11_25_391t1.xlsx
+  t2.xlsx  — Chart: share of Muhammad & Ahmad among Muslim boys, 2015–2024:
+    https://www.cbs.gov.il/he/mediarelease/DocLib/2025/391/11_25_391t2.xlsx
+  t3–t7.xlsx — Additional charts/supplementary tables:
+    https://www.cbs.gov.il/he/mediarelease/DocLib/2025/391/11_25_391t3.xlsx  (through t7)
+  t8.xlsx  — TOP NAMES TABLE: first names of 2024-born babies by sex and religion
+             (Jewish girls/boys, Muslim girls/boys, Christian-Arab girls/boys, Druze girls/boys):
+    https://www.cbs.gov.il/he/mediarelease/DocLib/2025/391/11_25_391t8.xlsx
+  t9.xlsx  — Names by municipality of residence (Jewish newborns):
+    https://www.cbs.gov.il/he/mediarelease/DocLib/2025/391/11_25_391t9.xlsx
+
+DIRECT DOWNLOAD URLS — 2022 births release (ref: 11_23_426, published November 2023)
+  Sub-folder: 2022_births_release/
+  t1–t15.xlsx, plus press release PDF — all downloaded
+  Base URL pattern: https://www.cbs.gov.il/he/mediarelease/doclib/2023/426/11_23_426t{N}.xlsx
+
+YEARS COVERED
+  t1.xlsx (historical): 1949–2024 (all Jews born in that range, by birth year and first name)
+  t8.xlsx (newborn frequency): 2024 births
+  2022_births_release/: 2022 births
+
+FILE FORMAT
+  Microsoft Excel (.xlsx) and PDF
+
+LANGUAGE
+  Hebrew; column headers include:
+    שם פרטי (first name), סה"כ (total), אחוז מסה"כ השמות (% of all names)
+  Population group sheets:
+    בנות יהודיות = Jewish girls, בנים יהודים = Jewish boys,
+    בנות מוסלמיות = Muslim girls, בנים מוסלמים = Muslim boys,
+    בנות נוצריות-ערביות = Christian-Arab girls, בנים נוצרים-ערבים = Christian-Arab boys,
+    בנות דרוזיות = Druze girls, בנים דרוזים = Druze boys
+
+KEY FILE: cbs_2024births_t8.xlsx
+  Most useful for name frequency analysis. Contains names given to ≥5 babies in each
+  sex/religion group born in 2024, with count and % of total.
+  Example 2024 top names: Abigail (Jewish girls), David (Jewish boys), Muhammad (Muslim boys)
+
+FILES DOWNLOADED (2026-05-01)
+  cbs_2024births_pressrelease.pdf     — 478 KB  — main press release (Hebrew), 2024 births
+  cbs_names_2024_t1.pdf              — 478 KB  — duplicate of press release (same file)
+  cbs_2024births_t1.xlsx             — 7.7 MB  — historical names 1949–2024
+  cbs_2024births_t2.xlsx–t9.xlsx     — 26–189 KB each — supplementary tables, 2024 births
+  2022_births_release/               — 15 files — full 2022 births release (t1–t15 + PDF)
+
+NOTES
+  - CBS releases annual name data; releases lag by ~1 year (2024 births released Dec 2025)
+  - Data includes all population groups: Jewish, Muslim, Christian-Arab, Druze
+  - Names given to fewer than 5 babies are suppressed for privacy
+  - No authentication required; all files are freely downloadable from cbs.gov.il

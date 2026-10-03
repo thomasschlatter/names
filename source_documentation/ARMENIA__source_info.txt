@@ -1,0 +1,103 @@
+ARMENIA — GIVEN NAME FREQUENCY DATA
+=====================================
+Last updated: 2026-05-01
+
+===========================================================
+SOURCE 1: Statistical Committee of the Republic of Armenia (NSC/Armstat)
+         — Annual Most Popular Newborn Names, 2020–2023
+===========================================================
+Official body:  National Statistical Committee of the Republic of Armenia
+Website:        https://www.armstat.am/en/
+Data published: Annually; accessed via Armenian news agency ARKA and other outlets
+                that republish official NSC press releases
+
+Data collected for years: 2020, 2021, 2022, 2023
+
+Relay sources used to extract official NSC data:
+  2020: https://arka.am/en/news/society/nar_and_david_top_the_list_of_most_popular_names_in_armenia_given_to_newborn_babies/
+  2021: https://www.nancy.cc/2022/11/09/popular-baby-names-armenia-2021/
+        https://namerology.com/baby-name-atlas/most-popular-girls-names-in-armenia/
+  2022: https://arka.am/en/news/society/nsc_reveals_most_popular_names_given_to_newborn_babies_in_armenia_in_2022/
+  2023: https://www.thearmenianreport.com/post/armenia-reveals-top-10-names-of-2023-for-boys-and-girls
+
+File saved:     armenia_newborn_names_2020_2023.csv
+Columns:        year, gender (M/F), rank, name, count
+Coverage:
+  2020: Top 27 girls + Top 16 boys (counts available)
+  2021: Top 50 girls + Top 50 boys (counts available)
+  2022: Top 26 girls + Top 20 boys (counts available)
+  2023: Top 10 girls + Top 10 boys (counts available)
+
+Birth totals by year:
+  2020: 17,299 girls + 19,053 boys = 36,352 total
+  2021: ~17,600 girls + ~19,000 boys = ~36,600 total
+  2022: 17,158 girls + 19,195 boys = 36,353 total
+  2023: 17,213 girls + 19,052 boys = 36,265 total
+
+Notes:
+  - Names are romanized transliterations of Armenian script (Armenian alphabet)
+  - Some spellings reflect transliteration conventions (e.g., Davit vs David,
+    Nare vs Nare/Nara, Lusi/Luse = Armenian rendering of Lucy)
+  - The NSC publishes only top-N lists, not full frequency distributions
+  - 2021 data is the most complete (top 50 both genders with counts)
+  - Many names reflect contemporary trends blending Armenian traditional names
+    (Anahit, Hayk, Tigran) with internationalized forms (Maria, Anna, Leo)
+  - Official armstat.am does not host a public downloadable baby names dataset;
+    data is released via annual press releases
+
+Download status: SUCCESS (data extracted from official NSC press releases)
+
+
+===========================================================
+SOURCE 2: Forebears.io — Armenian Forenames (Cumulative Population)
+===========================================================
+URL:            https://forebears.io/armenia/forenames
+Coverage:       37,710 unique forenames in Armenia; 77 people per name on average
+Data type:      Cumulative population census (not birth-year specific)
+Years:          Not specified; reflects contemporary population records
+
+File saved:     armenia_forebears_top100.csv
+Columns:        rank, name, incidence, frequency_ratio, gender_pct
+Rows:           100 (top 100 of 37,710 unique forenames)
+
+Notes:
+  - Incidence = estimated total number of people in Armenia bearing this name
+  - Frequency ratio = approximately 1 in N people have this name
+  - gender_pct = percentage of bearers who are the dominant gender
+    (100% = exclusively one gender; lower values = more unisex)
+  - Top names Armen (50,911) and Anahit (50,609) reflect older generation
+    prevalence; recent newborn data (Source 1) shows different top names
+  - Most names are 100% gender-specific; exceptions include Karen (90% M),
+    Nune (54% — borderline unisex), Narek (89% M)
+  - Forebears does not offer CSV download; data extracted manually
+  - Full dataset extends to rank 1000+ (rank 1000 = Yermonya, 213 incidences)
+
+Download status: SUCCESS (top 100 extracted manually from forebears.io)
+
+
+===========================================================
+SOURCE 3: Armstat Statistical Databases (Direct Search)
+===========================================================
+URL:            https://armstat.am/en/?nid=14
+                https://data.opendata.am/dataset/
+Notes:          The Statistical Committee's online databases (ArmStatBank) cover
+                national accounts, demographics, labour market, prices, and trade.
+                No public table for given-name frequencies was found in the database
+                portal. The Open Data Armenia catalog (823 datasets) also contains
+                no dedicated baby names or births-by-name dataset.
+
+Download status: NOT APPLICABLE (no name-specific dataset found)
+
+
+===========================================================
+SCRIPT-WRITING NOTES
+===========================================================
+- Armenian is written in the Armenian alphabet (Հայկական այբուբեն), a unique
+  script used exclusively for Armenian. All data in saved files uses romanized
+  transliterations as published by official sources.
+- Armenian is its own branch of Indo-European — not related to Iranian, Slavic,
+  or any other branch. It constitutes a single-language branch.
+- Eastern Armenian is the official language of the Republic of Armenia;
+  Western Armenian is the diaspora variety.
+- Common Armenian name-forming elements: -ik (diminutive), -uhi/-ine (feminine),
+  -yan suffix in surnames (not given names)

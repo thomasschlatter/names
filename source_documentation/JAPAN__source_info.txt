@@ -1,0 +1,50 @@
+JAPAN BABY NAMES — DATA SOURCES
+================================
+
+FILES DOWNLOADED
+----------------
+
+1. Data_Baby_Names_Japan_2004-2018.xlsx
+   Source: Meiji Yasuda Life Insurance annual survey (OSF deposit)
+   OSF project DOI: https://doi.org/10.17605/OSF.IO/2WURJ
+   Direct download: https://osf.io/download/cdt6j/
+   Paper: Ogihara, Y. (2021). Baby names in Japan, 2004-2018: Common writings and their readings.
+          BMC Research Notes, 13, 565.
+          PMC: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7724864/
+   Years: 2004-2018
+   Format: Excel (.xlsx)
+   Contents: Common kanji/kana writings of top baby names and their hiragana readings,
+             by year and sex. Frequency counts and percentages included.
+   Sample size: ~600-900 names per year (boys and girls separately)
+
+2. Data_Baby_Names_Japan_2019-2024.xlsx
+   Source: Meiji Yasuda Life Insurance annual survey (OSF deposit, follow-up)
+   OSF project DOI: https://doi.org/10.17605/OSF.IO/BQUJN
+   Direct download: https://osf.io/download/bkq5r/
+   Paper: Ogihara, Y. (2025). Baby names in Japan, 2019-2024: Common writings and their readings.
+          Data in Brief, 60, 111497.
+          PubMed: https://pubmed.ncbi.nlm.nih.gov/40275978/
+          PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC12020897/
+          ScienceDirect: https://www.sciencedirect.com/science/article/pii/S235234092500229X
+   Years: 2019-2024
+   Format: Excel (.xlsx)
+   Contents: Common writings of baby names and their readings, generated from annual
+             surveys on baby names conducted by Meiji Yasuda Life Insurance.
+   Sample size: 4,335 total (2,115 boys, 2,220 girls) across 6 years;
+                average ~723 per year
+
+UNDERLYING DATA SOURCE
+----------------------
+Both datasets derive from Meiji Yasuda Life Insurance Company's annual survey
+of baby names. The company collects names from its customers who have babies
+each year. This is the standard academic source for Japanese baby names, as
+there is no official government-published name frequency dataset in Japan.
+
+NOTES
+-----
+- Data covers the top-ranked names only, not the full distribution.
+- Both files together cover 2004-2024.
+- A separate OSF deposit (https://osf.io/za6x7/) covers 1989-2003 (Ogihara 2022,
+  BMC Research Notes), extending coverage back further if needed.
+- The surveys are conducted annually; data is collected from Meiji Yasuda
+  insurance customers (not a population census).

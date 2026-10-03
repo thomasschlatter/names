@@ -1,0 +1,106 @@
+TIBETAN GIVEN NAMES — SOURCE INFORMATION
+=========================================
+Language family: Sino-Tibetan, Tibetic branch (distinct from Tibeto-Burman)
+Script: Tibetan script (Uchen); romanisation varies widely (Wylie, phonetic, etc.)
+
+IMPORTANT CAVEAT — NO FREQUENCY DATA AVAILABLE
+-----------------------------------------------
+No publicly accessible dataset with population-level frequency counts for
+Tibetan given names was found. This is explained by several structural factors:
+
+1. Official Chinese government statistics for Tibet (TAR) do not disaggregate
+   name frequency data by ethnicity in accessible public datasets.
+2. The exile Tibetan community (~100,000 people, India/Nepal/West) does not
+   have a centralised civil registration database that is publicly published.
+3. No academic NLP corpus specifically targeting Tibetan personal name
+   frequency was identified (the Tibetan NLP community focuses on text/speech,
+   not name statistics).
+4. Forebears.io does not have a dedicated Tibet/Tibetan forenames page with
+   ranked frequency data comparable to other countries.
+
+The file tibetan_names.csv therefore provides a curated reference list of
+well-attested common Tibetan names with meanings and script forms, compiled
+from the most reliable available sources.
+
+------------------------------------------------------------
+SOURCE 1
+------------------------------------------------------------
+Name:       Wikipedia — "Tibetan name" article
+URL:        https://en.wikipedia.org/wiki/Tibetan_name
+Format:     Reference list (manually extracted)
+Frequency:  NO — qualitative notes only
+Notes:      Notes that Tenzin is "overwhelming" in exile community due to
+            14th Dalai Lama. Lists day-of-week names (Dawa, Nyima, etc.)
+            as very common category. Provides Tibetan script and meanings.
+            Accessed: May 2026
+
+------------------------------------------------------------
+SOURCE 2
+------------------------------------------------------------
+Name:       Behind the Name — Tibetan names usage list
+URL:        https://www.behindthename.com/names/usage/tibetan
+Format:     Reference list (manually extracted)
+Frequency:  NO — name + gender + meaning only
+Names:      22 names with Tibetan script forms and gender markers
+            Accessed: May 2026
+
+------------------------------------------------------------
+SOURCE 3
+------------------------------------------------------------
+Name:       Kadampa Center — Common Tibetan Names and Their Meanings
+URL:        https://kadampa-center.org/some-common-tibetan-names-and-their-meanings
+Format:     Reference list (manually extracted)
+Frequency:  NO — name + pronunciation + meaning only
+Names:      ~80 names with romanised pronunciation guides
+            Accessed: May 2026
+
+------------------------------------------------------------
+SOURCE 4
+------------------------------------------------------------
+Name:       Tibet Travel — Tibetan Names article
+URL:        https://www.tibettravel.org/tibetan-people/tibetan-names.html
+Format:     Reference list (manually extracted)
+Frequency:  NO — qualitative descriptions only
+Notes:      Confirms Tenzin, Tashi, Tsering, Dawa, Nyima, Sonam, Karma,
+            Pema, Kelsang as most frequently encountered names.
+            Accessed: May 2026
+
+------------------------------------------------------------
+SOURCE 5 (SEARCHED, NOT USEFUL)
+------------------------------------------------------------
+Name:       GitHub — datashidhondup/Tibetan-Naming-Data
+URL:        https://github.com/datashidhondup/Tibetan-Naming-Data
+Notes:      Repository exists but was newly created with 1 commit and
+            no actual data files at time of access (May 2026).
+
+------------------------------------------------------------
+RECOMMENDED FILE FOR ANALYSIS
+------------------------------------------------------------
+tibetan_names.csv — 55 names with Tibetan script, gender, meaning, notes
+  Columns: name_roman, name_tibetan, gender, meaning, notes
+  Frequency data: NOT AVAILABLE
+
+------------------------------------------------------------
+KEY CULTURAL NOTES
+------------------------------------------------------------
+- Tibetan names typically have NO family/surname component (except
+  aristocratic lineages). Only given names are used.
+- Day-of-week names (Dawa=Mon, Mingmar/Penpa=Tue, Lhakpa=Wed,
+  Phurbu=Thu, Pasang=Fri, Pemba=Sat, Nyima=Sun) are extremely
+  common and assigned by day of birth.
+- Many names are unisex (marked m/f in dataset).
+- Religious/Buddhist names (Tenzin, Lobsang, Thubten, Pema) are
+  very common and often given by lamas.
+- Tenzin is considered the single most common name in the Tibetan
+  exile community due to the 14th Dalai Lama's influence.
+- Compound names (e.g., Tenzin Gyatso, Lobsang Tenzin) are the norm;
+  the dataset records individual name elements.
+
+------------------------------------------------------------
+FUTURE DATA ACQUISITION SUGGESTIONS
+------------------------------------------------------------
+- Contact LTWA (Library of Tibetan Works and Archives): https://www.ltwa.net
+- Contact Tibet Policy Institute for demographic data
+- Zenodo Tibetan corpora may contain NER data with person name instances:
+  https://zenodo.org/search?q=tibetan
+- The TiBERT corpus (3.56 GB) may yield name frequency via NER pipeline

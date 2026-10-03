@@ -1,0 +1,64 @@
+ROMANIA — Given Names Data Sources
+=====================================
+Retrieved: 2026-05-01
+
+== DOWNLOADED FILES ==
+
+1. DLEP_Iasi_nasteri_2023_prenume_statistica.pdf
+   - Agency: Direcția Locală pentru Evidența Persoanelor (DLEP) Iași
+     (Local Directorate for Evidence of Persons, Iași county)
+   - URL: https://dlep-iasi.ro/userfiles/file/Nasteri%202023%20-%20Nume%20prenume%20-%20Statistica.pdf
+   - Year: 2023 (births registered in Iași county)
+   - Format: PDF (created Feb 6, 2024 using PDFCreator; scanned/image-based — OCR needed)
+   - Scope: LOCAL (Iași county only, ~6,980 births/year); not national
+   - Download succeeded: YES (41,027 bytes)
+   - Note: Iași is one of Romania's largest cities. Top 2023 names: boys = Andrei (467), Ștefan (294),
+     Gabriel (261); girls = Maria (872), Ioana (352), Elena (294)
+   - Warning: PDF appears to be image-based; text extraction requires OCR
+
+2. DEPABD_comunicat_2023-19.pdf
+   - Agency: Direcția Generală pentru Evidența Persoanelor (DEPABD / DGEP)
+     Ministry of Internal Affairs (Ministerul Afacerilor Interne)
+   - URL: https://depabd.mai.gov.ro/comunicate/2023/2023-comunicat-19.pdf
+   - Year: 2023 (communication #19)
+   - Format: PDF (scanned JPEG2000 image — OCR required to extract text)
+   - Scope: Appears to be a national press communication; exact content uncertain (image-based PDF)
+   - Download succeeded: YES (58,302 bytes)
+   - Note: DEPABD is the national civil registry authority responsible for all births/names in Romania.
+     Their press communications sometimes include top prenume rankings. Exact content of this
+     specific communication (#19) is a scanned image and could not be read automatically.
+
+== NO NATIONAL OPEN DATA FOUND ==
+
+The following were searched and found to contain NO downloadable prenume/given-name datasets:
+- data.gov.ro — search for "prenume" returned zero results
+- insse.ro (Institutul Național de Statistică) — INS publishes birth statistics (counts, rates)
+  but does NOT publish name frequency datasets as open data downloads
+- insse.ro "Știați că" page — references popular names anecdotally but no downloadable file
+- eSOP portal (esop.insse.ro) — births database but no name-level data
+
+== BEST NATIONAL SOURCE (data published by DEPABD/DGEP) ==
+
+Agency: Direcția Generală pentru Evidența Persoanelor (DEPABD)
+URL: https://depabd.mai.gov.ro/
+Communications page: https://depabd.mai.gov.ro/comunicate.html
+Note: DEPABD periodically publishes press releases about top names nationally. These are image PDFs
+      and are not available as structured data downloads. Check the communications page for annual
+      releases (typically issued in January for prior year).
+
+== KNOWN DATA (from press/media, citing official DGEP sources) ==
+
+Top names 2004–2024 (national, 20-year ranking from DGEP data):
+- Boys: Andrei, Alexandru, Gabriel, David, Ștefan, Mihai, Cristian, Ionuț, Matei, Darius
+- Girls: Maria, Ioana, Elena, Andreea, Alexandra, Ana, Daria, Gabriela, Anastasia, Teodora
+
+Top names 2023 (national):
+- Boys: Andrei, Ștefan, Matei, Gabriel, Alexandru, David, Ioan, Ionuț, Nicolas, Luca
+- Girls: Maria, Ioana, Elena, Ștefania, Sofia, Anastasia, Andreea, Eva, Antonia, Gabriela
+
+== NOTES ==
+- Language family: Romance (Romanian) — close to Italian/Spanish; Cyrillic script used historically
+- National civil registry authority: DEPABD (depabd.mai.gov.ro)
+- No structured open data (CSV/XLS) for national prenume frequencies exists publicly
+- Structured data at county level may exist via local DLEP offices (e.g., DLEP Iași above)
+- For a full national dataset, a formal data request to DEPABD may be required

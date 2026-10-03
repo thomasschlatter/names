@@ -1,0 +1,67 @@
+SOURCE: CSO Ireland (Central Statistics Office) — Irish Babies' Names
+PRIMARY URL: https://www.cso.ie/en/statistics/birthsdeathsandmarriages/irishbabiesnames/
+DATA PAGE (2024): https://www.cso.ie/en/releasesandpublications/ep/p-ibn/irishbabiesnames2024/data/
+PxStat PRODUCT PAGE: https://data.cso.ie/product/ibn
+DOWNLOAD DATE: 2026-05-01
+
+=== FILES DOWNLOADED ===
+
+1. VSA50_boys_names_1964_2024.csv (36.2 MB, 352,657 rows)
+   SOURCE API: https://ws.cso.ie/public/api.restful/PxStat.Data.Cube_API.ReadDataset/VSA50/CSV/1.0/en
+   PxStat TABLE: https://data.cso.ie/table/VSA50
+   CONTENT: All boys names in Ireland with 3+ occurrences, 1964-2024
+   FORMAT: CSV
+   COLUMNS: STATISTIC, Statistic Label, TLIST(A1), Year, name_code, Boys Names, UNIT, VALUE
+   NOTE: VALUE column = count (number of births); also includes rank rows (Statistic = VSA50C02)
+
+2. VSA60_girls_names_1964_2024.csv (46.6 MB, 466,117 rows)
+   SOURCE API: https://ws.cso.ie/public/api.restful/PxStat.Data.Cube_API.ReadDataset/VSA60/CSV/1.0/en
+   PxStat TABLE: https://data.cso.ie/table/VSA60
+   CONTENT: All girls names in Ireland with 3+ occurrences, 1964-2024
+   FORMAT: CSV
+   COLUMNS: STATISTIC, Statistic Label, TLIST(A1), Year, name_code, Girls Names, UNIT, VALUE
+
+3. CSO2024_TBL2.3.xlsx (11 KB)
+   URL: https://www.cso.ie/en/media/csoie/releasespublications/documents/ep/irishbabiesx27names/2024/P-IBN2024TBL2.3.xlsx
+   CONTENT: Names with most growth in popularity 2023–2024 (rank change)
+
+4. CSO2024_TBL2.4.xlsx (10 KB)
+   URL: https://www.cso.ie/en/media/csoie/releasespublications/documents/ep/irishbabiesx27names/2024/P-IBN2024TBL2.4.xlsx
+   CONTENT: Names with most growth in popularity 2023–2024 (count change)
+
+5. CSO2024_TBL2.5.xlsx (10 KB)
+   URL: https://www.cso.ie/en/media/csoie/releasespublications/documents/ep/irishbabiesx27names/2024/P-IBN2024TBL2.5.xlsx
+   CONTENT: Most popular boys names by county/area of residence, 2024
+
+6. CSO2024_TBL2.6.xlsx (11 KB)
+   URL: https://www.cso.ie/en/media/csoie/releasespublications/documents/ep/irishbabiesx27names/2024/P-IBN2024TBL2.6.xlsx
+   CONTENT: Most popular girls names by county/area of residence, 2024
+
+7. CSO2024_TBL2.7.xlsx (11 KB)
+   URL: https://www.cso.ie/en/media/csoie/releasespublications/documents/ep/irishbabiesx27names/2024/P-IBN2024TBL2.7.xlsx
+   CONTENT: Most popular names by parental nationality, 2024
+
+8. CSO2024_TBL2.8.xlsx (16 KB)
+   URL: https://www.cso.ie/en/media/csoie/releasespublications/documents/ep/irishbabiesx27names/2024/P-IBN2024TBL2.8.xlsx
+   CONTENT: Top 10 names comparison across UK and Ireland regions, 2024
+
+=== COVERAGE ===
+YEARS: 1964–2024 (61 years) in VSA50/VSA60; 2024 only in supplementary tables
+MINIMUM THRESHOLD: 3+ occurrences per name per year
+GEOGRAPHIC SCOPE: Republic of Ireland (not Northern Ireland)
+LANGUAGE: Names registered can be Irish Gaelic, English, or other origin
+
+=== CELTIC/GAELIC RELEVANCE ===
+CRITICAL: Ireland is among the world's richest sources of native Irish Gaelic given names.
+The CSO data includes both native-form Irish names (Aoife, Caoimhe, Saoirse, Fiadh,
+Rían, Cillian, Ciarán, Seán, Eoin, Oisín, Tadhg) and anglicised forms (Niamh also
+written as Nieve; Siobhán as Shivahn, etc.). The dataset is NOT pre-tagged by language
+origin — all names are in the same table. As of 2024:
+  - Top boys: Jack, Noah, Rián, Cillian, James (mix of English/Irish)
+  - Top girls: Sophie, Éabha, Grace, Emily, Fiadh (mix; Éabha and Fiadh are Irish)
+The complete 1964–2024 CSV (VSA50/VSA60) contains the full universe of all registered names.
+
+=== ADDITIONAL TOOLS ===
+Interactive explorer: https://visual.cso.ie/?body=entity/babynames/
+Surnames dataset: https://data.cso.ie/table/VSA110
+Archive (earlier years): https://www.cso.ie/en/statistics/birthsdeathsandmarriages/irishbabiesnames/irishbabiesnamesarchive2025/

@@ -1,0 +1,94 @@
+INDONESIA — GIVEN NAME FREQUENCY DATA
+======================================
+Last updated: 2026-05-01
+
+===========================================================
+SOURCE 1: Kemendagri / Dukcapil (Official Government Data)
+===========================================================
+Source:        Kementerian Dalam Negeri (Ministry of Home Affairs), Direktorat Jenderal
+               Kependudukan dan Pencatatan Sipil (Dukcapil)
+Announced by:  Wakil Menteri Dalam Negeri (Deputy Minister) Bima Arya Sugiarto
+               via Instagram @bimaaryasugiarto, January 13, 2025
+Years covered: 2024 (baby names registered in 2024); e-KTP all-time cumulative
+Data type:     Top 10 baby names by gender (2024 births) + top 10 all-time names from e-KTP database
+Format:        Only published as press release / infographic; no official download portal
+Coverage:      National (all Indonesia)
+Basis:         Civil registration records via NIK (Nomor Induk Kependudukan / National Identity Number)
+
+Download status: NO DIRECT DOWNLOAD AVAILABLE from official source.
+File saved:    indonesia_names_kemendagri_dukcapil_2024.csv
+               (Manually reconstructed from authoritative press reports)
+
+Notes:
+- baby_2024 category = top 10 most-given names to babies born in 2024
+- ektp_alltime category = top 10 most common names in the entire e-KTP population register (as of Jan 2025)
+- Only top 10 per gender per category were released publicly
+- Deeper data (top 100+, full frequency tables) not publicly released
+
+Primary news sources confirming data:
+- Detik.com: https://news.detik.com/berita/d-7730247/ini-daftar-nama-bayi-terpopuler-laki-laki-dan-perempuan-di-2024
+- Kompas: https://www.kompas.com/tren/read/2025/01/13/110000865/daftar-nama-paling-banyak-di-ktp-dan-nama-bayi-terpopuler-pada-2024
+- CNBC Indonesia: https://www.cnbcindonesia.com/lifestyle/20250113143740-33-602799/daftar-nama-bayi-paling-populer-di-indonesia-menurut-data-kemendagri/
+
+Databoks (Katadata) has an XLS download behind a paywall (~IDR 10,000):
+- https://databoks.katadata.co.id/demografi/statistik/67872d3d376e0/10-nama-laki-laki-terpopuler-di-indonesia-2024-ada-namamu
+
+Official Dukcapil portal (requires institutional access):
+- https://dukcapil.kemendagri.go.id/page/read/data-kependudukan
+- https://gis.dukcapil.kemendagri.go.id/
+
+
+===========================================================
+SOURCE 2: GitHub — irfnrdh/Dataset-Nama
+===========================================================
+URL:           https://github.com/irfnrdh/Dataset-Nama
+File:          Database Nama.xlsx
+Direct URL:    https://raw.githubusercontent.com/irfnrdh/Dataset-Nama/master/Database%20Nama.xlsx
+Format:        Excel (.xlsx)
+Size:          ~60 KB
+Rows:          1,435 names
+Columns:       Nama (Name), Jenis Kelamin (Gender), Asal Bahasa (Language Origin),
+               Arti (Meaning), Nama Serupa (Similar Names)
+Years:         Not specified (scraped from Indonesian baby name websites)
+Coverage:      Indonesian names from various cultural origins (Javanese, Arabic, Sanskrit, etc.)
+Notes:         - No frequency data (name list only, not ranked by popularity)
+               - Includes language origin and meaning per name
+               - Useful as a comprehensive name lexicon
+
+Download status: SUCCESS
+File saved:    Dataset_Nama_Indonesia.xlsx
+
+
+===========================================================
+SOURCE 3: BPS (Badan Pusat Statistik / Statistics Indonesia)
+===========================================================
+URL:           https://www.bps.go.id/
+Notes:         BPS does NOT publish individual name frequency data. Their population
+               statistics cover aggregate demographics (births, deaths, age, region)
+               but not name-level frequencies. Name data is held by Kemendagri/Dukcapil.
+
+Download status: NOT APPLICABLE (data not available from BPS)
+
+
+===========================================================
+SOURCE 4: Portal Satu Data Indonesia (data.go.id)
+===========================================================
+URL:           https://katalog.data.go.id/dataset/daftar-nama-penduduk
+Notes:         A "Daftar Nama Penduduk" dataset is listed in the catalog but the
+               portal returned connection errors during access attempts. This dataset
+               may contain more complete name frequency data if accessible.
+               Worth checking manually with a browser.
+
+Download status: FAILED (connection refused)
+
+
+===========================================================
+SOURCE 5: Forebears.io — Indonesian Forenames
+===========================================================
+URL:           https://forebears.io/indonesia/forenames
+Coverage:      1,684,512 unique Indonesian forenames with incidence counts and 1:N ratios
+Data type:     Census-derived forename frequency (web-only, no bulk download)
+Notes:         Top names include Siti (4.26M), Sri (2.58M), Muhammad (1.90M), Nur (1.60M)
+               No CSV export available; data must be scraped page-by-page
+
+Download status: NO DIRECT DOWNLOAD (web scraping required for bulk access)

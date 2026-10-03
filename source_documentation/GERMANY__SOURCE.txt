@@ -1,0 +1,46 @@
+SOURCE: German municipal open data portals (no national registry exists)
+Note: Germany has no centralized national given-name registry. Data is published by
+individual Standesämter (registry offices) at municipal/city level.
+Downloaded: 2026-05-01
+
+=== BERLIN (most comprehensive; covers all 12 city districts) ===
+Source: Berlin State Office for Citizens' and Civil Services (LABO), via BerlinOnline GmbH
+URL: https://github.com/berlin/haeufige-vornamen-berlin
+Portal: https://daten.berlin.de
+Years: 2012–2023
+Folder: BERLIN_2012-2023/
+Structure: one subfolder per year; each subfolder has 12 CSV files (one per district).
+    Districts: charlottenburg-wilmersdorf, friedrichshain-kreuzberg, lichtenberg,
+    marzahn-hellersdorf, mitte, neukoelln, pankow, reinickendorf, spandau,
+    steglitz-zehlendorf, tempelhof-schoeneberg, treptow-koepenick
+Columns (2017+): vorname, anzahl, geschlecht (m/w), position (1/2/3...)
+Columns (2012-2016): vorname, anzahl, geschlecht (no position field)
+Note: "anzahl" counts are per district; aggregate across districts for city-level totals.
+License: Creative Commons Attribution (CC BY)
+
+=== ESSEN (North Rhine-Westphalia; city-level) ===
+Source: Standesamt Stadt Essen (Essen Registry Office) — Department 33
+URL: https://opendata.essen.de/dataset/vornamen
+Years: 2009–2024
+Folder: ESSEN_2009-2024/
+Files: Vornamen_Essen_YYYY.csv (16 files, one per year)
+Columns: anzahl, vorname, geschlecht, position
+License: Data License Germany — Attribution 2.0 (dl-de/by-2-0)
+
+=== COLOGNE / KÖLN (North Rhine-Westphalia; city-level) ===
+Source: Standesamt Stadt Köln (Cologne Registry Office)
+URL: https://www.offenedaten-koeln.de/dataset/vornamen
+Years: 2010–2023
+Folder: KOELN/
+Files:
+  - Vornamen_Koeln_2010-2018.csv    — combined time series 2010–2018
+  - Vornamen_Koeln_2019-2022.csv    — combined time series 2019–2022
+  - Vornamenstatistik_Koeln_2023.csv — single year 2023
+Columns: anzahl, vorname, geschlecht, position (Namensposition)
+License: Data License Germany — Zero — Version 2.0 (dl-de/zero-2-0)
+
+RECOMMENDATION FOR RESEARCH USE:
+Combine Berlin (large N, 12 districts, 2012-2023) as primary source.
+Essen and Cologne serve as cross-validation and extend coverage to 2009.
+All three cities are in western Germany. For regional diversity, add datasets
+from daten.berlin.de (eastern Germany) and govdata.de for other states.

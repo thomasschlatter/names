@@ -1,0 +1,138 @@
+GREECE — Given Names Data Source Information
+==============================================
+Last checked: 2026-05-01 (original); Updated: 2026-05-01 (new files added)
+
+PRIMARY SOURCE: Hellenic Statistical Authority (ELSTAT / Ελληνική Στατιστική Αρχή)
+Website:        https://www.statistics.gr/en/home
+Contact email:  data.dissem@statistics.gr
+Contact phone:  +30 213 1352301
+
+STATUS: ELSTAT server (statistics.gr) COMPLETELY UNREACHABLE as of 2026-05-01.
+All URLs at statistics.gr time out (connection refused on port 443). Server has
+been down across multiple attempts. Retry ELSTAT when server is restored.
+
+--------------------------------------------------------------------
+FILES COLLECTED (2026-05-01 — NEW ADDITIONS)
+--------------------------------------------------------------------
+forebears_greece_forenames_top1000.csv
+  - 1,000 Greek names with absolute incidence counts and frequency ratios
+  - Source: forebears.io/greece/forenames (genealogy/census aggregator)
+  - Columns: rank, name, gender_inferred, pct_female, incidence, frequency_ratio,
+             frequency_pct, source
+  - Total coverage: 68,590 unique forenames in Greece; ~10.9M population base
+  - Top names: Maria (519,581), Georgios (456,323), Dimitrios (359,849)
+  - Gender inferred from gender-bar proportions (M/F/MF)
+  - NOTE: Forebears aggregates multiple official sources (census, civil registry)
+    but does not publish the exact year/edition. Use incidence ranks, not raw counts
+    as authoritative population figures.
+
+behindthename_greek_names.csv
+  - 441 Modern Greek names (deduplicated across 2 pages)
+  - Source: behindthename.com/names/usage/greek
+  - Columns: name, gender (M/F/MF), name_key, language, source, has_frequency
+  - NO frequency data; lexical/onomastic reference list only
+  - Gender: M=masculine, F=feminine, MF=listed as both on the site
+
+--------------------------------------------------------------------
+FILES COLLECTED (2026-05-01 — ORIGINAL BATCH)
+--------------------------------------------------------------------
+foundalis_asep2008_greek_names.csv
+  - 1,010 Greek names with frequency counts from ASEP civil service exam
+  - Sample: ~97,072 individuals, autumn 2008
+  - Columns: overall_rank, gender_rank_within_sex, name_greek, freq_in_sample,
+             est_population_10M, gender_inferred, source
+  - Source: https://www.foundalis.com/grk/EllinikaOnomata.html
+  - NOTE: ASEP exam skewed female (~70% female applicants); freq counts for
+    female names are inflated relative to male. Use for name list, not freq ratio.
+
+elstat_popular_greek_names.csv
+  - 80 names: top-10 all-ages population (with % for top 5) + top-30 per
+    birth year from 2021 census
+  - Data assembled from multiple ELSTAT-sourced articles (2019-2024)
+  - Columns: name_greek, name_latin, gender, rank_population, pct_population,
+             rank_births_2021, source
+  - 1940 all-time top: Georgios 10.59%, Maria 9.48%
+  - 2021 top: Georgios 7.58%, Maria 7.71%
+
+greeknamedays_facebook_top30.csv
+  - 30 Greek names (mixed gender) with frequency from 46,314 Facebook users
+  - Period: 2009-2012. Source: greeknamedays.gr
+  - Columns: name_greek, name_latin, gender, count_in_sample_46314, pct_in_sample
+
+palaiologos2021_twitter_greek_male_names.csv
+  - 11 male Greek names with % of male population
+  - Source: Elias Palaiologos tweet (Oct 2021), citing ELSTAT 2011 study
+  - Columns: name_greek, name_latin, rank, pct_of_male_population
+
+philipperemy_facebook_greece_firstnames.csv
+  - 15,626 names appearing in Facebook data (533M accounts) linked to Greece (GR)
+  - Names with GR in top-10 country distribution. 9,552 have explicit GR rank.
+  - Ranked 1-9552, plus 6,074 lower-frequency names without explicit rank
+  - Source: philipperemy/name-dataset (Facebook leak dataset, ~2021)
+  - Columns: name, rank_GR, prob_GR, gender_F, gender_M, gender_inferred
+  - WARNING: Facebook data, not census. Includes diaspora. Many names are
+    transliterations/variants (Γιώργος AND Giorgos both present).
+
+sigpwned_wikipedia_greece_names.csv (embedded in sigpwned common-forenames-by-country.csv)
+  - 21 rows: top-11 female + top-10 male, 2010, ranked only, no frequency
+  - Source: Wikipedia "Lists of most common given names" (sigpwned/popular-names-by-country-dataset)
+
+--------------------------------------------------------------------
+PUBLICATION 1: Vital Statistics Annual Reports (includes baby names)
+--------------------------------------------------------------------
+Description:   Annual report on vital events (births, deaths, marriages). Contains
+               tables with the most popular given names for newborns by year.
+Publication series: SPO03
+
+Known URLs (may require retry when server is available):
+- 2023 data: https://www.statistics.gr/documents/20181/0d206e6d-c37c-206b-c500-05b6d990be80
+- 2024 data: https://www.statistics.gr/documents/20181/713b284f-08b2-0b46-c26c-16f6425392b6
+- 2022 data: https://www.statistics.gr/documents/20181/dfad21dd-7c31-de8b-e264-c94d650c880b
+- Index:     https://www.statistics.gr/en/statistics/-/publication/SPO03/-
+
+Format:   PDF (tables inside; may also offer Excel sheets as attachments)
+Years:    Annual, covers most recent year; historic series from 1956 onward
+Coverage: 30 most frequent male and female names per birth year as % of all births
+
+--------------------------------------------------------------------
+PUBLICATION 2: ELSTAT Names Monograph ("Tetradia") — Historical
+--------------------------------------------------------------------
+Direct PDF (popular male names, historical):
+https://www.statistics.gr/documents/20181/16786229/TETRADIA.pdf/6125082e-cefe-a6e0-70ed-1b7672ed2286?t=1567593194007
+
+--------------------------------------------------------------------
+PUBLICATION 3: 2021 Population-Housing Census
+--------------------------------------------------------------------
+Portal:   https://www.statistics.gr/en/2021-census-pop-hous
+Contains per-birth-year top-30 name frequency data as % of births.
+Available through ELSTAT Digital Library in electronic format (free download).
+
+--------------------------------------------------------------------
+ALTERNATIVE SOURCE: Greek Government Open Data Portal
+--------------------------------------------------------------------
+Portal:   https://data.gov.gr/
+API:      https://data.gov.gr/api/v1/datasets/
+Note:     As of 2026-05-01, no baby names dataset was found in the 84 available
+          datasets. The portal primarily covers administrative, health, and
+          infrastructure data.
+
+--------------------------------------------------------------------
+ALTERNATIVE SOURCE: Census.name Greek Name Database
+--------------------------------------------------------------------
+URL:  https://census.name/greek-name-database/
+Note: Commercial (€55). Includes 6,818 Greek first names with gender and
+      frequency, based on Greek government data + social media profiles.
+      Available in CSV, SQL, JSON. NOT an official statistical source.
+
+--------------------------------------------------------------------
+NOTES ON GREEK NAME DATA
+--------------------------------------------------------------------
+- ELSTAT's Vital Statistics Survey has been conducted since 1956.
+- Data on births transmitted to ELSTAT monthly from the Ministry of Interior
+  since May 2013 (civil registration system).
+- The 2021 Census recorded the 30 most frequent male/female names per birth
+  year as a percentage of all children born.
+- Most popular names (all ages): Georgios/Giorgos (male, ~10%),
+  Maria (female, ~10%), followed by Giannis, Kostas, Nikos, Dimitris (male)
+  and Eleni, Katerina, Vasiliki, Panagiota (female).
+- Data request form for custom datasets: https://www.statistics.gr/en/statistical-data-request

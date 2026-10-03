@@ -1,0 +1,77 @@
+TELUGU — Given Names Dataset Sources
+======================================
+Downloaded/processed: 2026-05-01
+Language: Telugu (Dravidian family; ~85M speakers, primarily Andhra Pradesh & Telangana)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FILE: andhra_pradesh_voter_names_top5000.csv  [PRIMARY — HAS FREQUENCY]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Source URL:    https://archive.org/details/india-names-dataset
+               (file: ap-names.txt.gz, 48.7MB compressed)
+Rows:          5000 most frequent name tokens (+ header)
+Frequency:     YES — total_count, male_count, female_count
+Columns:       name, total_count, male_count, female_count
+Language:      Telugu (Andhra Pradesh voter rolls, romanized)
+Region:        Andhra Pradesh state (Telugu-speaking)
+Quality:       MEDIUM-HIGH — real frequency data from voter rolls;
+               NOTE: includes noise (surnames, titles like "reddy",
+               "rao", "shaik" appear as top entries); filter
+               for given names before use. Top genuine given names:
+               Lakshmi (1,409,575), Kumar (1,267,024), Ramesh (363,849).
+Notes:         Source is Andhra Pradesh voter registration rolls
+               (2,890,619 unique name tokens in full dataset).
+               File originally lives in INDIA/ and is copied here.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FILE: behindthename_wikipedia_telugu_names.csv  [NAME LIST, NO FREQUENCY]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Rows:          527 unique names (+ header)
+Frequency:     NO — name list with gender and script only
+Columns:       name, script (native Telugu script), gender (M/F/U), frequency_count (empty), source
+Language:      Telugu; Romanized + Telugu script in 'script' column
+Quality:       MEDIUM — useful for coverage and gender-tagged name lists
+
+Sources combined:
+  1. Behind the Name — curated Telugu usage names (207 names)
+     URL: https://www.behindthename.com/names/usage/telugu
+     Editorially curated; names classified as used in Telugu-speaking regions.
+     Includes Telugu script representation in 'script' column.
+
+  2. Behind the Name — user-submitted Telugu names (297 names)
+     URL: https://www.behindthename.com/submit/names/usage/telugu (pages 1-2)
+     User-contributed names tagged as Telugu usage.
+
+  3. Wikipedia — Telugu given names category (23 names not in BTN)
+     URL: https://en.wikipedia.org/wiki/Category:Telugu_given_names
+     28 total entries; 23 not already in BehindTheName.
+     NOTE: Wikipedia has no Telugu_masculine_given_names or
+     Telugu_feminine_given_names subcategories (unlike Tamil).
+
+Gender distribution: M=256, F=248, U=23
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SOURCES SEARCHED BUT NOT ACCESSIBLE (FREE):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+- data.telangana.gov.in — Telangana Open Data portal (ECONNREFUSED at
+  time of access May 2026); no name-frequency dataset confirmed
+- CEO Telangana voter rolls (ceotserms2.telangana.gov.in) — PDF format
+  only; no bulk CSV download of individual voter names available
+- AP Electoral rolls (ceoaperolls.ap.gov.in) — PDF format only;
+  the Internet Archive ap-names.txt.gz is the processed version of
+  these rolls (already in andhra_pradesh_voter_names_top5000.csv)
+- Kaggle Telugu NLP dataset (sudalairajkumar/telugu-nlp) — text corpus,
+  not a names frequency dataset
+- philipperemy/name-dataset — IN.csv exists but only as part of 3.3GB
+  archive; no individual country file download; Telugu-specific
+  extraction not feasible without full download
+- UIDAI/Aadhaar name statistics — not published as open data
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RECOMMENDED FOR TELUGU FREQUENCY WORK:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Use andhra_pradesh_voter_names_top5000.csv — real frequency data.
+  Filter out surnames/titles by cross-referencing with
+  behindthename_wikipedia_telugu_names.csv (given names list).
+  The full ap-names.txt.gz archive (2.89M unique tokens) at
+  https://archive.org/download/india-names-dataset/ap-names.txt.gz
+  contains all raw data if deeper extraction is needed.

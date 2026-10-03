@@ -1,0 +1,15 @@
+Rows used: 2,892
+Weighted births/name counts: 115,198,787
+Sources used: 65
+Feature terms: 22
+Source fixed effects: True
+Logistic regularization C: 1.0
+G2P artifact row/source filtering: True
+G2P source artifact threshold: 0.250
+G2P audit file: _dedup_g2p_audit.csv
+Weighted log loss: 0.314430
+Weighted accuracy: 0.862283
+Weighted ROC AUC: 0.939879
+
+Coefficients are from standardized numeric predictors.
+Positive coefficients predict male-coded names; negative coefficients predict female-coded names.

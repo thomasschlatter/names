@@ -1,0 +1,43 @@
+FINLAND — Given Names Data Source Information
+===============================================
+Last checked: 2026-05-01
+
+FILE DOWNLOADED: etunimitilasto-2026-02-03-dvv.xlsx
+
+--------------------------------------------------------------------
+SOURCE: DVV (Digi- ja väestötietovirasto / Digital and Population Data Services Agency)
+Also known as: Population Register Centre
+--------------------------------------------------------------------
+Publisher:    Digi- ja väestötietovirasto (DVV)
+Portal:       https://dvv.fi/
+Open data:    https://avoindata.suomi.fi/data/fi/dataset/none
+  (Dataset: "Väestötietojärjestelmän suomalaisten nimiaineistot")
+
+Direct download URL (as of 2026-02-03):
+  https://avoindata.suomi.fi/data/dataset/57282ad6-3ab1-48fb-983a-8aba5ff8d29a/resource/08c89936-a230-42e9-a9fc-288632e234f5/download/etunimitilasto-2026-02-03-dvv.xlsx
+
+Format:   Microsoft Excel (.xlsx), multiple worksheets
+Content:  "Etunimien lukumäärät lajittelun mukaan" — First name counts sorted by frequency
+          Includes separate tabs for men's and women's names, ranked by frequency
+Data:     Counts of all persons with each given name in the population register
+Source:   Population Information System (Väestötietojärjestelmä)
+Updated:  February 3, 2026 (annual update)
+License:  Open data (DVV open data license)
+
+2024 highlights (from press release):
+- Most popular new baby names in 2024: Olivia (girls), Oliver (boys)
+- Previously: Aino (girls), Eino (boys) in prior year
+- Data also covers Swedish-speaking and other-language-speaking children separately
+
+Also available: surname data (sukunimitilasto) at same portal.
+
+--------------------------------------------------------------------
+SUPPLEMENTARY: Statistics Finland (Tilastokeskus)
+--------------------------------------------------------------------
+Portal:     https://stat.fi/
+StatFin DB: https://www.stat.fi/tup/statfin/index.html
+Note:       Tilastokeskus publishes demographic statistics but first name frequency
+            data is primarily held by DVV/Nimipalvelu.
+
+Name service (interactive search):
+  https://nimipalvelu.dvv.fi/en

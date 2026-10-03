@@ -1,0 +1,49 @@
+SERBIA — Given Names Data Sources
+=====================================
+Retrieved: 2026-05-01
+
+== DOWNLOADED FILES ==
+
+1. serbia_najcesca_imena_prezimena_2022census.pdf
+   - Agency: Republički zavod za statistiku (RZS) — Statistical Office of the Republic of Serbia
+   - Title: "Najčešća imena i prezimena" (Most Common Names and Surnames)
+   - Publication code: G20244001
+   - URL: https://publikacije.stat.gov.rs/G2024/Pdf/G20244001.pdf
+   - Year of data: 2022 (from the 2022 Population Census, published March 2024)
+   - Format: PDF (7.06 MB — large; likely contains extensive tables)
+   - Download succeeded: YES (7,407,171 bytes)
+   - Scope: NATIONAL — Serbia-wide
+   - Contents: Most common first names and surnames by gender and birth year cohort,
+     presented at municipality/city level; most common name+surname combinations at national level;
+     names of ethnic minorities (phonetically transcribed)
+   - Note: Based on full census enumeration (2022 Census), not a sample or annual registration.
+
+== NO STRUCTURED OPEN DATA DOWNLOAD FOUND ==
+
+The following were searched and found to have no downloadable CSV/XLS name frequency data:
+- opendata.stat.gov.rs — 715 datasets; none specifically for given names
+- data.gov.rs — national open data portal; RZS datasets listed but no names dataset found
+- popis2022.stat.gov.rs/sr-latn/popisni-podaci-eksel-tabele/ — 60+ Excel census files;
+  none of the 60 files contain personal name data (all are aggregate demographic stats)
+
+== ANNUAL NEWBORN NAME DATA (no download; press reports only) ==
+
+RZS annually publishes the most popular names for newborns. Data is released via press releases
+at stat.gov.rs (section: Stanovništvo > Rođeni i umrli). No CSV/XLS download is offered.
+
+Recent top newborn names (from RZS press reports):
+- 2023: Boys = Luka, Vasilije, Lazar, Bogdan, Vuk; Girls = Sofija, Dunja, Mila, Teodora, Maša
+- 2022: Boys = Luka (top), Bogdan, Vuk, Stefan, Aleksa; Girls = Sofija (top), Dunja, Mila
+- Historical: Jelena was #1 female name for 19 years (1976–1994); Milica for 17 years (1995–2011)
+
+Annual statistics source page:
+   URL: https://www.stat.gov.rs/sr-latn/vesti/20240308-najcescaimenaiprezimena/?a=0&s=0503
+   Also: https://popis2022.stat.gov.rs/en-us/5-vestisaopstenja/news-events/20240308-njcescaimenaiprezimena/
+
+== NOTES ==
+- Language family: Slavic (South Slavic) — Serbian uses both Cyrillic (primary official) and
+  Latin (Latinica) script. The RZS publication uses Latin script for this dataset.
+- The 2022 census PDF is the most comprehensive structured source available publicly.
+- For machine-readable annual newborn name data, a direct data request to RZS may be needed.
+- RZS contact: https://www.stat.gov.rs/en-us/o-nama/kontakt/
+- Dissemination database: https://data.stat.gov.rs/?caller=SDDB&languageCode=en-US

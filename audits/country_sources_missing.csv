@@ -1,0 +1,9 @@
+country,issue,n_data_files,data_files
+BANGLADESH,no source documentation,2,forebears_bangladesh_forenames_top50.csv; sigpwned_forenames_Bangladesh_2022.csv
+CROATIA,no source documentation,0,
+FRANCE,no source documentation,1,prenoms-2024-nat.csv
+PHILIPPINES,no source documentation,3,PSA_most_common_baby_names_2022_top10.csv; PSA_most_common_baby_names_2023_top10.csv; sigpwned_forenames_Philippines_2021.csv
+POLAND,no source documentation,2,imiona_2000-2019_pierwsze.csv; imiona_meskie_2020_pierwsze.csv
+TAIWAN,no source documentation,3,RIS_top_given_names_2010census.csv; RIS_top_given_names_2023.csv; sigpwned_forenames_Taiwan_2010census.csv
+THAILAND,no source documentation,2,DOPA_civil_registry_forenames_top20.csv; sigpwned_forenames_Thailand_2011census.csv
+USA,no source documentation,145,yob1880.txt; yob1881.txt; yob1882.txt; yob1883.txt; yob1884.txt; yob1885.txt; yob1886.txt; yob1887.txt

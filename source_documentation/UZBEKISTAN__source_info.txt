@@ -1,0 +1,91 @@
+UZBEK GIVEN NAMES — SOURCE INFORMATION
+=========================================
+Language family: Turkic (Karluk/Southeastern branch); distinct from Kazakh (Kipchak)
+                 and Turkish (Oghuz). Closest relative: Uyghur.
+Scripts: Uzbek Latin alphabet (official since 1993, fully adopted ~2000s),
+         Cyrillic (still widely used in practice), Arabic (historical)
+Population: ~36 million (2024)
+
+NOTE ON NAMING PATTERNS: Uzbekistan's naming patterns show two distinct layers:
+(1) Russian/Soviet-era names (Timur/Rustam/Elena/Tatyana) dominating all-time
+    population statistics in the Forebears data.
+(2) Contemporary Islamic names strongly dominating newborn data (2023+):
+    Muhammad variants overwhelmingly dominate male names; Islamic female names
+    (Soliha, Muslima, Hadicha, Imona) dominate female rankings.
+    In 2023, 501,577 boys and 466,563 girls were born (total ~968,140 births).
+
+------------------------------------------------------------
+SOURCE 1 (PRIMARY — ALL-TIME FREQUENCY, TOP 10 ONLY)
+------------------------------------------------------------
+Name:       Forebears — Most Common Uzbek/Uzbekistan Forenames
+URL:        https://forebears.io/uzbekistan/forenames
+File:       uzbekistan_names_forebears.csv
+Format:     CSV (manually extracted); TOP 10 ONLY
+            NOTE: Forebears shows up to 408 ranked names for Uzbekistan
+            but the full list was not fully extractable via WebFetch.
+            Only the top 10 are confirmed accurate.
+Frequency:  YES — absolute population-level incidence counts
+Notes:      Forebears reports 46,240 unique forenames in Uzbekistan with
+            665 people per name on average.
+            Top name: Timur (434,215 occurrences; ~1 in 71 people).
+            The top list is dominated by Soviet/Russian-era names.
+            Data retrieved: May 2026
+
+------------------------------------------------------------
+SOURCE 2 (PRIMARY — NEWBORN RANKINGS 2023, WITH COUNTS)
+------------------------------------------------------------
+Name:       Kun.uz — Most popular names in Uzbekistan announced (2023)
+URL:        https://kun.uz/en/news/2024/01/05/most-popular-names-in-uzbekistan-announced
+File:       uzbekistan_newborns_2023.csv
+Source:     Public Services Agency, Ministry of Justice of Uzbekistan
+Format:     CSV (manually extracted); top 10 male and female
+Frequency:  YES — absolute birth counts per name for 2023
+Notes:      Official registry data covering all 968,140 births in 2023.
+            Top male 2023: Muhammadali (27,431 births = 5.47% of all boys)
+            Top female 2023: Soliha (24,365 births = 5.22% of all girls)
+            All top-10 male names are Muhammad-compound variants.
+            Data retrieved: May 2026
+
+------------------------------------------------------------
+SOURCE 3 (ADDITIONAL CONTEXT — NOT IN CSV)
+------------------------------------------------------------
+Name:       BabyNames.ch — Most Popular Names Uzbekistan
+URL:        https://www.babynames.ch/Info/Series/psUzYearly
+Notes:      Provides yearly rankings for 2022 and 2023. All-time top names:
+            Abdullokh, Imona, Muhammadali, Muslima, Mustafo, Soliha, Yasmina.
+            Does not provide counts; ranks only.
+
+------------------------------------------------------------
+SOURCE 4 (PAID — NOT DOWNLOADED)
+------------------------------------------------------------
+Name:       Census.name — Uzbekistani Name Database
+URL:        https://census.name/uzbekistani-name-database/
+Format:     CSV, SQL, JSON (paid download; €55)
+Coverage:   1,374 male names, 714 female names, 231 unisex (2,088 total + 488 surnames)
+Frequency:  YES — frequency counts (derived from 6,695 social media profiles)
+Notes:      Small sample size (6,695 profiles). Social media bias likely.
+            Not purchased. Top male: Alisher (90, 1.8%); Top female: Madina (29, 1.8%)
+
+------------------------------------------------------------
+RECOMMENDED FILES FOR ANALYSIS
+------------------------------------------------------------
+uzbekistan_newborns_2023.csv  — Official birth counts for 2023 (top 10 m/f)
+uzbekistan_names_forebears.csv — All-time population counts (top 10 only)
+
+------------------------------------------------------------
+KEY ANALYTICAL NOTES
+------------------------------------------------------------
+- For contemporary Uzbek naming culture, the 2023 newborn data is far more
+  representative than the Forebears all-time data (which reflects Soviet era).
+- Male naming is dominated by Muhammad + compounds: Muhammadali, Muhammadyusuf,
+  Muhammadmin, Muhammadjon, Muhammadziyo are all distinct names in the top 10.
+  This reflects strong post-Soviet Islamic revival in naming practices.
+- Female names: Soliha (Arabic: virtuous/righteous), Yasmina (Arabic: jasmine),
+  Muslima (Arabic: Muslim woman), Hadicha (Arabic: Khadija), Imona (Arabic: faith).
+  All top-10 female names are Arabic/Islamic origin.
+- The Uzbek script situation: official Latin script exists but Cyrillic remains
+  common in practice; datasets use various romanisation conventions.
+  The Ministry of Justice uses Uzbek Latin script officially.
+- To obtain the full Forebears top-408 dataset for Uzbekistan, visit:
+  https://forebears.io/uzbekistan/forenames and manually extract or scrape
+  the full table (only top 10 was reliably extracted in this collection session).

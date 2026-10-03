@@ -1,0 +1,102 @@
+KAZAKH GIVEN NAMES — SOURCE INFORMATION
+=========================================
+Language family: Turkic (Kipchak branch); distinct from Turkish (Oghuz branch)
+Scripts: Cyrillic (current official script), Kazakh Latin alphabet (transition in progress),
+         Arabic script (historical; still used in diaspora communities in China)
+Population: ~19.2 million (2024)
+
+NOTE ON NAMING PATTERNS: Kazakhstan is ethnically mixed (~70% Kazakh, ~18% Russian
+as of recent censuses). This is clearly visible in the Forebears data, where Russian
+names (Elena, Sergey, Natalya) dominate the all-time counts due to Soviet-era naming,
+while the newborn data (Bureau of National Statistics) shows the rapid shift toward
+Kazakh and Islamic names in the contemporary period.
+
+------------------------------------------------------------
+SOURCE 1 (PRIMARY — ALL-TIME FREQUENCY, TOP 1000)
+------------------------------------------------------------
+Name:       Forebears — Most Common Kazakh/Kazakhstan Forenames
+URL:        https://forebears.io/kazakhstan/forenames
+File:       kazakhstan_names_forebears.csv
+Format:     CSV (manually extracted)
+Coverage:   Top 1,000 names with incidence counts and frequency ratios
+Frequency:  YES — absolute population-level incidence counts
+Notes:      Forebears reports 119,892 unique forenames in Kazakhstan with
+            148 people per name on average. Data derived from civil registration
+            and genealogical records across the full living population.
+            Top name: Elena (307,744 occurrences; ~1 in 58 people).
+            Reflects Soviet-era naming dominance in all-time totals.
+            Data retrieved: May 2026
+
+------------------------------------------------------------
+SOURCE 2 (PRIMARY — NEWBORN RANKINGS 2023, WITH COUNTS)
+------------------------------------------------------------
+Name:       Behind the Name — Popular Names in Kazakhstan 2023
+URL:        https://www.behindthename.com/top/lists/kazakhstan/2023
+File:       kazakhstan_newborns_behindthename.csv (year=2023 rows)
+Source:     Bureau of National Statistics of Kazakhstan
+Format:     CSV (manually extracted); top 10 male and female
+Frequency:  YES — birth count per name for 2023
+Notes:      Both Cyrillic forms and romanisations provided.
+            Top male 2023: Alihan (3,614 births)
+            Top female 2023: Medina (6,571 births)
+            Data retrieved: May 2026
+
+------------------------------------------------------------
+SOURCE 3 (SECONDARY — NEWBORN RANKINGS 2024, NO COUNTS)
+------------------------------------------------------------
+Name:       Qazinform — Most popular baby names of 2024
+URL:        https://qazinform.com/news/most-popular-baby-names-of-2024-in-kazakhstan-revealed-bed1e5
+File:       kazakhstan_newborns_behindthename.csv (year=2024 rows)
+Source:     Bureau of National Statistics of Kazakhstan
+Format:     CSV (manually extracted); top 10 male and female, ranks only
+Frequency:  NO counts — ranks only
+Notes:      Mukhammed replaced Alikhan (top since 2014) in 2024.
+            Mariyam entered top 10 for first time.
+            Data retrieved: May 2026
+
+------------------------------------------------------------
+SOURCE 4 (SECONDARY — NEWBORN RANKINGS 2025, NO COUNTS)
+------------------------------------------------------------
+Name:       Tengrinews — Most popular baby names in Kazakhstan in 2025
+URL:        https://en.tengrinews.kz/kazakhstan_news/most-popular-baby-names-in-kazakhstan-in-2025-revealed-268073/
+File:       kazakhstan_newborns_behindthename.csv (year=2025 rows)
+Source:     Bureau of National Statistics of Kazakhstan (Jan 1 – May 22, 2025)
+Format:     CSV (manually extracted); top 25 male and female, ranks only
+Frequency:  NO counts — ranks only
+Notes:      Partial year data. Aisultan tops boys; Ailyn/Ailin tops girls.
+            Data retrieved: May 2026
+
+------------------------------------------------------------
+SOURCE 5 (OFFICIAL — INTERACTIVE DATABASE, NOT DOWNLOADED)
+------------------------------------------------------------
+Name:       Bureau of National Statistics — Popular Names Tool
+URL:        https://stat.gov.kz/en/instuments/name/
+Format:     Web interface with XLS download option
+Coverage:   1990–2026, by year, gender, nationality, region
+Frequency:  YES — counts per name per year
+Notes:      The official interactive tool allows top-10 to top-100 queries
+            with XLS export. To download the full historical dataset, use
+            this tool directly. The page was functional at time of access
+            (May 2026) but required interactive use to retrieve data.
+            This is the single most comprehensive official source.
+
+------------------------------------------------------------
+RECOMMENDED FILES FOR ANALYSIS
+------------------------------------------------------------
+kazakhstan_names_forebears.csv        — 1,000 names, population-level counts
+kazakhstan_newborns_behindthename.csv — 2023/2024/2025 newborn ranks
+
+------------------------------------------------------------
+KEY ANALYTICAL NOTES
+------------------------------------------------------------
+- The top 1,000 Forebears names are MIXED (Kazakh + Russian) reflecting
+  demographic history. For Kazakh-specific names, filter by names not
+  obviously Russian/Slavic (Elena, Sergey, etc.).
+- Newborn data (2023-2025) is far more representative of contemporary
+  Kazakh naming: strongly Islamic (Muhammad variants, Ali, Omar) for boys;
+  Turkic-Islamic blend for girls (Medina, Aisha, Tomiris, Ailin).
+- The name Tomiris refers to the legendary Massagetae queen and represents
+  a wave of historically-inspired Kazakh naming.
+- Kazakhstan is mid-transition from Cyrillic to Latin script; official
+  romanisation rules are still being standardised (hence variation:
+  Alikhan / Alihan, Ailin / Ailyn).

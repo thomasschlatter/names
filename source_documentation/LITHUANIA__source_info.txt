@@ -1,0 +1,59 @@
+LITHUANIA — Given Names Data Sources
+=====================================
+Retrieved: 2026-05-01
+
+== DOWNLOADED FILES ==
+
+1. berniuku_vardai_boys_TOP20.csv
+   - Agency: VĮ Registrų centras (State Enterprise Register Centre)
+   - Portal: Lithuanian Open Data Portal (data.gov.lt)
+   - Dataset ID: data.gov.lt/datasets/1751 (boys version; girls is /datasets/... see below)
+   - Direct download URL: https://get.data.gov.lt/datasets/gov/rc/gr/berniuku_vardai/BerniukoVardas/:format/csv
+   - Years: 2024 (quarterly: K1–K4); possibly earlier quarters present
+   - Format: CSV
+   - Columns: nr (rank), vardas (name), viso_vardai (count), gimimo_metai (birth year), gimimo_ketvirtis (birth quarter)
+   - Scope: TOP 20 most popular boys/newborn names per quarter
+   - Download succeeded: YES (11,890 bytes)
+
+2. vyru_vardai_men_TOP50.csv
+   - Agency: VĮ Registrų centras
+   - Portal: Lithuanian Open Data Portal (data.gov.lt)
+   - Dataset page: https://data.gov.lt/datasets/1754/
+   - Direct download URL: https://get.data.gov.lt/datasets/gov/rc/gr/vyru_vardai/VyroVardas/:format/csv
+   - Years: Historical, from 1900 onward (living population name distribution)
+   - Format: CSV
+   - Columns: nr (rank), vardas (name), viso_vardai (total count)
+   - Scope: TOP 50 most common male names in Lithuania (all living persons, not just newborns)
+   - Download succeeded: YES (6,866 bytes)
+   - Note: TOP 1 = JONAS (127,263), TOP 2 = ANTANAS (96,104), etc. — reflects all-age population, not birth cohort.
+
+== NOT DOWNLOADED ==
+
+3. mergaiciu_vardai_girls_TOP20 (girls newborn names TOP 20)
+   - Dataset page: https://data.gov.lt/datasets/1751/
+   - Attempted download URL: https://get.data.gov.lt/datasets/gov/rc/gr/mergaiciu_vardai/MergaiciosVardas/:format/csv
+   - Status: FAILED — server returned 504 Gateway Timeout repeatedly
+   - Equivalent dataset to the boys file; should have same structure (vardas, gimimo_metai, gimimo_ketvirtis, viso_vardai)
+   - Try again later at: https://data.gov.lt/datasets/1751/
+
+== ADDITIONAL SOURCES (not downloaded) ==
+
+4. Registrų centras interactive page (newborn name statistics, updated annually):
+   - URL: https://www.registrucentras.lt/atviri-duomenys-ir-statistika/populiariausi-naujagimiu-vardai
+   - Note: Interactive web display; no bulk download found on the page.
+
+5. VLKK Name Statistics (Valstybinė lietuvių kalbos komisija):
+   - URL: https://vardai.vlkk.lt/statistika/
+   - Note: 3.9M name records from Population Register; access blocked (403) during retrieval.
+
+6. Lithuanian Open Data Portal — names category:
+   - URL: https://data.gov.lt/datasets/?selected_facets=category_exact:38&selected_facets=tags_exact:3045
+   - Lists all names-related datasets
+
+== NOTES ON DATA ==
+- All data originates from the Lithuanian Population Register (Gyventojų registras / GR)
+- Maintained by VĮ Registrų centras, published via data.gov.lt
+- Language family: Baltic (Indo-European) — Lithuanian names are highly distinctive
+  (strong use of nominal suffixes: -as/-is for male, -a/-ė for female)
+- Popular 2024 names: boys = Benas, Markas, Motiejus, Lukas, Adomas;
+  girls = Amelija, Sofija, Emilija (from press reports)
