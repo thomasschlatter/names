@@ -14,32 +14,32 @@ China,0.5816567955258051,0.6451197438039544,0.5976931949250288,10,10,1,official_
 Colombia,1.1716550198461757,0.8301009901635953,0.6961194685575809,10,10,1,official_colombia,Colombia,2023.0,0.7455,matched
 Croatia,0.5747295498070586,0.8319149802667141,0.7428785343319632,30,30,1,official_croatia,Croatia,2023.0,0.723,matched
 Curacao,0.9844671272358985,0.9079234972677596,0.7666314692044482,9,24,1,official_curacao,Curacao,,,not covered by the Global Gender Gap Index
-Denmark,0.17811887690227957,0.8160187805963508,0.7833298322703877,27,26,1,official_denmark,Denmark,2023.0,0.7887,matched
+Denmark,0.11646611965145694,0.809993058772772,0.7889073883324257,30,30,1,official_denmark,Denmark,2023.0,0.7887,matched
 Dominican Republic,0.014508136737944722,0.7678439475276458,0.765566902330453,15,15,1,official_dominican_republic,Dominican Republic (the),2023.0,0.7065,matched
 Estonia,0.7093164611211015,0.8397698851117207,0.7454899278666008,60,60,2,official_estonia;official_estonia_population_top100,Estonia,2023.0,0.7739,matched
 Faroe Islands,0.5269980725444883,0.8739128295946478,0.7897195810142239,26,30,1,official_faroe_islands,Faroe Islands,,,not covered by the Global Gender Gap Index
 Finland,0.1813368986039573,0.8414155895548849,0.8125272051736467,60,60,2,official_finland;official_finland_finnish_children_2024,Finland,2023.0,0.875,matched
-France,-0.003629618246486915,0.7635914067948627,0.7643458071977715,202,201,7,official_france;official_france_angers;official_france_nantes;official_france_orleans;official_france_paris;official_france_saint_herblain;official_france_toulouse,France,2023.0,0.7809,matched
+France,-0.004772553397394012,0.7633536054981699,0.7643458071977715,205,201,7,official_france;official_france_angers;official_france_nantes;official_france_orleans;official_france_paris;official_france_saint_herblain;official_france_toulouse,France,2023.0,0.7809,matched
 French Polynesia,0.49789894392564943,0.9457597645799893,0.9028720729215779,30,30,1,official_french_polynesia_pirae_polynesian_names,French Polynesia,,,not covered by the Global Gender Gap Index
 Georgia,1.904956876946724,0.923159786978194,0.6697333407742362,20,20,1,official_georgia,Georgia,2023.0,0.7158,matched
 Germany,0.747583073582856,0.9114042178904447,0.7952886541319377,342,335,13,official_germany_aachen;official_germany_berlin;official_germany_cologne;official_germany_dortmund;official_germany_essen;official_germany_kleve;official_germany_krefeld;official_germany_leipzig;offic,Germany,2023.0,0.8097,matched
 Greenland,0.3531226624910576,0.7200918964076858,0.6790252525252526,60,60,2,official_greenland;official_greenland_greenlandic_names,Greenland,,,not covered by the Global Gender Gap Index
 Hungary,0.7689988466560352,0.8464432445716599,0.7249971463141793,30,30,1,official_hungary,Hungary,2023.0,0.6861,matched
-Iceland,0.11180958581331674,0.8025275760021522,0.7862978065241846,29,22,1,official_iceland,Iceland,2023.0,0.9351,matched
+Iceland,0.12053738253646659,0.8024689898034268,0.7855917874396134,30,30,1,official_iceland,Iceland,2023.0,0.9351,matched
 Indonesia,-0.05554883217289144,0.7955903468178217,0.799594702489037,10,10,1,official_indonesia,Indonesia,2023.0,0.6864,matched
-Iran,-0.26973384536707445,0.8123065785088578,0.8452180237221968,29,29,1,official_iran,Iran (Islamic Republic of),2023.0,0.5787,matched
+Iran,-0.24216761616391125,0.8133415853015729,0.8426635141307747,30,30,1,official_iran,Iran (Islamic Republic of),2023.0,0.5787,matched
 Ireland,0.5652802445615227,0.8252329810205705,0.7158465221439022,30,30,1,official_ireland,Ireland,2023.0,0.8021,matched
 Italy,0.035839396489834516,0.7467966638232648,0.7416709420555953,30,30,1,official_italy,Italy,2023.0,0.7033,matched
 Japan,0.3634692826111873,0.8269841269841269,0.7741414141414141,13,19,1,official_japan,Japan,2023.0,0.663,matched
 Kazakhstan,0.12834261404150116,0.8600840976707722,0.8449408976153187,60,60,2,official_kazakhstan;official_kazakhstan_kazakh,Kazakhstan,2023.0,0.7104,matched
-Kyrgyzstan,-0.05253123838099587,0.9321113374066531,0.9377366112650046,5,6,1,official_kyrgyzstan,Kyrgyzstan,2023.0,0.6997,matched
+Kyrgyzstan,-0.5212442770403749,0.8412880690925619,0.9075157419618478,10,10,1,official_kyrgyzstan,Kyrgyzstan,2023.0,0.6997,matched
 Latvia,1.6989975153220669,0.8374596415703522,0.6139919393998252,30,30,1,official_latvia,Latvia,2023.0,0.7734,matched
-Lithuania,1.4427845633209662,0.8425098600948986,0.6321904335875818,30,29,1,official_lithuania,Lithuania,2023.0,0.7935,matched
+Lithuania,1.4463932485145279,0.8425098600948986,0.6328816952506653,30,30,1,official_lithuania,Lithuania,2023.0,0.7935,matched
 Mexico,0.4457117977517021,0.8217481767481766,0.7560854853958303,30,30,1,official_mexico_city,Mexico,2023.0,0.7677,matched
 Moldova,0.7438664633146196,0.8158861283643891,0.69596488957902,20,20,1,official_moldova,Moldova (the Republic of),2023.0,0.7907,matched
 Netherlands,0.3921022635916308,0.795357089423596,0.7287782099923178,30,30,1,official_netherlands,Netherlands,2023.0,0.7745,matched
 New Caledonia,0.6504528603677128,0.8114035087719298,0.6951447245564892,10,10,1,official_new_caledonia_noumea,New Caledonia,,,not covered by the Global Gender Gap Index
-New Zealand,0.6836438560604098,0.8453547218143763,0.7173542995793635,39,37,2,official_newzealand;official_newzealand_maori,New Zealand,2023.0,0.8347,matched
+New Zealand,0.6378192724790669,0.8453547218143763,0.7252898179826333,39,40,2,official_newzealand;official_newzealand_maori,New Zealand,2023.0,0.8347,matched
 North Macedonia,0.7853796676895631,0.8635297566695983,0.743811274509804,10,10,1,official_north_macedonia,North Macedonia,2023.0,0.7269,matched
 Norway,0.42986936444882556,0.8377227224375048,0.7690902484443839,30,30,1,official_norway,Norway,2023.0,0.8749,matched
 Paraguay,0.6796076639149653,0.8488026740015894,0.7302357095756361,10,10,1,official_paraguay,Paraguay,2023.0,0.7065,matched
@@ -59,4 +59,4 @@ Turkey,-0.2637710061846366,0.7396730805468734,0.774555564576631,50,53,2,official
 United Kingdom,0.28622095202199793,0.7953633321153101,0.7390060023922161,90,90,3,official_england;official_northern_ireland;official_scotland,UK,2023.0,0.7893,matched
 United States,0.44114606963259245,0.8173922831399142,0.7375143387734225,116,115,4,official_us_california;official_us_newyork_city;official_us_newyork_state;official_usa,USA,2023.0,0.7465,matched
 Uruguay,0.9796523671058761,0.8406200854310616,0.7141905775075988,50,50,2,official_uruguay;official_uruguay_montevideo,Uruguay,2023.0,0.7152,matched
-Uzbekistan,0.4400991305379747,0.8391409917678304,0.7962487814269208,9,10,1,official_uzbekistan,Uzbekistan,2023.0,0.6806,matched
+Uzbekistan,0.27200962826948116,0.8237646202810851,0.7962487814269208,10,10,1,official_uzbekistan,Uzbekistan,2023.0,0.6806,matched

@@ -84,6 +84,7 @@ GGI_ALIAS = {
     "Russia": "Russian Federation (the)", "Iran": "Iran (Islamic Republic of)",
     "Philippines": "Philippines (the)",
     "Dominican Republic": "Dominican Republic (the)",
+    "Moldova": "Moldova (the Republic of)",   # added 2026-10-04
 }
 # Territories the Global Gender Gap Index does not cover at all. Recorded so a
 # missing GGI is not mistaken for a join failure.
@@ -163,8 +164,11 @@ def main() -> None:
 
     unmatched = panel[panel["ggi_status"] == "NO MATCH"]
     if len(unmatched):
-        print(f"still unmatched to GGI ({len(unmatched)}): "
-              f"{', '.join(sorted(unmatched['country']))}")
+        # Was a printed warning; Moldova sat in it unnoticed and the manuscript
+        # reported it as a country without an index value. A join failure is
+        # not a missing value: fix GGI_ALIAS or list the place in NOT_IN_GGI.
+        raise SystemExit(f"unmatched to GGI ({len(unmatched)}): "
+                         f"{', '.join(sorted(unmatched['country']))}")
     with_ggi = panel[panel["GGI"].notna()]
     print(f"countries with registry data : {len(panel)}")
     print(f"  of which GGI matched       : {len(with_ggi)}")

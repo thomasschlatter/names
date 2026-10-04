@@ -256,8 +256,8 @@ Japan had silently dropped out of every analysis. The old
 as the English words "Chinese letter", and the transcription loop skipped those
 names (59 of 60) with `continue` BEFORE the G2P audit, so no file counted them.
 
-- **Source now:** Ogihara's Meiji Yasuda writing+reading tables (2021 BMC Res
-  Notes, OSF 2WURJ; 2025 Data in Brief, OSF BQUJN), local copies in
+- **Source now:** Ogihara's Meiji Yasuda writing+reading tables (2020 BMC Res
+  Notes 13:553, OSF 2WURJ; 2025 Data in Brief, OSF BQUJN), local copies in
   `GIVEN_NAMES/JAPAN/`. `name` is the hiragana READING, counts are per published
   writing-reading pair summed by reading; no reading is inferred. Built by
   `_RESOURCES/official_data/normalize_japan_ogihara.py`; 153 writing rows with
@@ -286,3 +286,58 @@ Old vs new (prior outputs in `audits/prior_20261003_pre_japan_fix/`):
 
 Coefficient changes max 0.022; pf_hi and pf_long flip sign but both are ~0
 (|coef| < 0.013). Japan sonority d = 0.36 (13 F, 19 M).
+
+### Step 1 manuscript corrections (2026-10-04)
+
+- **Held-out AUC added** (`run_loro`, output `official_ipa_loro_auc_top30.csv`):
+  each registry held out, model refitted on the rest, within-registry AUC.
+  Median held-out 0.800 (IQR 0.716-0.867) vs 0.804 in sample; above 0.5 in 108
+  of 109. Lowest: French Polynesia 0.46, Philippines 0.53, Japan 0.56, China 0.61.
+- **Moldova** had no `LANG_BY_SOURCE` entry and was skipped with a printed line;
+  mapped to `ro`. Unmapped registries now stop the knit. Moldova's GGI also
+  failed to join ("Moldova (the Republic of)"); alias added, and an unmatched
+  GGI join now raises in `_build_equality_panel.py`.
+- **Live bug fixed:** the paper said "spanning 0 language families" (the rebuilt
+  panel has no language column). Clause removed; no sourced family coding yet.
+- Prose: AUC no longer called "count-weighted" (equal weight per registry);
+  "strongly discriminable" -> moderate; "official government registries" ->
+  "predominantly government", with tier counts inline from
+  `audits/sources_lookup.csv`; Methods now lists every exclusion from the files;
+  equality section corrected (GGI via QoG Jan26, no longer "partly non-registry");
+  Limitations rewritten (source tiers, Europe/Americas skew, registries are not
+  independent languages). Ogihara 2020/2025 and QoG added to references.
+- Ogihara (2020) is BMC Res Notes 13:553; `GIVEN_NAMES/JAPAN/source_info.txt`
+  wrongly says 2021, 565.
+
+| | after Japan fix | after step 1 |
+|---|---:|---:|
+| Analysis 1 registries | 111 | 112 (Moldova) |
+| Analysis 2 sources / AUC | 108 / 0.797 | 109 / 0.798 |
+| Analysis 3 countries, gap > 0 | 48 / 54 | 49 / 55 |
+| Analysis 3 r with GGI | +.083, p = .552 | +.087, p = .526 |
+
+Open for step 2: Introduction and Discussion around Ackermann & Zimmer (2021);
+Japan and China are the weakest held-out registries, which matters for that
+argument.
+
+### Step 2: Ackermann & Zimmer framing (2026-10-04)
+
+- New Analysis 1b (`build_position_analysis`, output
+  `official_position_analysis.csv`, Table 2): ends-in-vowel, sonority with the
+  final segment excluded, A&Z non-palatal vowels with the final segment excluded
+  (palatal = syllabic, non-back, non-low). Results: final vowel favours female
+  names in 106/112 but East Asia ranks last (China 0, Taiwan 0, Japan +0.03,
+  Korea -0.15); non-palatal cue replicates in 101/112; sonority outside the final
+  segment female-higher in 95/112 incl. all four East Asian registries.
+- Introduction and Discussion rewritten around "two layers": a regional final
+  convention over a broad distributed sonority/vowel-quality contrast. Held-out
+  AUC is low for China (0.61) and Japan (0.57) but high for Taiwan and Korea,
+  so the paper does NOT attribute the weak transfer to the missing convention.
+- **Cache bug fixed:** cached transcriptions bypassed the unparsed-symbol check;
+  30 names with silently dropped symbols (Danish ?, Icelandic #, Iranian digits,
+  Kyrgyz X/S) were in every analysis. Cache rows are now re-validated. Unparsed
+  exclusions 18 -> 53; Uzbekistan and Kyrgyzstan fall below 20 names, so
+  Analysis 2 has 107 registries. Prior outputs: `audits/prior_20261004_pre_cache_fix/`.
+- Numbers now: A1 112 registries (son 104, vowel 104, cons 104, length 80);
+  A2 107 sources, AUC 0.797, held-out median 0.796; A3 49/55, r = +.074, p = .593.
+- Body ~3,470 words. Coefficient table is now Table 3.

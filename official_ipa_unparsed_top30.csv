@@ -1,15 +1,49 @@
 source,name,ipa,phonemizer,leftover
+official_denmark,Agnes,?ɑjnəs,da,U+003F '?' x1
+official_denmark,Aksel,?ɑksəl,da,U+003F '?' x1
+official_denmark,Anker,?ɑnkʔʌ,da,U+003F '?' x1
+official_denmark,Freja,fʁ?ɑja,da,U+003F '?' x1
+official_denmark,Magnus,m?ɑjnʔus,da,U+003F '?' x1
+official_denmark,Maja,m?ɑja,da,U+003F '?' x1
+official_denmark,William,wʔilʔi?ɑm,da,U+003F '?' x1
 official_faroe_islands,Bjørk,bj9zɡ,fo,U+0039 '9' x1
 official_faroe_islands,Bjørt,bj9zd,fo,U+0039 '9' x1
 official_faroe_islands,Eyðvør,ɛɟːʋ2ːr,fo,"U+0032 '2' x1, U+02D0 'ː' x1"
 official_faroe_islands,Sólja,s9lja,fo,U+0039 '9' x1
 official_france_angers,Noé,nœ́,epitran:fra-Latn,U+0301 '́' x1
+official_france_nantes,Chloé,ʃlœ́,epitran:fra-Latn,U+0301 '́' x1
 official_france_nantes,Zoé,zœ́,epitran:fra-Latn,U+0301 '́' x1
 official_france_orleans,Zoé,zœ́,epitran:fra-Latn,U+0301 '́' x1
+official_france_paris,Chloé,ʃlœ́,epitran:fra-Latn,U+0301 '́' x1
 official_france_paris,Noé,nœ́,epitran:fra-Latn,U+0301 '́' x1
 official_france_paris,Zoé,zœ́,epitran:fra-Latn,U+0301 '́' x1
 official_france_saint_herblain,Noé,nœ́,epitran:fra-Latn,U+0301 '́' x1
+official_france_toulouse,Chloé,ʃlœ́,epitran:fra-Latn,U+0301 '́' x1
+official_iceland,Birkir,bɪrr#ɟɪr,is,U+0023 '#' x1
+official_iceland,Birnir,bɪrdn#ɪr,is,U+0023 '#' x1
+official_iceland,Bjartur,bjarr#dyr,is,U+0023 '#' x1
+official_iceland,Daníel,daːniɛːl#,is,U+0023 '#' x1
+official_iceland,Emil,ɛːmɪl#,is,U+0023 '#' x1
+official_iceland,Jökull,jœːɡytl#,is,U+0023 '#' x1
+official_iceland,Mikael,mɪːɡaɛːl#,is,U+0023 '#' x1
+official_iceland,Rakel,raːɟɛːl#,is,U+0023 '#' x1
+official_iceland,Róbert,roʊːbɛrr#d,is,U+0023 '#' x1
+official_iran,رقيه,roq1ajjeː,fa,U+0031 '1' x1
+official_iran,علی اصغر,aːli aːsq1ar,fa,U+0031 '1' x1
+official_kyrgyzstan,Аиша,ɑiSɑ,ky,U+0053 'S' x1
+official_kyrgyzstan,Алихан,ɑliXɑn,ky,U+0058 'X' x1
+official_kyrgyzstan,Аруузат,ɑru:zɑt[,ky,"U+003A ':' x1, U+005B '[' x1"
+official_kyrgyzstan,Билал,bilɑl-,ky,U+002D '-' x1
+official_kyrgyzstan,Мухаммад,muXɑmmɑd[,ky,"U+0058 'X' x1, U+005B '[' x1"
+official_kyrgyzstan,Мухаммед,muXɑmmed[,ky,"U+0058 'X' x1, U+005B '[' x1"
+official_kyrgyzstan,Салиха,sɑliXɑ,ky,U+0058 'X' x1
+official_kyrgyzstan,Фатима,fɑt[imɑ,ky,U+005B '[' x1
+official_kyrgyzstan,Хадича,Xɑd[itSɑ,ky,"U+0053 'S' x1, U+0058 'X' x1, U+005B '[' x1"
+official_lithuania,Bronius,broːnʲʲus,lt,U+02B2 'ʲ' x1
+official_newzealand_maori,Kahurangi,"kahu""raŋi",mi,"U+0022 '""' x1"
+official_newzealand_maori,Nikau,"nikau""",mi,"U+0022 '""' x1"
 official_newzealand_maori,Tui,"tu""i",mi,"U+0022 '""' x1"
+official_newzealand_maori,Wiremu,"wiremu""",mi,"U+0022 '""' x1"
 official_russia_moscow,Дарья,dɑrɪ^jja,ru,U+02B2 'ʲ' x1
 official_switzerland_french_region,Chloé,ʃlœ́,epitran:fra-Latn,U+0301 '́' x1
 official_switzerland_french_region,Noé,nœ́,epitran:fra-Latn,U+0301 '́' x1
@@ -17,3 +51,4 @@ official_switzerland_french_region,Zoé,zœ́,epitran:fra-Latn,U+0301 '́' x1
 official_switzerland_geneva,Chloé,ʃlœ́,epitran:fra-Latn,U+0301 '́' x1
 official_switzerland_geneva,Noé,nœ́,epitran:fra-Latn,U+0301 '́' x1
 official_switzerland_geneva,Zoé,zœ́,epitran:fra-Latn,U+0301 '́' x1
+official_uzbekistan,Hadicha,hædytSæ,uz,U+0053 'S' x1

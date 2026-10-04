@@ -282,6 +282,9 @@ LANG_BY_SOURCE = {
     "official_poland": ("pl", None),
     "official_portugal": ("pt", None),
     "official_romania": ("ro", None),
+    # Moldova: official language Romanian, Latin script. Had no entry until
+    # 2026-10-04, so its 40-name subset was skipped with only a printed line.
+    "official_moldova": ("ro", None),
     "official_russia": ("ru", None),
     "official_russia_moscow": ("ru", None),
     "official_scotland": ("en", None),
@@ -804,8 +807,10 @@ def build_feature_table(args: argparse.Namespace) -> pd.DataFrame:
     frames = []
     for path in files:
         if path.stem not in LANG_BY_SOURCE:
-            print(f"SKIP {path.stem}: no language mapping")
-            continue
+            # Was a printed SKIP, which silently removed Moldova. A registry
+            # with no transcriber assignment is a configuration error.
+            raise SystemExit(f"{path.stem}: no language mapping in LANG_BY_SOURCE; "
+                             f"add one or list it in EXCLUDE_SOURCES")
         df = load_source(path, args.max_names_per_sex_source)
         if df is None or df.empty:
             print(f"SKIP {path.stem}: no usable rows")
@@ -826,6 +831,19 @@ def build_feature_table(args: argparse.Namespace) -> pd.DataFrame:
         source_rows = group[["source", "name"]].drop_duplicates()
         if existing is not None:
             cached = source_rows.merge(existing, on=["source", "name"], how="inner")
+            # Re-validate every cached transcription. The cache predates the
+            # unparsed-symbol check, and on 2026-10-04 it was found to carry 30
+            # names (Danish ?, Icelandic #, Iranian digits, Kyrgyz X/S) whose
+            # features panphon had computed after silently dropping symbols.
+            # A cached row that fails the check is re-transcribed below, where
+            # it is excluded and counted like any other unparsed name.
+            def _parses(ipa):
+                try:
+                    assert_fully_parsed(str(ipa))
+                    return True
+                except UnparsedIPA:
+                    return False
+            cached = cached[cached["ipa"].map(_parses)]
             cached_names = set(cached["name"])
             if not cached.empty:
                 feature_frames.append(cached)
@@ -1046,6 +1064,75 @@ def run_regression(df: pd.DataFrame, args: argparse.Namespace) -> pd.DataFrame:
     return coef
 
 
+def run_loro(df: pd.DataFrame, args: argparse.Namespace) -> pd.DataFrame:
+    """Leave-one-registry-out AUC (added 2026-10-04).
+
+    The AUC in run_regression is fitted and evaluated on the same names. Here
+    each registry is held out in turn: the model (same features, same registry
+    fixed effects, same equal-registry weighting) is fitted on all OTHER
+    registries, standardised on their means only, and the held-out registry's
+    names are scored from features alone. A held-out registry has no fixed
+    effect, but an intercept shift cannot change a ranking, so the WITHIN-
+    registry AUC is unaffected. The in-sample within-registry AUC from the full
+    model is reported alongside, so the drop from fitting to prediction is
+    visible per registry.
+    """
+    model_df = df.dropna(subset=MODEL_FEATURES + ["sex_male", "count"]).copy()
+    if args.min_source_rows:
+        keep = model_df["source"].value_counts()
+        keep = set(keep[keep >= args.min_source_rows].index)
+        model_df = model_df[model_df["source"].isin(keep)]
+    model_df = model_df.reset_index(drop=True)
+    numeric_cols = MODEL_FEATURES + ["year_centered"]
+    w_all = model_df["count"].astype(float).clip(lower=1)
+    w_all = w_all.groupby(model_df["source"]).transform(lambda s: s / s.sum())
+
+    def design(train, test):
+        mu = train[numeric_cols].astype(float).mean()
+        sd = train[numeric_cols].astype(float).std(ddof=0).replace(0, 1)
+        xt = ((train[numeric_cols].astype(float) - mu) / sd).reset_index(drop=True)
+        xs = ((test[numeric_cols].astype(float) - mu) / sd).reset_index(drop=True)
+        d = pd.get_dummies(train["source"], prefix="src", drop_first=True, dtype=float).reset_index(drop=True)
+        xt = pd.concat([xt, d], axis=1)
+        xs = xs.reindex(columns=xt.columns, fill_value=0.0)
+        return xt, xs
+
+    def fit_on(train):
+        w = w_all.loc[train.index]
+        w = w * (len(w) / w.sum())
+        m = LogisticRegression(C=args.regularization_c, max_iter=args.max_iter, solver="lbfgs")
+        return m, w
+
+    # in-sample reference: full model, scored within each registry
+    x_full, _ = design(model_df, model_df.iloc[:1])
+    m_full, w_full = fit_on(model_df)
+    m_full.fit(x_full, model_df["sex_male"].astype(int), sample_weight=w_full)
+    p_full = m_full.predict_proba(x_full)[:, 1]
+
+    rows = []
+    for source in sorted(model_df["source"].unique()):
+        test_mask = model_df["source"] == source
+        train, test = model_df[~test_mask], model_df[test_mask]
+        y_test = test["sex_male"].astype(int)
+        if y_test.nunique() < 2:
+            continue
+        xt, xs = design(train, test)
+        m, w = fit_on(train)
+        m.fit(xt, train["sex_male"].astype(int), sample_weight=w)
+        p = m.predict_proba(xs)[:, 1]
+        wt = test["count"].astype(float).clip(lower=1)
+        rows.append({
+            "source": source,
+            "n_F": int((y_test == 0).sum()),
+            "n_M": int((y_test == 1).sum()),
+            "auc_heldout": roc_auc_score(y_test, p, sample_weight=wt),
+            "auc_insample": roc_auc_score(y_test, p_full[test_mask.values], sample_weight=wt),
+        })
+    out = pd.DataFrame(rows)
+    out.to_csv(args.loro_out, index=False)
+    return out
+
+
 ```
 
 ```{python pipeline-run, include=FALSE}
@@ -1074,6 +1161,7 @@ CFG = SimpleNamespace(
     unparsed_out=BASE / "official_ipa_unparsed_top30.csv",
     langswitch_out=BASE / "official_ipa_langswitch_excluded_top30.csv",
     nofeatures_out=BASE / "official_ipa_nofeatures_excluded_top30.csv",
+    loro_out=BASE / "official_ipa_loro_auc_top30.csv",
     # "halt": stop the knit when a transcription contains a symbol panphon
     # cannot parse (the default, and the reason this check exists).
     # "exclude": drop those names, still counted and written to unparsed_out.
@@ -1094,6 +1182,9 @@ if r.REBUILD_PIPELINE:
     print(f"Feature rows: {len(feat):,}; sources: {feat['source'].nunique()}")
     coef_tbl = run_regression(feat, CFG)
     print(coef_tbl.head(15).to_string(index=False))
+    loro = run_loro(feat, CFG)
+    print(f"LORO: {len(loro)} registries, median held-out AUC "
+          f"{loro['auc_heldout'].median():.3f} (in-sample {loro['auc_insample'].median():.3f})")
 
 # ---- Analysis 1: feature-level universality across registries -------------
 # official_feature_universality.csv had NO producer script and predated the
@@ -1145,7 +1236,55 @@ def build_universality(features: pd.DataFrame, out_path: Path) -> pd.DataFrame:
     return table
 
 
+# ---- Analysis 1b: final position versus the rest of the name ---------------
+# Added 2026-10-04 to test Ackermann & Zimmer (2021, Linguistics 59(4)), who
+# found the sonority of the FINAL sound to be a gender cue only in some
+# countries (strong in Poland, Hungary, Germany; absent in China and Japan) and
+# attributed it to the Latin-derived -a suffix, while the number of non-palatal
+# vowels outside the final position was their only cue holding everywhere.
+# Per name, from the same panphon segments as every other feature:
+#   final_syl        final segment is syllabic (the name ends in a vowel)
+#   son_nonfinal     share of sonorant segments, final segment excluded
+#   nonpal_nonfinal  count of non-palatal vowels, final segment excluded, as in
+#                    A&Z; palatal = syllabic, non-back, non-low (their [i e y]),
+#                    so [a] counts as non-palatal as it does for them
+# Per registry: count-weighted female mean minus male mean, as in Analysis 1.
+def build_position_analysis(features: pd.DataFrame, out_path: Path) -> pd.DataFrame:
+    i_syl, i_son = PANPHON_FEATURES.index("syl"), PANPHON_FEATURES.index("son")
+    i_back, i_lo = PANPHON_FEATURES.index("back"), PANPHON_FEATURES.index("lo")
+    recs = []
+    for ipa in features["ipa"].astype(str):
+        segs = np.array(ft.word_to_vector_list(assert_fully_parsed(ipa), numeric=True), dtype=float)
+        if len(segs) < 2:
+            recs.append((np.nan, np.nan, np.nan))
+            continue
+        body = segs[:-1]
+        vowel = body[:, i_syl] > 0
+        palatal = vowel & (body[:, i_back] < 0) & (body[:, i_lo] < 0)
+        recs.append((float(segs[-1, i_syl] > 0),
+                     float((body[:, i_son] > 0).mean()),
+                     float((vowel & ~palatal).sum())))
+    f = features[["source", "sex", "count"]].copy()
+    f[["final_syl", "son_nonfinal", "nonpal_nonfinal"]] = pd.DataFrame(recs, index=f.index)
+    rows = []
+    for source, g in f.groupby("source"):
+        row = {"source": source}
+        for m in ["final_syl", "son_nonfinal", "nonpal_nonfinal"]:
+            vals = {}
+            for sex in ("F", "M"):
+                part = g[(g["sex"] == sex) & g[m].notna()]
+                if len(part):
+                    vals[sex] = np.average(part[m], weights=part["count"].clip(lower=1))
+            row[m] = vals["F"] - vals["M"] if len(vals) == 2 else np.nan
+        row["n_short"] = int(g["final_syl"].isna().sum())   # one-segment names, counted
+        rows.append(row)
+    out = pd.DataFrame(rows)
+    out.to_csv(out_path, index=False)
+    return out
+
+
 if r.REBUILD_PIPELINE:
+    pos_table = build_position_analysis(feat, BASE / "official_position_analysis.csv")
     uni_table = build_universality(feat, BASE / "official_feature_universality.csv")
     print(f"universality rebuilt: {len(uni_table)} features over "
           f"{int(uni_table['sources_total'].max())} registries")
@@ -1231,6 +1370,67 @@ ct_p  <- cor.test(eq$d, eq$GGI, method = "pearson")
 ct_s  <- cor.test(eq$d, eq$GGI, method = "spearman", exact = FALSE)
 r_pe  <- unname(ct_p$estimate); p_pe <- ct_p$p.value
 rho_s <- unname(ct_s$estimate); p_s  <- ct_s$p.value
+eq_raw <- read_csv("audits/equality_panel_rebuilt.csv", show_col_types = FALSE)
+eq_noggi <- sort(eq_raw$country[is.na(eq_raw$GGI)])
+
+# ---- Analysis 1b: final position versus the rest of the name ----
+pos <- read_csv("official_position_analysis.csv", show_col_types = FALSE)
+pos_n       <- sum(!is.na(pos$final_syl))
+pos_final   <- sum(pos$final_syl > 0, na.rm = TRUE)
+pos_sonnf   <- sum(pos$son_nonfinal > 0, na.rm = TRUE)
+pos_nonpal  <- sum(pos$nonpal_nonfinal < 0, na.rm = TRUE)
+pos_short   <- sum(pos$n_short)
+ea_ids  <- c(China = "official_china", Taiwan = "official_taiwan",
+             `South Korea` = "official_southkorea", Japan = "official_japan")
+ea      <- pos[match(ea_ids, pos$source), ]
+ea$label <- names(ea_ids)
+ea_rank_final <- rank(-pos$final_syl, na.last = "keep")[match(ea_ids, pos$source)]
+fmt_d2 <- function(x) sprintf("%+.2f", x)
+exc <- pos[!is.na(pos$son_nonfinal) & pos$son_nonfinal <= 0, ]
+n_exc <- nrow(exc)
+exc_min2 <- sort(exc$son_nonfinal)[2]
+n_exc_turkic <- sum(grepl("turkey|kazakhstan|azerbaijan|kyrgyzstan|uzbekistan", exc$source))
+n_exc_nordic <- sum(grepl("norway|denmark|iceland|finland|sweden|faroe", exc$source))
+n_exc_finalpos <- sum(exc$final_syl > 0)
+
+# ---- Held-out discrimination (leave one registry out) ----
+loro <- read_csv("official_ipa_loro_auc_top30.csv", show_col_types = FALSE)
+loro_n      <- nrow(loro)
+loro_med    <- median(loro$auc_heldout)
+loro_q1     <- unname(quantile(loro$auc_heldout, .25))
+loro_q3     <- unname(quantile(loro$auc_heldout, .75))
+loro_med_in <- median(loro$auc_insample)
+loro_above  <- sum(loro$auc_heldout > .5)
+
+# ---- Registry attrition, every step counted from the files ----
+man <- read_csv("official_data_top30/_manifest.csv", show_col_types = FALSE)
+nocount  <- c("ukraine", "romania", "belarus")      # empty count column
+stopifnot(!any(nocount %in% man$registry))
+abjad    <- c("israel", "israel_jewish_hebrew", "morocco", "tunisia")
+czech    <- c("czech", "czech_mv")                  # count = 1 on every row
+n_lists  <- nrow(man) + length(nocount)
+feat_tab <- read_csv("official_ipa_features_top30.csv", show_col_types = FALSE)
+src_rows <- table(feat_tab$source)
+small    <- sort(sub("official_", "", names(src_rows)[src_rows < 20]))
+small_lab <- c(germany_moers = "Moers, Germany", newzealand_maori = "New Zealand Maori names",
+               russia = "Russia", uzbekistan = "Uzbekistan", kyrgyzstan = "Kyrgyzstan")
+stopifnot(all(small %in% names(small_lab)))   # label any new small registry here
+small <- unname(small_lab[small])
+langsw   <- read_csv("official_ipa_langswitch_excluded_top30.csv", show_col_types = FALSE)
+unparsed <- read_csv("official_ipa_unparsed_top30.csv", show_col_types = FALSE)
+src_count  <- sort(tapply(feat_tab$count, feat_tab$source, sum), decreasing = TRUE)
+top3_share <- sum(src_count[1:3]) / sum(src_count)
+top3_names <- tools::toTitleCase(gsub("_", " ", sub("official_", "", names(src_count)[1:3])))
+jp       <- feat_tab[feat_tab$source == "official_japan", ]
+jp_F <- sum(jp$sex == "F"); jp_M <- sum(jp$sex == "M")
+
+# ---- Source quality of the registries actually analysed ----
+src_lookup <- read_csv("audits/sources_lookup.csv", show_col_types = FALSE)
+used_src   <- names(src_rows)
+tiers <- table(factor(src_lookup$quality_tier[match(sub("official_", "", used_src),
+                                                     src_lookup$source_id)],
+                      levels = c("A", "B", "C", "?")), useNA = "ifany")
+stopifnot(sum(tiers) == length(used_src))
 ```
 
 
@@ -1240,17 +1440,23 @@ Across the world's languages, female and male given names tend to differ in soun
 female names are widely reported to be longer, to end in vowels, and to favour
 sonorous, open articulations. Whether this pattern is a genuine cross-linguistic
 regularity, and whether its magnitude reflects how gender is organised in a society,
-remain open questions. Drawing on official government birth and population registries,
-this study quantifies the phonological female-male contrast in given names at scale.
+remain open questions. Drawing on published name statistics, predominantly from
+government birth and population registries, this study quantifies the phonological
+female-male contrast in given names at scale.
 In a feature-level analysis spanning `r n_uni_sources` registries, the direction of
 the contrast is near-invariant: female names carry a higher vowel proportion in
 `r u_vowel$sources_agreeing` of `r n_uni_sources` registries and a more sonorant
 profile in `r u_son$sources_agreeing` of `r n_uni_sources`, while male names are more
 consonantal (`r u_cons$sources_agreeing` of `r n_uni_sources`) and longer
-(`r u_len$sources_agreeing` of `r n_uni_sources`). A pooled multivariate model trained
-on the most frequent names from `r reg_n_sources` registries separates female from
-male names with a count-weighted area under the curve of `r sprintf('%.3f', reg_auc)`.
-Finally, in a broader sample of `r eq_n` countries, `r eq_pos` of `r eq_n` show the
+(`r u_len$sources_agreeing` of `r n_uni_sources`). The final vowel, previously shown to
+be a regional cue (Ackermann & Zimmer, 2021), is absent in the East Asian registries, but
+with the final segment excluded female names remain more sonorant in `r pos_sonnf` of
+`r pos_n` registries, East Asia included. A pooled multivariate model of the
+most frequent names from `r reg_n_sources` registries, with each registry weighted
+equally, separates female from male names with an area under the curve of
+`r sprintf('%.3f', reg_auc)`; applied to registries it was not trained on, it reaches
+a median of `r sprintf('%.3f', loro_med)`.
+Finally, across `r eq_n` countries, `r eq_pos` of `r eq_n` show the
 female-male gap in the same direction (mean Cohen's *d* = `r sprintf('%.2f', eq_mean_d)`),
 yet the size of the gap is unrelated to a standard index of national gender parity
 (*r* = `r fmt_r(r_pe)`, *p* = `r fmt_p(p_pe)`). Phonological gender marking in names
@@ -1263,8 +1469,8 @@ account of its origin.
 That names sound gendered is a familiar intuition, and a measurable one. English
 *Emma*, *Sophia*, and *Olivia* end in open vowels and string together sonorant
 consonants; *Brett*, *Mark*, and *Kurt* are short, closed, and obstruent-heavy.
-Early quantitative work established that such regularities are not idiosyncratic to
-English. Female names are, on average, longer, more likely to be stressed on a
+Quantitative work, almost all of it on English, has established that female names are, on
+average, longer, more likely to be stressed on a
 non-initial syllable, more likely to end in a vowel, and more likely to contain the
 acoustically diffuse, high-sonority segments that the broader sound-symbolism literature
 associates with smallness and softness (Cutler, McQueen, & Robinson, 1990; Slater &
@@ -1273,12 +1479,21 @@ exploit these cues: novel names and nonwords are reliably sex-typed from form al
 the effect aligns with the same sound-meaning mappings that drive the *bouba-kiki*
 phenomenon (Sidhu & Pexman, 2018; Sidhu, Pexman, & Saint-Aubin, 2019).
 
-Two questions have proven harder to settle. The first is universality. Most evidence
-comes from a handful of well-studied European languages, and the convenience samples
-that dominate the literature (telephone directories, single-cohort birth lists, online
-name corpora) make it difficult to know whether the female-male contrast is a property
-of naming in general or an areal feature of the Indo-European naming tradition. The
-second question concerns explanation. If female names really are softer and more
+Two questions have proven harder to settle. The first is universality, and here the closest
+precedent points away from it. Ackermann and Zimmer (2021) compared the 30 most popular
+given names per sex in 13 countries, eight of them European, and modelled name gender from
+syllable count, sonority and vowel quality. One cue held in every country: male names
+contained more non-palatal vowels outside the final position. The others did not. The
+sonority of the final sound, the strongest cue in Poland, Hungary and Germany, made no
+difference in China and Japan, and syllable count mattered only in the Indo-European
+sample. They concluded that most phonological gender cues in names are conventional,
+specific to regions or language families and traceable in Europe to the Latin-derived *-a*
+of female names, rather than sound-symbolic and potentially universal. Two features of that
+design leave the question open. Thirteen countries is a narrow base for a claim about what
+does not generalise, and a sonority measure that includes the final segment cannot separate
+a cue located at the end of the name, where *-a* sits, from one distributed across it.
+
+The second question concerns explanation. If female names really are softer and more
 sonorous across cultures, is that contrast a reflex of how those cultures construct
 gender, sharpening where gender roles are most differentiated and flattening where they
 are most equal? Or is it a sound-symbolic regularity that operates below the level of
@@ -1292,8 +1507,10 @@ and resident populations, provide exactly this: frequency-weighted name distribu
 entire countries, in dozens of languages and writing systems. The present study assembles
 such registries at scale and uses grapheme-to-phoneme conversion to place every name in a
 common phonological feature space. Three analyses follow. Analysis 1 asks how consistent
-the direction of the female-male contrast is, feature by feature, across registries.
-Analysis 2 asks how strongly the contrast separates the sexes when phonological features
+the direction of the female-male contrast is, feature by feature, across registries, and
+then separates the final segment from the rest of the name, the distinction on which
+Ackermann and Zimmer's conclusion turns. Analysis 2 asks how strongly the contrast
+separates the sexes when phonological features
 are combined multivariately. Analysis 3 turns to the explanatory question, testing whether
 the size of the contrast tracks a standard index of national gender equality across a broad
 country sample.
@@ -1302,12 +1519,36 @@ country sample.
 
 ## Name registries
 
-Names were drawn from official government birth and population registries (national
-statistical offices, civil registration authorities, and equivalent bodies). Each source
-provides given names with a sex label and a frequency (annual births or resident counts).
-Where a registry reported names by year, counts were summed within name and sex. Analyses
-weight by these frequencies, so that common names contribute in proportion to the people
-who carry them rather than appearing as single types.
+Names were drawn from published name statistics, mostly those of national statistical
+offices, civil registration authorities, and equivalent municipal or regional bodies.
+Each source provides given names with a sex label and a frequency. The sources are not
+uniform. Of the `r length(used_src)` registries analysed, `r tiers[["A"]]` are government
+counts of newborns or of a full register, `r tiers[["B"]]` are government counts of a
+resident population, a pooled period, or partial coverage, `r tiers[["C"]]` is a
+non-government survey (Japan, a Meiji Yasuda Life Insurance survey of customers' newborns;
+Ogihara, 2020, 2025), and `r tiers[["?"]]` could not be classified from the published
+documentation. Subnational registries (for example, German and French cities, Swiss
+cantons, Australian states) are analysed as registries in their own right in Analyses 1
+and 2.
+
+From each registry the 30 most frequent distinct names per sex were taken. Where a registry
+reports names by year, only its most recent year was used, so that every country contributes
+contemporary names rather than a pooled sample spanning different eras; registries without
+a year field contributed all their rows. Analyses weight names by these frequencies within
+a registry.
+
+The collection held `r n_lists` name lists. Every exclusion is listed here. Three lists
+(Ukraine, Romania, Belarus) carry no counts; the Ukrainian and Belarusian publishers
+release only an annual top-name announcement without frequencies. Two Czech lists carry a
+count of 1 on every row and are name inventories rather than frequency tables. Four
+sources in abjad scripts (Israel, two lists; Morocco; Tunisia) were excluded for the
+transcription reason given below. Within the remaining registries,
+`r nrow(langsw)` names were excluded because the transcriber returned a pronunciation in
+another language, and `r nrow(unparsed)` because their transcription contained symbols the
+feature system cannot parse; both sets are listed with their registry in the
+supplementary files. This leaves `r n_uni_sources` registries for Analysis 1. Analysis 2
+additionally requires at least 20 names per registry, which removes
+`r length(small)` registries (`r paste(small, collapse = "; ")`) and leaves `r reg_n_sources`.
 
 ## Phonological transcription
 
@@ -1315,35 +1556,45 @@ Names were converted to the International Phonetic Alphabet with a source-aware
 grapheme-to-phoneme pipeline. Most languages were transcribed with eSpeak NG using the
 language-appropriate voice; Mandarin names were routed through pinyin before conversion,
 and a small number of orthographically transparent inventories used dedicated segmental
-rules. Because grapheme-to-phoneme conversion is language-specific, each registry was
-assigned its language explicitly rather than detected automatically.
+rules. Japanese names are written in kanji whose readings in names are irregular and
+cannot be derived by rule, so the Japanese data use the hiragana readings published with
+each written form (Ogihara, 2020, 2025), summed by reading; this yields `r jp_F` female
+and `r jp_M` male readings for the most recent year, fewer than 30 per sex because the
+published tables list fewer. Because grapheme-to-phoneme conversion is language-specific,
+each registry was assigned its language explicitly rather than detected automatically.
+Symbols that a transcriber emits outside the feature system's inventory were repaired only
+where the correspondence is documented (for example, eSpeak's rendering of Japanese /u/ as
+[ɯ] with a compression mark, mapped to [ɯ]); all other such names were excluded and counted.
 
 One class of script was excluded by design. Hebrew and Arabic are written as abjads,
 omitting short vowels, so transcription of the unvocalised registry text returns
 consonant skeletons (for example, Hebrew *Adam* renders as a vowelless /ʔdm/) that
 would systematically deflate exactly the vowel and sonority features under study. These
 sources were removed rather than retained, because the distortion is silent and cannot be
-detected by the artifact screens used for other languages. Transcriptions flagged as
-language-switching or spelled-out artifacts (for instance, an East Asian source whose
-logographic names fall back to a literal gloss) were filtered, and any source exceeding a
-25% weighted artifact rate was dropped in full.
+detected by the artifact checks used for other languages. Transcriptions flagged as
+language-switching or spelled-out artifacts were excluded, and any source exceeding a 25%
+weighted artifact rate was to be dropped in full; no source reached that threshold.
 
 ## Phonological features and effect sizes
 
 Each transcription was mapped to articulatory features using the panphon feature system.
 For every name, feature values were averaged across its segments, yielding a name-level
 profile (the proportion of segments that are sonorant, vocalic, consonantal, and so on),
-together with name length in segments. The female-male contrast on a given feature within
-a registry is summarised as a frequency-weighted Cohen's *d* (female minus male), with
-pooled within-sex variance. A positive *d* indicates a higher value among female names.
+together with name length in segments. In Analysis 1 the female-male contrast on a feature
+within a registry is the difference between the frequency-weighted female and male means.
+In Analysis 3 the national contrast is a frequency-weighted Cohen's *d* on sonority (female
+minus male), with pooled within-sex variance. Positive values indicate a higher value among
+female names.
 
 ## Societal gender equality
 
-For the cross-cultural analysis, the per-country phonological gap was paired with a
-standard composite index of national gender parity (higher values denote greater equality).
-This broader country panel draws on a wider, partly non-registry name sample and is
-therefore treated as a secondary, exploratory tier; the registry-based universality results
-in Analyses 1 and 2 do not depend on it.
+For Analysis 3, subnational registries were pooled into their country, and each country's
+sonority gap was paired with the World Economic Forum's Global Gender Gap Index (higher
+values denote greater parity), as distributed in the Quality of Government Standard
+Time-Series dataset (Quality of Government Institute, 2026), taking the most recent year
+available for each country (`r min(eq$ggi_year)` to `r max(eq$ggi_year)`).
+The gap is computed from the same transcribed names as Analyses 1 and 2. Countries and
+territories without an index value were excluded: `r paste(eq_noggi, collapse = ", ")`.
 
 # Analysis 1: How consistent is the female-male contrast?
 
@@ -1365,7 +1616,7 @@ ut <- uni[match(show, uni$feature), ] %>%
   )
 kable(ut, align = c("l", "l", "c", "c", "c"),
       caption = paste0("Table 1. Direction of the female-male phonological contrast across ",
-                       n_uni_sources, " official name registries.")) %>%
+                       n_uni_sources, " name registries.")) %>%
   kable_styling(full_width = FALSE, bootstrap_options = c("striped", "condensed"))
 ```
 
@@ -1381,15 +1632,71 @@ female-male contrast is not a property of one or two languages that happens to r
 the default direction of phonological gender marking wherever names are recorded, holding
 across the writing systems and language families represented in the registry set.
 
+## Final position and the rest of the name
+
+Much of this consistency could come from one position. Female names in many European
+languages end in a vowel, often *-a*, and a name-level sonority average includes that final
+segment. Following Ackermann and Zimmer (2021), three measures were therefore computed from
+the same segments: whether the name ends in a vowel; the share of sonorant segments with the
+final segment excluded; and the number of non-palatal vowels with the final segment excluded,
+where palatal vowels are syllabic, non-back and non-low (their [i], [e], [y]), so that [a]
+counts as non-palatal, as it does for them. Each is again the frequency-weighted female mean
+minus the male mean within a registry (Table 2).
+
+```{r tab-position}
+pt <- tibble::tibble(
+  Measure = c("Ends in a vowel", "Sonority, final segment excluded",
+              "Non-palatal vowels, final segment excluded"),
+  `Expected higher in` = c("Female", "Female", "Male"),
+  `Registries agreeing` = c(paste0(pos_final, " / ", pos_n), paste0(pos_sonnf, " / ", pos_n),
+                            paste0(pos_nonpal, " / ", pos_n)),
+  `Median F - M` = sprintf("%+.3f", c(median(pos$final_syl, na.rm = TRUE),
+                                      median(pos$son_nonfinal, na.rm = TRUE),
+                                      median(pos$nonpal_nonfinal, na.rm = TRUE))),
+  China  = fmt_d2(unlist(ea[ea$label == "China", c("final_syl", "son_nonfinal", "nonpal_nonfinal")])),
+  Taiwan = fmt_d2(unlist(ea[ea$label == "Taiwan", c("final_syl", "son_nonfinal", "nonpal_nonfinal")])),
+  `South Korea` = fmt_d2(unlist(ea[ea$label == "South Korea", c("final_syl", "son_nonfinal", "nonpal_nonfinal")])),
+  Japan  = fmt_d2(unlist(ea[ea$label == "Japan", c("final_syl", "son_nonfinal", "nonpal_nonfinal")]))
+)
+kable(pt, align = c("l", "l", "c", "c", "c", "c", "c", "c"),
+      caption = paste0("Table 2. The final segment and the rest of the name: registries in which ",
+                       "the female-male difference has the expected sign, and the difference in ",
+                       "the four East Asian registries.")) %>%
+  kable_styling(full_width = FALSE, bootstrap_options = c("striped", "condensed"))
+```
+
+Ending in a vowel is the most frequent cue of all, favouring female names in `r pos_final`
+of `r pos_n` registries, but it is also the most regional. The four East Asian registries
+rank at the bottom of the distribution (positions `r paste(sort(ea_rank_final), collapse = ", ")`
+of `r pos_n`): the difference is `r fmt_d2(ea$final_syl[ea$label == "China"])` in China,
+`r fmt_d2(ea$final_syl[ea$label == "Taiwan"])` in Taiwan,
+`r fmt_d2(ea$final_syl[ea$label == "Japan"])` in Japan and
+`r fmt_d2(ea$final_syl[ea$label == "South Korea"])` in South Korea. This reproduces Ackermann
+and Zimmer's finding that the final sound carries no gender information in China and Japan.
+Their one cross-linguistic cue also reproduces: male names contain more non-palatal vowels
+outside the final position in `r pos_nonpal` of `r pos_n` registries, including all four
+East Asian ones. The measure their design could not isolate shows the contrast beyond the
+final segment. With the final segment excluded, female names remain more sonorant in
+`r pos_sonnf` of `r pos_n` registries (median difference
+`r sprintf('%+.3f', median(pos$son_nonfinal, na.rm = TRUE))`, close to the whole-name
+difference in Table 1), and in all four East Asian registries, where the final-vowel cue is
+absent. The `r n_exc` exceptions are small (all but one between
+`r sprintf('%.3f', exc_min2)` and 0), `r n_exc_turkic` of them are Turkic-language registries
+and `r n_exc_nordic` Nordic, and in every one of them the final vowel still favours female
+names (`r n_exc_finalpos` of `r n_exc`): there the contrast sits at the end of the name.
+
 # Analysis 2: How strongly do the features combine?
 
 Directional consistency does not by itself establish that the cues are individually large;
 each per-feature gap is modest (Table 1). The relevant question for sex-typing is whether
-the cues combine into a discriminable signal. To test this, a count-weighted logistic
-regression predicted name sex from the full set of phonological features, with registry
-fixed effects to absorb between-language baseline differences, fitted to the most frequent
-names (top 30 per sex) from `r reg_n_sources` registries
-(*N* = `r format(reg_n_names, big.mark = ",")` weighted name types).
+the cues combine into a discriminable signal. To test this, a logistic regression predicted
+name sex from the full set of phonological features, with registry fixed effects to absorb
+between-language baseline differences, fitted to the most frequent names (top 30 per sex)
+from `r reg_n_sources` registries (*N* = `r format(reg_n_names, big.mark = ",")` names).
+Names were weighted by frequency within each registry, and the weights were normalised so
+that every registry contributes equally. Raw frequencies would have made the model
+largely a model of three registries: `r paste(top3_names, collapse = ", ")` together carry
+`r sprintf('%.0f%%', 100 * top3_share)` of the total count.
 
 ```{r tab-coef}
 ct <- coef %>% arrange(desc(abs_coef)) %>% head(8) %>%
@@ -1399,25 +1706,34 @@ ct <- coef %>% arrange(desc(abs_coef)) %>% head(8) %>%
     `Predicts` = ifelse(pole == "male", "Male", "Female")
   )
 kable(ct, align = c("l", "c", "c"),
-      caption = "Table 2. Strongest phonological predictors of name sex in the pooled multivariate model.") %>%
+      caption = "Table 3. Strongest phonological predictors of name sex in the pooled multivariate model.") %>%
   kable_styling(full_width = FALSE, bootstrap_options = c("striped", "condensed"))
 ```
 
-Combined, the features separate female from male names with a count-weighted area under the
-ROC curve of `r sprintf('%.3f', reg_auc)` and a weighted accuracy of
-`r sprintf('%.1f%%', 100 * reg_acc)`. The multivariate profile recapitulates the
-single-feature picture: openness and sonority pull strongly toward the female pole, while
-consonantality and back, rounded vowel quality pull toward the male pole. The discriminating
-signal is therefore not carried by any one cue but distributed across the same vocalic and
-sonorant dimensions that proved most consistent in Analysis 1.
+Combined, the features separate female from male names with an area under the ROC curve of
+`r sprintf('%.3f', reg_auc)` and a weighted accuracy of `r sprintf('%.1f%%', 100 * reg_acc)`,
+a moderate level of discrimination. Because these figures are computed on the names the model
+was fitted to, the model was also evaluated on registries it had not seen: each registry was
+held out in turn, the model was refitted to the remaining `r loro_n - 1`, and the held-out
+registry's names were scored (many held-out registries share a language with registries in
+the training set, so this tests transfer across registries rather than across languages). Within-registry discrimination on held-out registries has a
+median AUC of `r sprintf('%.3f', loro_med)` (interquartile range `r sprintf('%.3f', loro_q1)`
+to `r sprintf('%.3f', loro_q3)`), against `r sprintf('%.3f', loro_med_in)` for the same
+registries in sample, and is above 0.5 in `r loro_above` of `r loro_n`. Held-out and in-sample
+discrimination are nearly identical, so the model's discrimination is not a product of fitting
+the names it is scored on. The multivariate profile recapitulates the single-feature picture: sonority and
+stridency pull toward the female pole, while nasality, rounding and consonantality pull
+toward the male pole (Table 3). The discriminating signal is not carried by any one cue but
+distributed across the sonority and vocalic dimensions that proved most consistent in
+Analysis 1.
 
 # Analysis 3: Does the contrast track gender equality?
 
 If the phonological female-male contrast were a reflex of socially constructed gender roles,
 its magnitude should covary with how unequally a society treats women and men: larger where
-gender is sharply differentiated, smaller where it is not. Analysis 3 tests this across a
-broader panel of `r eq_n` countries, relating each country's phonological gap (Cohen's *d*)
-to a standard national gender-equality index.
+gender is sharply differentiated, smaller where it is not. Analysis 3 tests this across
+`r eq_n` countries, relating each country's sonority gap (Cohen's *d*) to the Global Gender
+Gap Index.
 
 ```{r fig-ggi, fig.width=6.5, fig.height=4.6, fig.cap=paste0("Figure 1. National name gender gap (Cohen's d) against the gender-equality index, ", eq_n, " countries. The dashed line marks d = 0 (no gap). ", eq_pos, " of ", eq_n, " countries lie above it; the slope with gender equality is flat and non-significant.")}
 ggplot(eq, aes(GGI, d)) +
@@ -1429,10 +1745,10 @@ ggplot(eq, aes(GGI, d)) +
   theme_minimal(base_size = 12)
 ```
 
-Two facts stand out. First, the contrast is universal in direction at the country level as
-well as the feature level: `r eq_pos` of `r eq_n` countries show the female-male gap in the
-same direction (mean *d* = `r sprintf('%.2f', eq_mean_d)`), spanning
-`r eq_families` language families. Second, and decisively for the explanatory question, the
+Two facts stand out. First, the contrast is nearly universal in direction at the country
+level as well as the feature level: `r eq_pos` of `r eq_n` countries show the female-male gap in the
+same direction (mean *d* = `r sprintf('%.2f', eq_mean_d)`). Second, and decisively for the
+explanatory question, the
 size of the gap is essentially unrelated to societal gender equality. The correlation is
 small and non-significant under both Pearson (*r* = `r fmt_r(r_pe)`, *p* = `r fmt_p(p_pe)`)
 and Spearman (*r*~s~ = `r fmt_r(rho_s)`, *p* = `r fmt_p(p_s)`) estimators. Countries at the
@@ -1441,61 +1757,106 @@ top of the equality scale mark gender in names just as strongly as countries nea
 # Discussion
 
 Three results converge. The female-male phonological contrast in given names is near-invariant
-in direction across `r n_uni_sources` registries (Analysis 1), combines into a strongly
-discriminable multivariate signal (Analysis 2), and holds in `r eq_pos` of `r eq_n` countries
-sampled, yet its magnitude does not move with societal gender equality (Analysis 3). Taken
-together they favour a particular reading: phonological gender marking in names is a robust
-linguistic regularity that operates largely below the level of deliberate social negotiation.
+in direction across `r n_uni_sources` registries (Analysis 1), combines into a moderately
+discriminating multivariate signal that transfers to registries outside the training set
+(Analysis 2), and holds in `r eq_pos` of `r eq_n` countries, yet its magnitude does not move
+with societal gender equality (Analysis 3).
 
-The decoupling from gender equality is the most informative of the three. A socio-structural
-account, on which gendered name forms encode and reproduce a society's gender hierarchy,
-predicts that the contrast should attenuate as that hierarchy flattens. It does not. The gap
-in the most gender-equal countries is indistinguishable from the gap in the least equal. What
-this argues against is a strong attributional claim, that the sound of gendered names is a
-direct expression of unequal gender relations. What it argues for is a sound-symbolic account
-in which the contrast is anchored in stable form-meaning associations. The features that carry
-the contrast, vocalic openness and sonority on the female side and consonantal closure and
-length on the male side, are precisely those that the frequency code links to body size and
-the bouba-kiki literature links to softness versus angularity (Ohala, 1994; Sidhu & Pexman,
-2018). On this view, naming traditions recruit a pre-existing perceptual mapping, and they do
-so to a similar degree regardless of how the surrounding society organises gender.
+## Two layers of phonological gender marking
 
-This conclusion sits comfortably alongside, and helps interpret, the broader finding that
-gendered evaluative and grammatical patterns in language are often weakly tied to measured
-gender attitudes. It also reframes the female-male name contrast as a phenomenon for the
-psychology of sound symbolism rather than primarily a marker of social inequality, a
-distinction with practical as well as theoretical consequences for how such patterns are
-described.
+The comparison with Ackermann and Zimmer (2021) shows where their conclusion and the present
+one meet. On the cues they measured, the two studies agree. The final vowel is a regional cue:
+it favours female names in most registries, is absent in China, Taiwan and Japan and is
+reversed in South Korea, a distribution consistent with their account of a convention spread
+with the Latin-derived *-a*. Their one cross-linguistic cue, more
+non-palatal vowels in male names outside the final position, holds in `r pos_nonpal` of
+`r pos_n` registries here. What their 13-country design could not show is that sonority
+outside the final position also separates the sexes, in `r pos_sonnf` of `r pos_n`
+registries and in all four East Asian ones, where the final-vowel convention plays no part.
+
+Phonological gender marking in names therefore looks layered rather than of one kind. A
+conventional layer, located at the end of the name and strongest where female names carry a
+vowel suffix, accounts for the regional variation Ackermann and Zimmer documented. Beneath it
+lies a weaker but far broader layer, a distributed difference in sonority and vowel quality
+that holds across language families and writing systems. Their contrast between
+conventional and sound-symbolic accounts is right in kind but, on the larger sample, it
+divides the phenomenon rather than settling it: both are present, at different positions in
+the name. The held-out results add a caution. The multivariate profile transfers poorly to China
+(AUC `r sprintf('%.2f', loro$auc_heldout[loro$source == "official_china"])`) and Japan
+(`r sprintf('%.2f', loro$auc_heldout[loro$source == "official_japan"])`), among the lowest of
+`r loro_n` registries, but well to Taiwan
+(`r sprintf('%.2f', loro$auc_heldout[loro$source == "official_taiwan"])`) and South Korea
+(`r sprintf('%.2f', loro$auc_heldout[loro$source == "official_southkorea"])`), which also lack
+the final-vowel cue. The weak transfer is therefore not explained by the missing convention
+alone. The Chinese list (`r sum(feat_tab$source == "official_china" & feat_tab$sex == "F")`
+names per sex) and the Japanese survey (`r jp_F` and `r jp_M`) are also among the smallest
+samples in the set.
+
+One cue departs from the English and German literature. Female names are usually reported
+to be longer, but in segments male names are longer in `r u_len$sources_agreeing` of
+`r n_uni_sources` registries. Length in segments and length in syllables need not agree:
+female names carry more vowels, so a female name can have more syllables and fewer segments
+than a male one. Syllable counts were not computed here, and the comparison with earlier
+findings on length should be read with that difference in mind.
+
+## Decoupling from gender equality
+
+The absence of any relation with gender equality is the most informative result for the
+explanatory question. A socio-structural account, on which gendered name forms encode and
+reproduce a society's gender hierarchy, predicts that the contrast should attenuate as that
+hierarchy flattens. It does not: the gap in the most gender-equal countries is
+indistinguishable from the gap in the least equal. This argues against a strong attributional
+claim, that the sound of gendered names is a direct expression of unequal gender relations.
+It is consistent with an account in which the broad layer rests on stable form-meaning
+associations: the features that carry it, sonority and vowel quality, are those that the
+sound-symbolism literature links to size and softness (Ohala, 1994; Sidhu & Pexman, 2018).
+The evidence is correlational, and the equality index measures present-day conditions while
+naming conventions are inherited, so the result constrains the sociopolitical account rather
+than establishing the sound-symbolic one.
 
 ## Limitations
 
-Three limitations bound these claims. First, transcription quality varies by language:
-eSpeak grapheme-to-phoneme conversion is reliable for the alphabetic and syllabic scripts
-that make up the registry set but cannot recover unwritten vowels, which is why abjad scripts
-were excluded; the resulting coverage is broad but not exhaustive, and under-represents the
-Semitic naming traditions in particular. Second, the registry analyses weight toward the most
-frequent names, which characterise the centre of each distribution well but say less about
-rare or newly coined names. Third, the cross-cultural panel in Analysis 3 uses a broader,
-partly non-registry name sample and a single composite equality index; the null association is
-robust to estimator choice, but a fuller test would pair frequency-weighted registry gaps with
-multiple equality measures across a still wider country set. None of these qualifications bears
-on the central, registry-based result that the contrast is consistent in direction and strong
-in combination.
+Four limitations bound these claims. First, transcription quality varies by language:
+grapheme-to-phoneme conversion was not validated against human transcriptions for every
+language, and it cannot recover unwritten vowels, which is why abjad scripts were excluded.
+Semitic naming traditions are therefore absent, and lexical tone is not represented in the
+feature system, so tonal languages contribute segmental form only. Second, the sources differ
+in kind: only `r tiers[["A"]]` of the `r length(used_src)` registries are government counts of
+newborns or a full register, others count resident populations or pooled periods, Japan is a
+non-government survey, and `r tiers[["?"]]` could not be classified. Third, the analyses use
+the 30 most frequent names per sex, which characterise the centre of each distribution but say
+little about rare or newly coined names. Fourth, the collection is dominated by Europe and the
+Americas, with many subnational registries for some countries, so Analyses 1 and 2 count
+registries rather than independent languages; Analysis 3 pools registries by country, uses a
+single composite equality index, and is correlational. The null association is robust to
+estimator choice, but a fuller test would use several equality measures and a sample balanced
+across language families.
 
 # Conclusion
 
 Female and male given names differ in sound in the same way almost everywhere: female names
 are more open and sonorous, male names more consonantal and longer. The contrast is consistent
-across `r n_uni_sources` official registries, discriminates the sexes with an area under the
-curve near `r sprintf('%.2f', reg_auc)`, and appears in `r eq_pos` of the `r eq_n` countries examined, yet it
+across `r n_uni_sources` registries, discriminates the sexes with an area under the curve
+near `r sprintf('%.2f', reg_auc)` that holds up on registries the model was not trained on,
+and appears in `r eq_pos` of the `r eq_n` countries examined, yet it
 does not grow or shrink with societal gender equality. Phonological gender marking in names is
 best understood not as an echo of social inequality but as a cross-linguistic sound-symbolic
-regularity that naming traditions inherit in common.
+regularity that naming traditions inherit in common, with a regional convention at the end
+of the name laid over it.
 
 # References {-}
 
+Ackermann, T., & Zimmer, C. (2021). The sound of gender: Correlations of name phonology and
+gender across languages. *Linguistics, 59*(4), 1143-1177. https://doi.org/10.1515/ling-2020-0027
+
 Cutler, A., McQueen, J., & Robinson, K. (1990). Elizabeth and John: Sound patterns of men's
 and women's names. *Journal of Linguistics, 26*(2), 471-482.
+
+Ogihara, Y. (2020). Baby names in Japan, 2004-2018: Common writings and their readings.
+*BMC Research Notes, 13*, 553. https://doi.org/10.1186/s13104-020-05409-3
+
+Ogihara, Y. (2025). Baby names in Japan, 2019-2024: Common writings and their readings.
+*Data in Brief, 60*, 111497. https://doi.org/10.1016/j.dib.2025.111497
 
 Ohala, J. J. (1994). The frequency code underlies the sound-symbolic use of voice pitch. In
 L. Hinton, J. Nichols, & J. J. Ohala (Eds.), *Sound symbolism* (pp. 325-347). Cambridge
@@ -1503,6 +1864,9 @@ University Press.
 
 Pitcher, B. J., Mesoudi, A., & McElligott, A. G. (2013). Sex-biased sound symbolism in
 English-language first names. *PLOS ONE, 8*(6), e64825.
+
+Quality of Government Institute. (2026). *The QoG standard dataset, time-series version
+(Jan26)* [Data set]. University of Gothenburg.
 
 Sidhu, D. M., & Pexman, P. M. (2018). Five mechanisms of sound symbolic association.
 *Psychonomic Bulletin & Review, 25*(5), 1619-1643.
